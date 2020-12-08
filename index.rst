@@ -25,12 +25,8 @@ TrustOracle文档
 .. toctree::
    :maxdepth: 2
 
-   docs/introduction.md
-   docs/change_log/index.md
-   docs/prepare/index.rst
-   docs/deploy/index.md
-   docs/ops/index.md
-   docs/appendix/index.md
+   docs/TrustOracle-Service/index.md
+   docs/TrustOracle-Web/index.md
 ..
 
  
