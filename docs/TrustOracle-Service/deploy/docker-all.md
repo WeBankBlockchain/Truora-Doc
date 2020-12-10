@@ -93,7 +93,8 @@ wget "https://github.com/WeBankBlockchain/TrustOracle-Service/releases/xxx/xxx/d
 unzip docker-deploy.zip
 
 ## 进入安装脚本目录
-cd docker-deploy```
+cd docker-deploy
+```
 
 ### 仓库拉取
 也可以从 线上
