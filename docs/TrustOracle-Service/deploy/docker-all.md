@@ -7,6 +7,13 @@
 ```
 
 ## 安装介绍
+Docker 一键安装是指使用 `deploy.sh` 工具，一键部署整个 TrustOracle-Service 服务，包括依赖的 FISCO-BCOS 节点和 MySQL 数据库等服务。
+
+Docker 一键安装适合以下场景：
+
+* 体验 TrustOracle-Service 服务
+* Oracle 服务的开发和调试
+
 TrustOracle 服务支持使用 `Docker` + `Docker-Compose` 进行部署。
 
 同时，在部署 TrustOracle 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 Oracle 的开发和调试环境。

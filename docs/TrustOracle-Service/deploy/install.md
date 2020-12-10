@@ -8,6 +8,8 @@
      
 ```
 
+## 安装介绍
+
 ## 前置依赖
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
@@ -174,10 +176,10 @@ sdk:
 ########################################################################
 event:
   eventRegisters:
-   - {chainId: 1, group: 1, operator: "operator1", url: "http://localhost:5012/TrustOracle/"}
-   #- {chainId: 1, group: 2, operator: "operator2", url: "http://localhost:5012/TrustOracle/"}
-   #- {chainId: 2, group: 1, operator: "operator3", url: "http://IP2:5012/TrustOracle/"}
-   #- {chainId: 2, group: 2, operator: "operator4", url: "http://lIP22:5012/TrustOracle/"}
+   - {chainId: 1, group: 1, operator: "operator1", url: "http://localhost:5000"}
+   #- {chainId: 1, group: 2, operator: "operator2", url: "http://localhost:5000"}
+   #- {chainId: 2, group: 1, operator: "operator3", url: "http://IP2:5000"}
+   #- {chainId: 2, group: 2, operator: "operator4", url: "http://IP2:5000"}
 ```  
 
 ## 服务启停
