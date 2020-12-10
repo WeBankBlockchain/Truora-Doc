@@ -74,10 +74,14 @@ dist目录提供了一份配置模板conf：
 
 ```shell
 cd conf
+
+# 拷贝 SDK 连接证书
+cp  /${PATH_TO_SDK}/node.* .
+cp  /${PATH_TO_SDK}/ca.crt .
 ```
 
 ```eval_rst
-   .. important::
+.. important::
 
     - TrustOracle-Service 服务需要连接 FISCO-BCOS 节点，拷贝节点所在目录 `nodes/${ip}/sdk` 下的 `ca.crt`、`node.crt` 和 `node.key` 文件拷贝到当前 `conf` 目录。
 
@@ -86,9 +90,9 @@ cd conf
 
 （3）修改配置 application.yml 文件（根据实际情况修改）：
 
-  修改数据库 `IP` 地址，用户名和密码。 
+  * 修改数据库 `IP` 地址，用户名和密码。 
    
-```
+```yaml
  datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/trustoracle?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
@@ -97,21 +101,30 @@ cd conf
 ```  
   
   
-  多链多群组配置，注意不同的chain的节点没有任何p2p联系。
-  
+  * 多链多群组配置：**不同链之间相互独立，没有关联**
+
+
+```eval_rst
+.. important:: 
+
+    - TrustOracle-Service 在配置多链时，所有链版本必须在 `v2.6.0` + 
+    - 不同链的证书目录不同
+    - 同一个 TrustOracle-Service 连接的多条链，必须同为 **ECDSA(默认，非国密)**，或者同为 **国密**
+```
+
 ```yaml 
 ########################################################################
 # 配置 TrustOracle 连接的链和群组信息（证书和地址）:
 #   1. 同一条链可以配置多个群组
-#   2. 可以配置多条链，要求同为 国密 或者 ECDSA
+#   2. 可以配置多条链，要求同为 ECDSA（默认，非国密） 或者 国密
 ########################################################################
 group-channel-connections-configs:
   configs:
     ## 第一条链的连接信息，证书，群组列表和 IP:Port
     - chainId: 1
-      caCert: classpath:1/ca.crt
-      sslCert: classpath:1/node.crt
-      sslKey: classpath:1/node.key
+      caCert: classpath:ca.crt
+      sslCert: classpath:node.crt
+      sslKey: classpath:node.key
       all-channel-connections:
          - group-id: 1
            connections-str:
@@ -134,7 +147,24 @@ group-channel-connections-configs:
 
 ```
 
-  多链多群组监听配置
+  * 国密配置：如果链类型是国密，配置 `encryptType` = 1
+  
+```yaml
+sdk:
+  encryptType: 0 #0:standard, 1:guomi
+```
+
+  * 多链多群组监听配置
+  
+```eval_rst
+.. admonition:: 提示
+
+     - 配置多链多群组监听时，配置的链ID和群组ID，必须在 `group-channel-connections-configs` 中配置过
+     - `group-channel-connections-configs` 表示 TrustOracle-Service 会连接到哪些链和群组
+     - `eventRegisters` 表示启用哪些链和群组
+     
+```
+
   
 ```yaml
 ########################################################################
@@ -144,10 +174,10 @@ group-channel-connections-configs:
 ########################################################################
 event:
   eventRegisters:
-   - {chainId: 1, group: 1, operator: "operator1", url: "http://localhost1"}
-   #- {chainId: 1, group: 2, operator: "operator2", url: "http://localhost2"}
-   #- {chainId: 2, group: 1, operator: "operator3", url: "http://localhost3·"}
-   #- {chainId: 2, group: 2, operator: "operator4", url: "http://localhost4"}
+   - {chainId: 1, group: 1, operator: "operator1", url: "http://localhost:5012/TrustOracle/"}
+   #- {chainId: 1, group: 2, operator: "operator2", url: "http://localhost:5012/TrustOracle/"}
+   #- {chainId: 2, group: 1, operator: "operator3", url: "http://IP2:5012/TrustOracle/"}
+   #- {chainId: 2, group: 2, operator: "operator4", url: "http://lIP22:5012/TrustOracle/"}
 ```  
 
 ## 服务启停
@@ -160,8 +190,8 @@ event:
 ```
 **备注**：服务进程起来后，需通过日志确认是否正常启动，出现以下内容表示正常；如果服务出现异常，确认修改配置后，重启提示服务进程在运行，则先执行 `stop.sh`，再执行 `start.sh`。
 
-```
-	Application() - main run success...
+```Bash
+Application() - main run success...
 ```
 
 
@@ -170,6 +200,7 @@ event:
 
 在 dist 目录查看：
 
-```
-前置服务日志：tail -f log/Oracle-Service.log
+```Bash
+# 前置服务日志：
+tail -f log/Oracle-Service.log
 ```
