@@ -4,9 +4,9 @@
 
 | 环境  | 版本               |
 | ----- | ------------------ |
-| nginx | nginx1.6或以上版本 |
+| Nginx | Nginx1.6或以上版本 |
 
-`nginx`安装请参考[附录](../../TrustOracle-Service/appendix.md#install_nginx)
+`Nginx`安装请参考[附录](../../TrustOracle-Service/appendix.html#install_nginx)
 
 ### 2. 拉取代码
 
@@ -15,10 +15,10 @@
 
     git clone https://github.com/WeBankBlockchain/TrustOracle-Web.git
 
-在代码库中docs文件下有`nginx`配置文件，直接可以拿来替换安装的 `nginx` 的配置文件`nginx.conf`；
-然后修改`nginx.conf`；
+在代码库中docs文件下有`Nginx`配置文件，直接可以拿来替换安装的 `Nginx` 的配置文件`Nginx.conf`；
+然后修改`Nginx.conf`；
 
-进入`nginx`配置文件（这里nginx安装在/usr/local下面，如果这里没找到，可以到/etc下寻找,如有权限问题，请加上sudo）
+进入`Nginx`配置文件（这里Nginx安装在/usr/local下面，如果这里没找到，可以到/etc下寻找,如有权限问题，请加上sudo）
 
 ```
     cd /usr/local/nginx/conf
@@ -62,7 +62,7 @@
     sed -i "s/10.0.0.1:8083/${your_TrustOracleServer_ipPort}/g" nginx.conf
 ````
 
-按照上面的步骤执行后，可以直接跳过这一步骤，直接启动`nginx`。若服务器已有`nginx`可按照以下修改，增加一条server
+按照上面的步骤执行后，可以直接跳过这一步骤，直接启动`Nginx`。若服务器已有`Nginx`可按照以下修改，增加一条server
 
 ```Nginx
     upstream trust_oracle_server{
@@ -89,14 +89,14 @@
         }
 ```
 
-### 3. 启动nginx
+### 3. 启动Nginx
 
-(1)、启动nginx。
+(1)、启动Nginx。
 启动命令：
 
-	/usr/local/nginx/sbin/nginx    (nginx下载在/usr/local目录下)
+	/usr/local/nginx/sbin/nginx    (Nginx下载在/usr/local目录下)
 
-检查nginx是否启动成功
+检查Nginx是否启动成功
 
 ```
     ps -ef | grep nginx
@@ -104,7 +104,7 @@
 
 观察进程是否起来
 
-启动报错重点排查：日志路径是否正确（error.log和access.log）,nginx有没有添加用户权限。
+启动报错重点排查：日志路径是否正确（error.log和access.log）,Nginx有没有添加用户权限。
 
-(2)、打开页面，页面`url`是`nginx`配置的前端`ip`和`端口`。
+(2)、打开页面，页面`url`是`Nginx`配置的前端`ip`和`端口`。
 例如:上面配置文件的`url`为   http://10.0.0.1:3002
