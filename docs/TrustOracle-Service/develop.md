@@ -37,17 +37,17 @@ curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
 
 ### 方式一：获取链下API数据
  用户可以参考[APISampleOracle.sol]()合约实现自己的oracle业务合约。 合约解析如下：       
-  1. 用户合约需继承FiscoOracleClient合约
+  - 用户合约需继承FiscoOracleClient合约
    ```
     contract APISampleOracle is FiscoOracleClient
    ``` 
-  2. 构造函数需要传入指定的TrustOracle服务方地址。地址可以通过上述接口获取。  
+  - 构造函数需要传入指定的TrustOracle服务方地址。地址可以通过上述接口获取。  
    ```
       constructor(address oracleAddress) public {  
             oracleCoreAddress = oracleAddress;      
       }  
    ```       
-  3.  设定自己要访问的url。修改url变量赋值即可。  
+  - 设定自己要访问的url。修改url变量赋值即可。  
   
    ```
       function request() public returns (bytes32 requestId)
@@ -62,8 +62,8 @@ curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
               
         }
    ```
-  4. 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于TrustOracle预言机回调获取的结果。  
-  5. **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
+  - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于TrustOracle预言机回调获取的结果。  
+  - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
      
    ***URL格式规范***
