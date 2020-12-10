@@ -6,6 +6,5 @@
     :maxdepth: 1
 
     docker-all.md
-    docker-single.md
     install.md
 
