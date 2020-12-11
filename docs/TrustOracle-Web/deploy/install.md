@@ -12,39 +12,39 @@
 
 代码可以放在/data下面
 执行命令：
-
+```bash
     git clone https://github.com/WeBankBlockchain/TrustOracle-Web.git
-
-在代码库中docs文件下有`Nginx`配置文件，直接可以拿来替换安装的 `Nginx` 的配置文件`Nginx.conf`；
+```
+在代码库中docs文件下有`Nginx`配置文件，直接可以拿来替换安装的 `Nginx` 的配置文件`Nginx.conf`； m
 然后修改`Nginx.conf`；
 
 进入`Nginx`配置文件（这里Nginx安装在/usr/local下面，如果这里没找到，可以到/etc下寻找,如有权限问题，请加上sudo）
 
-```
+```bash
     cd /usr/local/nginx/conf
 ```
 
 1、 修改web服务端口（端口需要开通策略且不能被占用）
 
-```
+```bash
     sed -i "s/3002/${your_server_port}/g" nginx.conf
 ```
 
 例如：
 
-```
+```bash
     sed -i "s/3002/8080/g" nginx.conf   你修改的服务端口是8080
 ```
 
 2、 修改服务`ip`
 
-```
+```bash
     sed -i "s/10.0.0.1/${your_server_ip}/g" nginx.conf
 ```
 
 例如： 
 
-```
+```bash
     sed -i "s/10.0.0.1/192.168.0.1/g" nginx.conf
 ```
 
@@ -52,13 +52,13 @@
 
 3、 修改静态文件路径
 
-```
+```bash
     sed -i "s/\/data\/TrustOracle-Web\/dist/${your_file_route}/g" nginx.conf
 ```
 
 4、 修改`TrustOracle`服务`ip`和`端口`
 
-```
+```bash
     sed -i "s/10.0.0.1:8083/${your_TrustOracleServer_ipPort}/g" nginx.conf
 ````
 
@@ -98,7 +98,7 @@
 
 检查Nginx是否启动成功
 
-```
+```bash
     ps -ef | grep nginx
 ```
 
