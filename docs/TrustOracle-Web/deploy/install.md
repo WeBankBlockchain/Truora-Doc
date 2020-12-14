@@ -8,7 +8,7 @@
 
 关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../TrustOracle-Service/appendix.html#install_nginx)
 
-### 2. 编译部署
+### 2. 安装
 
 * 拉取代码：
 

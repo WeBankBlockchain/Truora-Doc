@@ -1,4 +1,6 @@
-## Oracle-Service 接口文档
+# 接口规范
+
+## TrustOracle-Service 
 
 ### OracleCore 合约地址查询接口
 
@@ -169,7 +171,7 @@ HTTP GET
 
 **2）数据格式**
 无
-#### 响应参数
+### 响应参数
 
 **1）数据格式** 
 
