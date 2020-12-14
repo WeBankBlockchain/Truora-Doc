@@ -21,7 +21,6 @@ TrustOracle文档
 
 .. toctree::
    :maxdepth: 2
-   index.rst
    docs/TrustOracle-Service/index.md
    docs/TrustOracle-Web/index.md
 ..
