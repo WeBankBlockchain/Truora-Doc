@@ -70,7 +70,7 @@ TrustOracle Docker 一键安装工具使用 `deploy.sh` 脚本：
 * 自动安装 `OpenSSL`, `curl`, `wget`, `Docker`, `Docker Compose` 等依赖服务
 * 调用 FISCO-BCOS 一键部署脚本 `build_chain.sh`，部署 `4` 个区块链底层节点
 * 部署 WeBASE-Front 服务
-* 部署 WeBASE-Oracle 服务
+* 部署 TrustOracle-Service, TrustOracle-Web 服务
 * 支持国密选项
 
 关于脚本详细参数列表，请参考：[脚本参数](./docker-all.html#shell_script_param)
