@@ -11,9 +11,7 @@
 
 ```
 
-```eval_rst
-   原理图如下[原理图](../../../../images/oracle.png)
-```
+   原理图如下[原理图](../../../images/oracle.png)
 
 ```eval_rst
 .. admonition:: **主要特性**
