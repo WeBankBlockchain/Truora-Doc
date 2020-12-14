@@ -4,17 +4,15 @@ TrustOracle文档
 
 .. image:: _static/images/logo/FISCO_BCOS_Logo.svg
 
-  区块链是一个确定性的、封闭的系统环境，目前区块链只能获取到链内的数据，而不能获取到链外真实世界的数据，区块链与现实世界是割裂的。
+.. admonition:: **简介**
 
-  区块链是确定性的环境，它不允许不确定的事情或因素，智能合约不管何时何地运行都必须是一致的结果，所以虚拟机（VM）不能让智能合约有 network call（网络调用），不然结果就是不确定的。
-当智能合约的触发条件是外部信息时（链外），就必须需要预言机来提供数据服务，通过预言机将现实世界的数据输入到区块链上，因为智能合约不支持对外请求。
-也就是说智能合约不能进行 I/O（Input/Output，即输入/输出），所以它是无法主动获取外部数据的，只能通过预言机将数据给到智能合约。
+  区块链是一个确定性的、封闭的系统环境，智能合约不管何时何地运行都必须是一致的结果，所以虚拟机（VM）不能让智能合约有 network call（网络调用），不然结果就是不确定的。
+  智能合约不能直接获取到链外真实世界的数据，导致区块链与现实世界是割裂的。
+  而如何将区块链和现实世界连接起来，就需要引入预言机服务，通过预言机将现实世界的数据输入到区块链上，为智能合约提供与外部世界的连接性。
 
-  我们可以通过引入预言机（Oracle）的功能来解决这一问题，预言机可以为智能合约提供与外部世界的连接性。
+  TrustOracle是`FISCO-BCOS <https://github.com/FISCO-BCOS/FISCO-BCOS>`_ 区块链平台的预言机服务解决方案。是在广泛调研的基础上针对联盟链场景设计的预言机服务。
 
-  TrustOracle 分为链上部分和链下部分。
-链上部分主要是oracle相关合约，链下部分主要是java服务，负责监听合约的事件，采集结果并回写到智能合约。
-
+  TrustOracle服务主要由后端 Java 组件`TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 vue 组件 `TrustOracle-Web` <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 
 .. important::
 
@@ -24,7 +22,7 @@ TrustOracle文档
 
 .. toctree::
    :maxdepth: 2
-
+   index.rst
    docs/TrustOracle-Service/index.md
    docs/TrustOracle-Web/index.md
 ..

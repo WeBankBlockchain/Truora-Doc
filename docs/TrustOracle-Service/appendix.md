@@ -46,6 +46,11 @@ $ source /etc/profile
 java -version 
 ```
 
+
+<span id="install_nginx" />
+
+
+
 ## 安装 Nginx
 
 ### 安装 Nginx 依赖
