@@ -31,7 +31,7 @@ cp docker/trustoracle-web.conf  /etc/nginx/conf.d
 .. admonition:: 提示
 
      - 如果项目已经存在 Nginx，只需要把 `docker/trustoracle-web.conf` 拷贝到 Nginx 的子项目配置目录中即可
-     - Nginx 的子项目配置目录在文件 `/etc/nginx/nginx.conf` 中 `include` 配置
+     - Nginx 的子项目配置目录从 `/etc/nginx/nginx.conf` 文件中 `include` 配置查看
 ``` 
 
 ```eval_rst
