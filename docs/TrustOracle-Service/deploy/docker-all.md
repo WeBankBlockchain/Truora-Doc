@@ -70,10 +70,10 @@ TrustOracle Docker 一键安装工具使用 `deploy.sh` 脚本：
 * 自动安装 `OpenSSL`, `curl`, `wget`, `Docker`, `Docker Compose` 等依赖服务
 * 调用 FISCO-BCOS 一键部署脚本 `build_chain.sh`，部署 `4` 个区块链底层节点
 * 部署 WeBASE-Front 服务
-* 部署 WeBASE-Oracle 服务
+* 部署 TrustOracle-Service, TrustOracle-Web 服务
 * 支持国密选项
 
-关于脚本详细参数列表，请参考：[脚本参数](./docker.html#shell_script_param)
+关于脚本详细参数列表，请参考：[脚本参数](./docker-all.html#shell_script_param)
 
 ## 获取部署脚本
 部署脚本的获取方式有两种：
@@ -81,7 +81,7 @@ TrustOracle Docker 一键安装工具使用 `deploy.sh` 脚本：
 * 使用 Git 从仓库拉取
 
 ### 下载安装包
-在[版本列表中](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 选择相应版本的 `docker-deploy.zip` 文件下载。
+在[版本列表中](https://github.com/WeBankBlockchain/TrustOracle-Service/releases)选择相应版本的 `docker-deploy.zip` 文件下载。
 
 或者直接直接代码，下载最新安装包：
 
@@ -97,7 +97,8 @@ cd docker-deploy
 ```
 
 ### 仓库拉取
-也可以从 线上
+
+部署脚本也可以直接从仓库拉取
 
 ```Bash
 # 初始化本地目录
