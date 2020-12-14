@@ -1,7 +1,7 @@
 ##############################################################
 TrustOracle文档
 ##############################################################
-.. image:: _static/images/logo/FISCO_BCOS_Logo.svg
+.. image:: ../../_static/images/logo/FISCO_BCOS_Logo.svg
 
 .. admonition:: **简介**
 
