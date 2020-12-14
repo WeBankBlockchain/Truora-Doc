@@ -4,107 +4,99 @@
 
 | 环境  | 版本               |
 | ----- | ------------------ |
-| Nginx | Nginx1.6或以上版本 |
+| Nginx | Nginx 1.6 或以上版本 |
 
-`Nginx`安装请参考[附录](../../TrustOracle-Service/appendix.html#install_nginx)
+关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../TrustOracle-Service/appendix.html#install_nginx)
 
-### 2. 拉取代码
+### 2. 编译部署
 
-代码可以放在/data下面
-执行命令：
-```bash
-    git clone https://github.com/WeBankBlockchain/TrustOracle-Web.git
-```
-在代码库中docs文件下有`Nginx`配置文件，直接可以拿来替换安装的 `Nginx` 的配置文件`Nginx.conf`； m
-然后修改`Nginx.conf`；
+* 拉取代码：
 
-进入`Nginx`配置文件（这里Nginx安装在/usr/local下面，如果这里没找到，可以到/etc下寻找,如有权限问题，请加上sudo）
-
-```bash
-    cd /usr/local/nginx/conf
+```Bash
+# 拉取代码
+git clone https://github.com/WeBankBlockchain/TrustOracle-Web.git;
+    
+# 进入目录
+cd TrustOracle-Web
 ```
 
-1、 修改web服务端口（端口需要开通策略且不能被占用）
-
-```bash
-    sed -i "s/3002/${your_server_port}/g" nginx.conf
+* 拷贝 `Nginx` 配置文件
+    
+```Bash
+# 拷贝项目的 Nginx 配置
+cp docker/trustoracle-web.conf  /etc/nginx/conf.d
 ```
 
-例如：
+```eval_rst
+.. admonition:: 提示
 
-```bash
-    sed -i "s/3002/8080/g" nginx.conf   你修改的服务端口是8080
+     - Nginx 的配置文件直接拷贝 `docker/trustoracle-web.conf` 文件即可
+     - **不用** 修改 Nginx 的主配置文件 `/etc/nginx/nginx.conf`
 ```
 
-2、 修改服务`ip`
+* 拷贝源码到 `Nginx` 的项目目录
 
-```bash
-    sed -i "s/10.0.0.1/${your_server_ip}/g" nginx.conf
+
+```Bash
+# 备份原有 index.html 文件
+mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.back
+
+# 拷贝项目文件
+cp -r dist/* /usr/share/nginx/html
 ```
 
-例如： 
+### 3. 启动 Nginx
 
-```bash
-    sed -i "s/10.0.0.1/192.168.0.1/g" nginx.conf
+* 启动 `Nginx`
+
+```Bash
+# 启动 Nginx
+nginx 
 ```
 
-你修改的服务`ip`是192.168.0.1,也可以修改成域名
+* 检查启动结果
 
-3、 修改静态文件路径
+```Bash
+# 检查进程
+$ ps -ef | grep -i nginx
 
-```bash
-    sed -i "s/\/data\/TrustOracle-Web\/dist/${your_file_route}/g" nginx.conf
+root     31462     1  0 17:33 ?        00:00:00 nginx: master process nginx
+www-data 31562 31462  0 17:37 ?        00:00:00 nginx: worker process
+www-data 31563 31462  0 17:37 ?        00:00:00 nginx: worker process
+
+# 检测端口
+$ netstat -anp | grep -i listen| grep -i tcp|grep 5000
+
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      31462/nginx: master
 ```
 
-4、 修改`TrustOracle`服务`ip`和`端口`
+如果能查看到 `nginx` 的进程，同时 `5000` 端口也被 `Nginx` 服务监听，那么 **启动成功**。
 
-```bash
-    sed -i "s/10.0.0.1:8083/${your_TrustOracleServer_ipPort}/g" nginx.conf
-````
+* 浏览器访问
+    
+    打开浏览器，输入 `http://[IP]:5000`，比如：`http://127.0.0.1:5000`
 
-按照上面的步骤执行后，可以直接跳过这一步骤，直接启动`Nginx`。若服务器已有`Nginx`可按照以下修改，增加一条server
+```eval_rst
+.. admonition:: 提示
 
-```Nginx
-    upstream trust_oracle_server{
-        server 10.0.0.1:8083; #步骤三 Oracle管理服务地址及端口
-    }
-    server {
-        listen       3002 default_server;   #步骤一 前端端口（端口需要开通策略且不能被占用）
-        server_name  10.0.0.1;         #步骤一 前端地址，可配置为域名
-        location / {
-                root    /data/TrustOracle-web/dist;   #步骤二 前端文件路径(文件需要有权限访问)
-                index  index.html index.htm;
-                try_files $uri $uri/ /index.html =404;
-                }
-
-        # Load configuration files for the default server block.
-        include /etc/nginx/default.d/*.conf;
-
-        location /oracle {
-                    proxy_pass    http://trust_oracle_server/;    		
-                    proxy_set_header		Host				$host;
-                        proxy_set_header		X-Real-IP			$remote_addr;
-                        proxy_set_header		X-Forwarded-For		$proxy_add_x_forwarded_for;
-                }
-        }
+     - 注意替换服务器的 `IP` 地址
 ```
 
-### 3. 启动Nginx
+### 错误排查
+* 查看 `Nginx` 日志：
 
-(1)、启动Nginx。
-启动命令：
-
-	/usr/local/nginx/sbin/nginx    (Nginx下载在/usr/local目录下)
-
-检查Nginx是否启动成功
-
-```bash
-    ps -ef | grep nginx
+```Bash
+# 查看 Nginx 的错误日志
+$ cat /var/log/nginx/error.log
 ```
 
-观察进程是否起来
+* 查看项目的 `Nginx` 日志：
 
-启动报错重点排查：日志路径是否正确（error.log和access.log）,Nginx有没有添加用户权限。
+```Bash
+$ 项目的 error 日志
+cat /var/log/nginx/oracle-error.log
 
-(2)、打开页面，页面`url`是`Nginx`配置的前端`ip`和`端口`。
-例如:上面配置文件的`url`为   http://10.0.0.1:3002
+$ 项目的 access 日志
+cat /var/log/nginx/oracle-access.log
+```
+
