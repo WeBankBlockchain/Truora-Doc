@@ -20,9 +20,9 @@ TrustOracle文档
    - FISCO BCOS 2.6+ 版本及兼容性说明 `这里 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/change_log/index.html>`_
 
 .. toctree::
-   :maxdepth: 2
-   docs/TrustOracle-Service/index.md
-   docs/TrustOracle-Web/index.md
+   :maxdepth: 3
+   
+   docs/index.rst
 ..
 
  
