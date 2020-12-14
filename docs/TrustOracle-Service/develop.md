@@ -1,41 +1,6 @@
-# 开发指南
 
-##  获取合约地址
 
-```Bash
-http://{deployIP}:{port}/Oracle-Service/oracle/address?chainId=1&groupId=1
-    
-# 示例：
-curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
-```
-
-返回结果如下：
-
-```json
-{
-  "code": 0,
-  "message": "success",
-  "data": [
-    {
-      "chainId": 1,
-      "group": 1,
-      // OracleCore 合约地址
-      "oracleCoreContractAddress": "0x66c3631ced2c63379f2133180f70aedf1d728869",
-      // VRF 合约地址
-      "vrfContractAddress": "0x741a6ddfa69c6dbeee8ecea651f2748f80404009",
-      "fromBlock": "latest",
-      "toBlock": "latest",
-      "operator": "operator",
-      "url": "http://localhost"
-    }
-  ]
-}
-```
-
-- 部署服务器IP和服务端口需对应修改，网络策略需开通
-- 基于 WeBASE-Front 可视化控制台，可以开发智能合约，部署合约和发送交易，并查看交易和区块详情。还可以管理私钥，对节点健康度进行监控和统计
-
-### 方式一：获取链下API数据
+### 1 获取链下API数据
  用户可以参考[APISampleOracle.sol]()合约实现自己的oracle业务合约。 合约解析如下：       
   - 用户合约需继承FiscoOracleClient合约
    ```
@@ -80,7 +45,7 @@ curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
    
 
 
-### VRF获取可验证随机数
+###2 VRF获取可验证随机数
   
   用户合约开发只需继承VRFConsumerBase（contracts/0.4/oracle目录下）合约即可。必须实现fulfillRandomness方法，以便oracle-service将结果回写。
 
@@ -122,16 +87,3 @@ contract RandomNumberConsumer is VRFConsumerBase {
   ```
   
   
-### 去中心化部署获取聚合结果
-
-
-
-  latestAnswer()最新的聚合结果
-  
-  latestTimestamp() 最新一次聚合的时间戳
-  
-  latestRound()最新一次聚合的轮次号
-  
-  getAnswer(uint256 roundId) 通过轮次号获取历史结果
-  
-  getTimestamp(uint256 roundId)通过轮次号获取历史时间戳
