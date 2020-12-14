@@ -13,6 +13,19 @@ TrustOracle文档
 
   TrustOracle 服务主要由后端 Java 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 
+
+.. admonition:: **应用场景**
+ - **保险方面:**
+   航空延误险,农作物保险,天气险等，智能合约根据协议对保险产品作出是否理赔的决策。
+ - **金融方面:**
+   获取汇率或者资产价格，智能合约以此来确定参与各方的收益和损失，以及触发平仓交易。
+ - **游戏/预测市场方面:**
+   获取链上安全的随机数，智能合约以此来分配奖金。
+ - **物联网方面:**
+   对于IoT应用，将传感器信息上链，智能合约验证并触发下一步的行为。
+
+
+
 .. important::
 
    - 本技术文档只适用 FISCO BCOS 2.6+
