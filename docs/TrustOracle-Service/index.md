@@ -11,7 +11,8 @@
 ```
 
    原理图:  
-![[原理]](../../../images/oracle.png)    
+![](../../images/oracle.png) 
+   
    
   
 
