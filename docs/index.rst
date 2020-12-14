@@ -14,7 +14,9 @@ TrustOracle文档
   TrustOracle 服务主要由后端 Java 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 
 
+
 .. admonition:: **应用场景**
+
  - **保险方面:**
    航空延误险,农作物保险,天气险等，智能合约根据协议对保险产品作出是否理赔的决策。
  - **金融方面:**

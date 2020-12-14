@@ -1,5 +1,104 @@
 # 附录
 
+<span id="install_docker" />
+
+## 安装 Docker
+
+### 环境要求
+
+| 操作系统         |  版本最低要求     |  
+| ------------- |:-------|
+| CentOS/RHEL |7.3（kernel >= 3.10.0-514）|
+|Debian|Stretch 9  |
+|Ubuntu|Xenial 16.04 (LTS)|
+
+### 安装 Docker
+Docker 官方提供了一键安装工具，可以方便的在主机上安装 Docker 工具。
+
+```Bash
+# 安装 Docker 
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun;
+```
+
+如果安装出现下面类似，提示 `containerd.io` 版本错误：
+
+```Bash  
+Last metadata expiration check: 0:13:10 ago on Sun 08 Mar 2020 04:23:54 AM UTC.
+Error: 
+ Problem: package docker-ce-3:19.03.7-3.el7.x86_64 requires containerd.io >= 1.2.2-3, but none of the providers can be installed
+  - cannot install the best candidate for the job
+  - package containerd.io-1.2.10-3.2.el7.x86_64 is excluded
+  - package containerd.io-1.2.13-3.1.el7.x86_64 is excluded
+  - package containerd.io-1.2.2-3.3.el7.x86_64 is excluded
+  - package containerd.io-1.2.2-3.el7.x86_64 is excluded
+  - package containerd.io-1.2.4-3.1.el7.x86_64 is excluded
+  - package containerd.io-1.2.5-3.1.el7.x86_64 is excluded
+  - package containerd.io-1.2.6-3.3.el7.x86_64 is excluded
+(try to add '--skip-broken' to skip uninstallable packages or '--nobest' to use not only best candidate packages)
+```
+
+需要执行一下下面的命令，然后再重新执行安装命令：
+
+```Bash
+# 安装 containerd.io 文件
+yum -y install "https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.3.9-3.1.el7.x86_64.rpm"
+
+# 重新执行 Docker 安装命令
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun;
+```
+
+* 启动 Docker
+
+```Bash
+# 启动 Docker
+systemctl start docker
+```
+
+* 检测 Docker 安装
+
+```Bash
+# 启动 Hello World 容器
+$ docker run --rm hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+
+如果出现以上输出，包含 `Hello from Docker!`，表示 Docker 安装成功。
+
+
+### 安装 Docker-Compose
+Docker-Compose 是 Docker 官方提供的基于单机的容器编排工具，可以很方便的在单台主机中管理多个容器，包括按依赖顺序启动，关闭，重启等。
+
+安装 Docker-Compose 也相当简单，执行下面的命令：
+
+
+```Bash
+# 下载 docker-compose 可执行文件
+curl -L https://get.daocloud.io/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose;
+
+# 修改 docker-compose 可执行文件权限
+chmod +x /usr/local/bin/docker-compose;
+```
+
 <span id="install_java" />
 
 ## 安装 Java
@@ -53,45 +152,49 @@ java -version
 
 ## 安装 Nginx
 
-### 安装 Nginx 依赖
-在安装 Nginx 前首先要确认系统中安装了 `gcc`、`pcre-devel`、`zlib-devel`、`openssl-devel`。如果没有，请执行命令
+安装 `Nginx` 时，推荐使用 `yum`/`apt-get` 安装。
+
+* **CentOS 7.x / RHEL 7.x**
 
 ```Bash
-yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
+# 安装 EPEL 仓库
+sudo yum install epel-release
+
+# 更新仓库
+sudo yum update
+
+# 安装 Nginx
+sudo yum install -y nginx
 ```
 
-执行命令时注意权限问题，如遇到，请加上sudo
-
-### 安装 Nginx
+* **Ubuntu 16.04 / Debian 9**
 
 ```Bash
-wget https://nginx.org/download/nginx-1.17.3.tar.gz
+# 更新仓库
+sudo apt-get update
 
-tar xvfz nginx-1.17.3.tar.gz
-
-cd  nginx-1.17.3
-
-./configure --prefix=/usr/local/nginx
-
-make && make install
+# 安装 Nginx
+sudo apt-get -y install nginx
 ```
 
-测试是否安装成功
+* 测试是否安装成功
 
-使用命令：
+查看 `Nginx` 版本：
 
 ```Bash
-/usr/local/nginx/sbin/nginx -t
+$ nginx -v
+
+nginx version: nginx/1.16.1
 ```
 
-正常情况的信息输出：
+查看 `Nginx` 配置文件路径：
 
+```Bash
+$ nginx -t
+
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
-nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
-nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
-
-```
-
 
 ## 安装 MySQL
 
