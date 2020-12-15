@@ -54,7 +54,7 @@ HTTP GET
 
 
 
-### TrustOracle-Service 查询历史请求列表
+### 查询历史请求列表
 
 #### 接口描述
 
@@ -145,7 +145,7 @@ HTTP GET
 ```
 
 
-### TrustOracle-Service 查询单个请求详情
+### 查询单个请求详情
 
 #### 接口描述
 
@@ -222,6 +222,69 @@ HTTP GET
     "createTime": "2020-12-11 18:48:28",
     "modifyTime": "2020-12-11 18:48:31"
   },
+  "totalCount": 0
+}
+```
+
+
+
+### 查询 TrustOracle-Service 服务信息
+
+#### 接口描述
+
+> 查询 TrustOracle-Service 服务信息，包括 `keyHash` 和 `publicKeyList`
+
+#### 接口URL
+
+**http://localhost:5012/Oracle-Service/center/list?chainId=1&groupId=1**
+
+#### 调用方法
+
+HTTP GET
+
+#### 请求参数
+
+**1）参数表**
+
+| **参数名**   | **类型** | **必填**| **默认值**  | **说明**|
+| ------ | -------------- | ------------ |:--------:| --------- |
+| chainId | int  |  否    | 1      |  链编号      |
+| groupId | int  |     否      | 1      | 群组编号       |
+
+
+**2）数据格式**
+无
+#### 响应参数
+
+**1）数据格式** 
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      // 服务编号，从 0 开始，一次递增
+      "index": 0,
+      // 
+      "oracleServiceAddress": "0x9c9c89314573086ace5a5825b33d52eee1f99a8a",
+      // TrustOracle-Service 的 PublicKey
+      "publicKeyList": [
+        "1c8f2ab90b4323f182e85fcd25e4d8b17267b9decb1305592b3d66952ce3d82a",
+        "008e89fdc1b5807c400e6339eb5428318be0d5a09696693ce40f27eede2d162a56"
+      ],
+      // TrustOracle-Service 的 keyHash
+      "keyHash": "45f6483e01a8956d4ce4700d9c9c89314573086ace5a5825b33d52eee1f99a8a",
+      "operator": "operator",
+      "url": "http://localhost",
+      "creatTime": "2020-11-18 11:40:12",
+      "latestRequstProcessedTime": 0,
+      "status": true,
+      "processedRequestAmount": 0
+    },
+    // 多个
+    ......
+  ],
   "totalCount": 0
 }
 ```
