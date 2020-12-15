@@ -20,9 +20,9 @@ TrustOracle-Service 目前主要支持获取链下API,后续会陆续开源VRF�
   
    - 请求编号（唯一）
    - 请求地址和数据解析格式（URL）
-   - 倍数（防止小数）
+   - 倍数（防止小数,solidity 不支持浮点数）
      
-  `TrstOracle-Service` 获取到数据后，对 URL 发起一个 HTTP 调用，获取到数据，对数据安装解析格式进行处理，然后再调用 OracleCore 合约，根据 请求编号将结果上传到链上，提供给其他合约来获取。  
+  `TrstOracle-Service` 获取到数据后，对 URL 发起一个 HTTP 调用，获取到数据，对数据安装解析格式进行处理，然后再调用 `OracleCore` 合约，根据 请求编号将结果上传到链上，提供给其他合约来获取。  
 
         
 
