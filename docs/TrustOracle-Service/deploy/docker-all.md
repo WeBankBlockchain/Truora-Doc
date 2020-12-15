@@ -77,10 +77,12 @@ TrustOracle Docker 一键安装工具使用 `deploy.sh` 脚本：
 
 ## 获取部署脚本
 部署脚本的获取方式有两种：
-* 从 Release 页面直接下载安装包
+* 从 Release 页面直接下载安装包（**推荐使用**）
 * 使用 Git 从仓库拉取
 
 ### 下载安装包
+
+
 在 [版本列表中](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 选择相应版本的 `docker-deploy.zip` 文件下载。
 
 或者直接直接代码，下载最新安装包：
@@ -110,7 +112,7 @@ echo "docker/deploy" >> .git/info/sparse-checkout ;
 
 # 设置仓库地址，拉取部署工具
 git remote add origin "https://github.com/WeBankBlockchain/TrustOracle-Service.git";
-git pull origin master;
+git fetch --depth 1 && git checkout master
 
 # 进入安装脚本目录
 cd docker/deploy
