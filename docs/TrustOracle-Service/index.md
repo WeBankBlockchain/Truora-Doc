@@ -10,18 +10,20 @@
 
 ```
 
-TrustOracle-Service 目前主要支持获取链下API和产生VRF随机数功能。
+TrustOracle-Service 目前主要支持获取链下API,后续会陆续开源VRF随机数，链上，链下聚合功能。
 
 获取链下API原理图:
      
-![api](../../images/oracle.png) 
+![api](../../images/oracle.png)   
 
-获取VRF可验证随机数原理图:
-![VRF](../../images/vrf.png)   
-      
+  用户发起调用后，`FiscoOracleClient` 会调用 `OracleCore` 合约，此时会发起一个事件。`TrustOracle-Service` 监听到事件后， 会从事件信息中取出以下几个信息字段：  
+  
+   - 请求编号（唯一）
+   - 请求地址和数据解析格式（URL）
+   - 倍数（防止小数）  
+`TrstOracle-Service` 获取到数据后，对 URL 发起一个 HTTP 调用，获取到数据，对数据安装解析格式进行处理，然后再调用 OracleCore 合约，根据 请求编号将结果上传到链上，提供给其他合约来获取。
 
- 
-  VRF原理请参考[VRF](./backup/VRF.md);           
+        
 
   ```eval_rst
   .. toctree::
