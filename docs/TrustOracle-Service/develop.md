@@ -35,7 +35,7 @@
 .. admonition:: **URL格式规范**
     
    目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问。
-   遵循jsonpath格式，子元素 用 ***"."*** 表示；     
+   遵循jsonpath格式，子元素 用 "." 表示；     
    text/plain默认取第一行；  
   
      //获取链下随机数API
