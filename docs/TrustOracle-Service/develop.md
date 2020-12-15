@@ -1,42 +1,6 @@
-# 开发指南
-
-##  获取合约地址
-
-```Bash
-http://{deployIP}:{port}/Oracle-Service/oracle/address?chainId=1&groupId=1
-    
-# 示例：
-curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
-```
-
-返回结果如下：
-
-```json
-{
-  "code": 0,
-  "message": "success",
-  "data": [
-    {
-      "chainId": 1,
-      "group": 1,
-      // OracleCore 合约地址
-      "oracleCoreContractAddress": "0x66c3631ced2c63379f2133180f70aedf1d728869",
-      // VRF 合约地址
-      "vrfContractAddress": "0x741a6ddfa69c6dbeee8ecea651f2748f80404009",
-      "fromBlock": "latest",
-      "toBlock": "latest",
-      "operator": "operator",
-      "url": "http://localhost"
-    }
-  ]
-}
-```
-
-- 部署服务器IP和服务端口需对应修改，网络策略需开通
-- 基于 WeBASE-Front 可视化控制台，可以开发智能合约，部署合约和发送交易，并查看交易和区块详情。还可以管理私钥，对节点健康度进行监控和统计
-
-### 方式一：获取链下API数据
- 用户可以参考[APISampleOracle.sol]()合约实现自己的oracle业务合约。 合约解析如下：       
+# 合约开发指南
+### 1 获取链下API数据
+ 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。 合约解析如下：       
   - 用户合约需继承FiscoOracleClient合约
    ```
     contract APISampleOracle is FiscoOracleClient
@@ -62,7 +26,7 @@ curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
               
         }
    ```
-  - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于TrustOracle预言机回调获取的结果。  
+  - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于TrustOracle-Service服务回调获取的结果。  
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
      
@@ -77,61 +41,33 @@ curl "http://localhost:5012/Oracle-Service/oracle/address?chainId=1&groupId=1"
        json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY
   ``` 
     
-   
 
-
-### VRF获取可验证随机数
+###2 VRF获取可验证随机数
   
-  用户合约开发只需继承VRFConsumerBase（contracts/0.4/oracle目录下）合约即可。必须实现fulfillRandomness方法，以便oracle-service将结果回写。
-
-```
-pragma solidity 0.6.6;
-
-import "./VRFConsumerBase.sol";
-
-contract RandomNumberConsumer is VRFConsumerBase {
-
-    // hash of VRF Coordinator'pk
-    bytes32 internal keyHash;
-    uint256 public randomResult;
-
-    // 填写 coordinator地址 和 oracleservice 的keyhash
+  用户合约开发只需继承 [VRFConsumerBase](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/vrf/VRFConsumerBase.sol) 目录下合约即可。必须实现 `fulfillRandomness` 方法，以便 `oracle-service` 将结果回写。
+ 
+  - 用户合约需继承FiscoOracleClient合约
+   ```
+    contract RandomNumberConsumer is VRFConsumerBase
+   ``` 
+  - 构造函数需要传入指定的TrustOracle服务方的 `_keyHash` 和 `_coordinator`地址 。上述值可以通过接口获得。  
+   ```
     constructor(address _coordinator, bytes32 _keyHash)
-        VRFConsumerBase(
-            _coordinator // VRF Coordinator
-        ) public
-    {
-         // keyHash = 0xeedf1a9c68b3f4a8b1a1032b2b5ad5c4795c026514f8317c7a215e218dccd6cf;
-          keyHash = _keyHash;
-    }
-
-    /**
-     * Requests randomness from a user-provided seed
-     */
-    function getRandomNumber(uint256 userProvidedSeed) public returns (bytes32 requestId) {
-        return requestRandomness(keyHash, userProvidedSeed);
-    }
-
-    /**
-     * Callback function used by VRF Coordinator
-     */
-    function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
+          VRFConsumerBase(
+              _coordinator // VRF Coordinator
+          )
+   ```       
+  - 设定自己的随机数种子。
+  ```
+  function getRandomNumber(uint256 userProvidedSeed) public returns (bytes32 requestId) {
+         return requestRandomness(keyHash, userProvidedSeed);
+     }
+  ```
+  - 必须实现覆写方法,用于TrustOracle-Service服务回调获取的结果。 
+  ```
+  function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
         randomResult = randomness;
     }
-}
   ```
   
   
-### 去中心化部署获取聚合结果
-
-
-
-  latestAnswer()最新的聚合结果
-  
-  latestTimestamp() 最新一次聚合的时间戳
-  
-  latestRound()最新一次聚合的轮次号
-  
-  getAnswer(uint256 roundId) 通过轮次号获取历史结果
-  
-  getTimestamp(uint256 roundId)通过轮次号获取历史时间戳
