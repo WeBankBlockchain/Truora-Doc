@@ -30,8 +30,10 @@
   - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于TrustOracle-Service服务回调获取的结果。  
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
-     
-   ***URL格式规范***
+----------
+```eval_rst
+.. admonition:: **URL格式规范**
+    
    目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问。
    遵循jsonpath格式，子元素 用 ***"."*** 表示；     
    text/plain默认取第一行；
@@ -41,5 +43,6 @@
      //获取人民币对日元汇率API 
        json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY
   ``` 
+``` 
   
   
