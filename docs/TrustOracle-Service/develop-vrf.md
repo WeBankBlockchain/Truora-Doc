@@ -41,5 +41,34 @@
      //获取人民币对日元汇率API 
        json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY
   ``` 
+    
+
+### 2 VRF获取可验证随机数
+  
+  用户合约开发只需继承 [VRFConsumerBase](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/vrf/VRFConsumerBase.sol) 目录下合约即可。必须实现 `fulfillRandomness` 方法，以便 `oracle-service` 将结果回写。
+ 
+  - 用户合约需继承 `FiscoOracleClient` 合约
+   ```
+    contract RandomNumberConsumer is VRFConsumerBase
+   ``` 
+  - 构造函数需要传入指定的 `TrustOracle` 服务方的 `_keyHash` 和 `_coordinator` 地址 。上述值可以通过接口获得。  
+   ```
+    constructor(address _coordinator, bytes32 _keyHash)
+          VRFConsumerBase(
+              _coordinator // VRF Coordinator
+          )
+   ```       
+  - 设定自己的随机数种子。
+  ```
+  function getRandomNumber(uint256 userProvidedSeed) public returns (bytes32 requestId) {
+         return requestRandomness(keyHash, userProvidedSeed);
+     }
+  ```
+  - 必须实现 `fulfillRandomness` 覆写方法,用于TrustOracle-Service服务回调获取的结果。 
+  ```
+  function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
+        randomResult = randomness;
+    }
+  ```
   
   

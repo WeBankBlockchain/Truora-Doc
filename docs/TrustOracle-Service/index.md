@@ -17,11 +17,24 @@ TrustOracle-Service 目前主要支持获取链下API和产生VRF随机数功能
 ![api](../../images/oracle.png) 
 
 获取VRF可验证随机数原理图:
-![VRF](../../images/vrf.png)  
+![VRF](../../images/vrf.png)   
+      
 
  
-    VRF原理请参考[VRF](./backup/VRF.md);         
+  VRF原理请参考[VRF](./backup/VRF.md);           
 
-   
+  ```eval_rst
+  .. toctree::
+     :maxdepth: 3
+  
+     outline.md
+     deploy/index.md
+     develop.md
+     interface.md
+     question.md
+     appendix.md
+  
+  
+  ``` 
 
 
