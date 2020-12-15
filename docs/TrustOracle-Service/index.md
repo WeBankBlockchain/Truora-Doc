@@ -29,7 +29,6 @@ TrustOracle-Service 目前主要支持获取链下API,后续会陆续开源VRF�
   .. toctree::
      :maxdepth: 3
   
-     outline.md
      deploy/index.md
      develop.md
      interface.md
