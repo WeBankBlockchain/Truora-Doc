@@ -43,7 +43,7 @@
   ``` 
     
 
-###2 VRF获取可验证随机数
+### 2 VRF获取可验证随机数
   
   用户合约开发只需继承 [VRFConsumerBase](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/vrf/VRFConsumerBase.sol) 目录下合约即可。必须实现 `fulfillRandomness` 方法，以便 `oracle-service` 将结果回写。
  
