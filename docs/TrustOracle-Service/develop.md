@@ -34,9 +34,9 @@
 ```eval_rst
 .. admonition:: **URL格式规范**
     
-   目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问。
+   目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问(安全因素考虑)。  
    遵循jsonpath格式，子元素 用 "." 表示,数组用 "[]"表示，目前只支持单个返回值；     
-   text/plain默认取第一行。；  
+   text/plain默认取第一行。 
   
      //获取链下随机数API
        plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)
