@@ -172,14 +172,14 @@ bash deploy.sh -d -t docker
 [root@host]# bash deploy.sh -h
 
 Usage:
-    deploy.sh [-g] [-t cdn|docker] [-d] [-w v1.4.2] [-f v2.6.0] [-o v0.5] [-i fiscoorg] [-h]
+    deploy.sh [-g] [-t cdn|docker] [-d] [-w v1.4.2] [-f v2.6.0] [-o v1.0.0] [-i fiscoorg] [-h]
     -g        Use guomi, default no.
     -t        Where to get docker images, cdn or Docker hub, default cdn.
     -d        Install dependencies during deployment, default no.
 
     -w        WeBASE-Front version, default v1.4.2
     -f        FISCO-BCOS version, default v2.6.0.
-    -o        TrustOracle version, default v0.5.
+    -o        TrustOracle version, default v1.0.0.
     -i        Organization of docker images, default fiscoorg.
     -h        Show help info.
 ```
@@ -192,7 +192,7 @@ Usage:
 | -t  |  镜像来源，只有 `cdn` 和 `docker` 两个选项  | 需要 | 不使用该参数，默认：`cdn`  |
 | -w  | WeBASE-Front 的 Docker 镜像版本  |需要 | 默认 v1.4.2 |    
 | -f  | FISCO-BCOS 的 Docker 镜像版本  |需要  | 默认 v2.6.0  |    
-| -o  | Oracle-Service 的 Docker 镜像版本  |需要 |默认 v0.5  |    
+| -o  | Oracle-Service 的 Docker 镜像版本  |需要 |默认 v1.0.0  |    
 | -h  | 显示帮助文档 | 不  | 无  |    
 | -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 TrustOracle 服务时使用** <br /> 默认 `fiscoorg`  |
 
