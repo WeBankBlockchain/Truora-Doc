@@ -36,11 +36,13 @@
     
    目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问(安全因素考虑)。  
    遵循jsonpath格式，子元素 用 "." 表示,数组用 "[]"表示，目前只支持单个返回值；     
-   text/plain默认取第一行。 jsonpath规范可以参考 `jsonpath <https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html>`_ 
+   text/plain默认取第一行，也可指定数组下表取特定行。 jsonpath规范可以参考 `jsonpath <https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html>`_ 
      //获取链下随机数API
        plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)
      //获取人民币对日元汇率API 
-       json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY
+       json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY  
+     // 查询某城市某天最高温度  
+       json(https://devapi.qweather.com/v7/weather/3d?location=101280601&key=90d8a8ee98ff495694dce72e96f53a18).daily[1].tempMax
   
 ``` 
   
