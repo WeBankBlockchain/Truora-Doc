@@ -4,6 +4,6 @@
 .. toctree::
    :maxdepth: 1
 
-   ../TrustOracle-Service/index.md
-   ../TrustOracle-Web/index.md
+   ./TrustOracle-Service/index.md
+   ./TrustOracle-Web/index.md
 ```
