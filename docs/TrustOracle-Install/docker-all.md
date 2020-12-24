@@ -1,4 +1,4 @@
-# Docker 一键安装
+# 一键部署
 
 ```eval_rst
 .. admonition:: 提示

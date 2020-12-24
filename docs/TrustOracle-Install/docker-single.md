@@ -1,5 +1,4 @@
-# Docker 独立安装
-
+# 独立部署
 ```eval_rst
 .. admonition:: 提示
 

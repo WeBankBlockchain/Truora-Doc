@@ -1,6 +1,6 @@
 # 源码安装
 
-### 1. 依赖环境
+##1. 依赖环境
 
 | 环境  | 版本               |
 | ----- | ------------------ |
@@ -8,7 +8,7 @@
 
 关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../TrustOracle-Service/appendix.html#install_nginx)
 
-### 2. 安装
+## 2. 安装
 
 * 拉取代码：
 
@@ -52,7 +52,7 @@ mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.back
 cp -r dist/* /usr/share/nginx/html
 ```
 
-### 3. 启动 Nginx
+## 3. 启动 Nginx
 
 * 启动 `Nginx`
 
@@ -89,7 +89,7 @@ tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      
      - 注意替换服务器的 `IP` 地址
 ```
 
-### 错误排查
+## 错误排查
 * 查看 `Nginx` 日志：
 
 ```Bash

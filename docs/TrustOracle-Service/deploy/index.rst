@@ -5,6 +5,7 @@
 .. toctree::
     :maxdepth: 1
 
-    docker-all.md
     install.md
+    docker.md
+    
 
