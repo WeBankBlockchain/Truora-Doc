@@ -1,4 +1,11 @@
-# 服务介绍
+# 概要介绍
+
+```eval_rst
+.. admonition:: **简介**
+
+ `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 是 TrustOracle 服务的前端组件。  
+  主要支持请求详情和请求历史的查询。方便应用查询自己预言机请求的结果，如果失败，可以看到请求失败的原因。   
+```
 
 该项目是区块链中间件 **TrustOracle-Service 预言机** 的前端服务，基于 `vue-cli` 框架开发。
 

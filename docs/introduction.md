@@ -1,8 +1,22 @@
-##############################################################
-TrustOracle文档
-##############################################################
+# 什么是 TrustOracle
 
 
+## 为什么需要使用预言机
+
+## 设计原则
+
+
+
+## 整体架构
+
+
+## 功能介绍
+
+
+## 各子系统简介
+
+
+ 
 .. admonition:: **简介**
 
   区块链是一个确定性的、封闭的系统环境，智能合约不管何时何地运行都必须是一致的结果，所以虚拟机（VM）不能让智能合约有网络调用，不然结果就是不确定的。
@@ -44,11 +58,3 @@ TrustOracle文档
    - 本技术文档只适用 FISCO BCOS 2.6+
    - FISCO BCOS 2.6+ 版本及兼容性说明 `这里 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/change_log/index.html>`_
 
-.. toctree::
-   :maxdepth: 3
-   
-   ./TrustOracle-Service/index.md
-   ./TrustOracle-Web/index.md
-..
-
- 
