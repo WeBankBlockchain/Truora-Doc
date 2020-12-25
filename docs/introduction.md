@@ -20,11 +20,11 @@
 
  TrustOracle 是 `FISCO-BCOS <https://github.com/FISCO-BCOS/FISCO-BCOS>`_ 区块链平台的预言机服务解决方案，是在广泛调研的基础上针对 **联盟链** 场景设计的可信预言机服务。
 
-  区块链愈发展，对链下数据的需求就会愈强烈，预言机的重要性也会愈发凸显。
+ 区块链愈发展，对链下数据的需求就会愈强烈，预言机的重要性也会愈发凸显。
 
-  作为连接 `FISCO-BCOS` 联盟链和互联网的桥梁，TrustOracle致力于解决互联网数据安全可信的上链，助力扩宽联盟链的应用场景和丰富联盟链生态。
+ 作为连接 `FISCO-BCOS` 联盟链和互联网的桥梁，TrustOracle致力于解决互联网数据安全可信的上链，助力扩宽联盟链的应用场景和丰富联盟链生态。
 
-  TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
+ TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 ```
 ![oracle结构图](../images/oracle-skeleton.png)
 
