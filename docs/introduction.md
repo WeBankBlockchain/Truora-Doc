@@ -20,11 +20,11 @@
 
  TrustOracle 是 `FISCO-BCOS <https://github.com/FISCO-BCOS/FISCO-BCOS>`_ 区块链平台的预言机服务解决方案，是在广泛调研的基础上针对 **联盟链** 场景设计的可信预言机服务。
 
-  区块链愈发展，对链下数据的需求就会愈强烈，预言机的重要性也会愈发凸显。
+ 区块链愈发展，对链下数据的需求就会愈强烈，预言机的重要性也会愈发凸显。
 
-  作为连接 `FISCO-BCOS` 联盟链和互联网的桥梁，TrustOracle致力于解决互联网数据安全可信的上链，助力扩宽联盟链的应用场景和丰富联盟链生态。
+ 作为连接 `FISCO-BCOS` 联盟链和互联网的桥梁，TrustOracle致力于解决互联网数据安全可信的上链，助力扩宽联盟链的应用场景和丰富联盟链生态。
 
-  TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
+ TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 ```
 ![oracle结构图](../images/oracle-skeleton.png)
 
@@ -38,7 +38,7 @@
    **中心化部署**   
    针对对请求时延低，信任要求不是很高的场景，主要着力于搭建方便，结合联盟链场景，主要问题是解决中心化机构作恶问题。
 
-   - 软件上会深入研究TLS技术，并进行改造。 并针对链上数据的验签。  
+   - 软件上会深入研究TLS技术，并进行改造。 并针对链上数据验签。  
    - 硬件上支持TEE等安全环境下的部署。 
  
    **去中心化部署**
@@ -92,7 +92,7 @@
       主要完成基于TustOracle应用实例开发。支持物联网，供应链金融，游戏等场景结合预言机开发具体的应用实例。
     - **Q4--TrustOracle去中心化预言机功能** 
  
-      主要完成去中心化预言机的链下聚合功能，增加p2p网络，以及BLS门限签名技术，实现链下聚合功能。
+      主要完成去中心化预言机的链下聚合功能，增加p2p网络以及密码学套件，支持BLS门限签名技术，实现链下聚合功能。
 ```
 
 
