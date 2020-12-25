@@ -43,7 +43,7 @@
 
 ## 整体架构
 
-
+   [oracle结构图](../images/oracle-skeleton.png)
 
 ## 主要特性
 
