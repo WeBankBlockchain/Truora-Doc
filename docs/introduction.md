@@ -9,7 +9,7 @@
   而如何将区块链和现实世界连接起来，就需要引入预言机服务，通过预言机将现实世界的数据输入到区块链上，为智能合约提供与外部世界的连接性。
 
    中国人民银行发布的《区块链能做什么？不能做什么？》报告中，是这样对预言机定义的：
-    "区块链外信息写入区块链内的机制，一般被称为预言机 (oracle mechanism)。"
+   .. centered:: "区块链外信息写入区块链内的机制，一般被称为预言机 (oracle mechanism)。"
 
   TrustOracle 是 `FISCO-BCOS <https://github.com/FISCO-BCOS/FISCO-BCOS>`_ 区块链平台的预言机服务解决方案，是在广泛调研的基础上针对 **联盟链** 场景设计的可信预言机服务。
 
@@ -18,10 +18,9 @@
   TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 ```
 
-
-## 为什么需要使用预言机
-
 ## 设计原则
+```eval_rst 
+.. admonition:: **设计原则**
    TrustOracle是一整套预言机方案解决的集合，中心化和去中心化并存的解决方案。针对不同的场景使用不同
    
    中心化部署针对对请求时延低，信任要求不是很高的场景， 针对中心化场景，主要着力于搭建方便，结合联盟链场景，解决中心化机构作恶问题。
@@ -31,6 +30,7 @@
    主要分为链上聚合和链下聚合，
    对于数据方面：
    支持获取互联网上的数据，但是会制定联盟链数据提供商数据提供标准，为联盟链提供优质可信的数据服务。
+```
 
 ## 整体架构
 
