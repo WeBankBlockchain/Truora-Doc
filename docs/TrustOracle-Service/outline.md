@@ -10,7 +10,7 @@
 
 ```
 
-TrustOracle-Service 目前主要支持获取链下API,后续会陆续开源VRF随机数，链上、链下聚合功能。
+TrustOracle-Service 目前主要支持获取链下API,后续会陆续开源VRF随机数，去中心化预言机功能。
 
 获取链下API原理图:
      
