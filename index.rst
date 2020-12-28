@@ -3,7 +3,7 @@ TrustOracle文档
 ##############################################################
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    
    docs/introduction.md
    docs/subsystem.md
