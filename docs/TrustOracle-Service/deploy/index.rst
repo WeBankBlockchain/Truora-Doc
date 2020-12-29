@@ -6,6 +6,5 @@
     :maxdepth: 1
 
     install.md
-    docker.md
     
 

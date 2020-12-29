@@ -1,5 +1,5 @@
 
-# 源码安装
+# TrustOracle-Service 源码编译
 
 ```eval_rst
 .. important:: 
@@ -61,6 +61,8 @@ chmod +x ./gradlew && ./gradlew build -x test
 
 构建完成后，会在根目录 TrustOracle-Service 下生成已编译的代码目录 dist。
 
+
+
 ## 修改配置
 
 （1）进入dist目录
@@ -89,6 +91,7 @@ cp  /${PATH_TO_SDK}/ca.crt .
 
 ```
 
+<span id="modify_service_config" />
 
 （3）修改配置 application.yml 文件（根据实际情况修改）：
 

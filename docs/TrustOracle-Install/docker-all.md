@@ -1,41 +1,43 @@
 # 一键部署
 
-```eval_rst
-.. admonition:: 提示
 
-     - 使用一键安装 TrustOracle 服务时，**仅支持 Linux 操作系统！！**
+```eval_rst
+   .. important::
+   
+		- 使用一键部署 TrustOracle 服务时，**仅支持 Linux 操作系统！！**
 ```
 
-## 安装介绍
-Docker 一键安装是指使用 `deploy.sh` 工具，一键部署整个 TrustOracle-Service 服务，包括依赖的 FISCO-BCOS 节点和 MySQL 数据库等服务。
+## 部署介绍
+一键部署是基于 `Docker`，`Docker-Compose` 和 `Bash Shell` 封装的一个部署工具，提供一键部署整个 TrustOracle 服务，包括依赖的 FISCO-BCOS 节点和 MySQL 数据库等。
 
-Docker 一键安装适合以下场景：
+适合以下场景：
 
-* 体验 TrustOracle-Service 服务
+* 快速体验 TrustOracle 服务
 * Oracle 服务的开发和调试
 
-TrustOracle 服务支持使用 `Docker` + `Docker-Compose` 进行部署。
+使用一键部署工具，部署 TrustOracle 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 Oracle 合约的开发和调试环境。
 
-同时，在部署 TrustOracle 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 Oracle 的开发和调试环境。
+部署后的架构如下：
 
-TrustOracle 使用 Docker 一键安装后的结构如下：
-
-![TrustOracle-Docker-deploy](../../../images/TrustOracle-Docker-Deploy.png)
+![TrustOracle-Docker-deploy](../../images/TrustOracle-Docker-Deploy.png)
 
 
 * **WeBASE-Front**
 
-    WeBASE-Front 是 [WeBASE](https://webasedoc.readthedocs.io/zh_CN/latest/docs/WeBASE-Front/README.html) 的一个子系统服务，针对 FISCO-BCOS 区块链服务提供 Solidity 合约的可视化开发，编译，部署和调试功能。
-    在进行 TrustOracle 相关业务的合约开发和调试时，可以使用 WeBASE-Front 中的合约 IDE，方便合约的开发和调试，大大提高开发效率。
+    WeBASE-Front 是 WeBASE 中间件的一个子系统服务，针对 FISCO-BCOS 区块链服务提供 Solidity 合约的可视化开发，编译，部署和调试功能。
+    
+    在进行 TrustOracle 相关业务的合约开发和调试时，可以使用 WeBASE-Front 中的合约 IDE，方便合约的开发和调试，提高开发效率。
 
+    关于 WeBASE-Front，请参考：[WeBASE-Front](https://webasedoc.readthedocs.io/zh_CN/latest/docs/WeBASE-Front/README.html) 
 * **TrustOracle-Web**
     
-    TrustOracle-Web 是 TrustOracle 服务的前端 Web，主要包含四个功能：
+    TrustOracle-Web 是 TrustOracle 服务的前端 Web，主要包含以下几个功能：
     * 分页查询 Oracle 请求历史记录
     * 单个查询 Oracle 请求明细（状态，响应结果，错误信息等）
     * TrustOracle-Service 内置合约地址查询
     * 查询所有 TrustOracle-Service 服务列表
 
+    关于 TrustOracle-Web，请参考：[TrustOracle-Web](../TrustOracle-Web/outline.md) 
 * **TrustOracle-Service**
 
     TrustOracle-Service 是 TrustOracle 的服务端：
@@ -43,7 +45,7 @@ TrustOracle 使用 Docker 一键安装后的结构如下：
     * 接收链上事件，调用 Http API 接口或 VRF 随机数生成库，获取结果
     * 结果上链，供用户合约查询
     
-    具体，关于 TrustOracle 原理，请参考：[Oracle-Service 原理介绍](../README.md#原理简介)
+    关于 TrustOracle 原理，请参考：[TrustOracle-Service](../TrustOracle-Service/outline.md) 
 
 
 ## 前置要求
@@ -58,49 +60,56 @@ TrustOracle 使用 Docker 一键安装后的结构如下：
 
 ### 硬件配置
 
-|配置项      | 推荐配置 |
-|----- | -----|
-| CPU | 2 核|
-| 内存 | 4 GB |
-| 存储 | 40 GB |
+| 配置 | 最低配置 | 推荐配置 |
+| ---- | -------- | -------- |
+| CPU  | 1.5 GHz   | 2.4 GHz   |
+| 内存 | 2 GB      | 8 GB      |
+| 核心 | 1 核      | 4 核      |
+| 带宽 | 1 Mb      | 10 Mb     |
 
 ## 脚本说明
-TrustOracle Docker 一键安装工具使用 `deploy.sh` 脚本：
+TrustOracle 一键部署工具特性：
 
-* 自动安装 `OpenSSL`, `curl`, `wget`, `Docker`, `Docker Compose` 等依赖服务
+* 提供自动安装依赖服务功能，包括：`OpenSSL`, `curl`, `wget`, `Docker`, `Docker Compose` 等
 * 调用 FISCO-BCOS 一键部署脚本 `build_chain.sh`，部署 `4` 个区块链底层节点
 * 部署 WeBASE-Front 服务
 * 部署 TrustOracle-Service, TrustOracle-Web 服务
+* 部署 MySQL 服务
 * 支持国密选项
 
-关于脚本详细参数列表，请参考：[脚本参数](./docker-all.html#shell_script_param)
+关于脚本详细参数列表，请参考：[脚本参数](./appendix.html#shell_script_param)
 
 ## 获取部署脚本
-部署脚本的获取方式有两种：
-* 从 Release 页面直接下载安装包（**推荐使用**）
-* 使用 Git 从仓库拉取
+部署脚本的获取方式包括：
 
-### 下载安装包
+* 下载部署包（**推荐使用**）
+* Github 仓库拉取源码
 
+### 下载部署包
 
-在 [版本列表中](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 选择相应版本的 `docker-deploy.zip` 文件下载。
-
-或者直接直接代码，下载最新安装包：
-
+<!-- TODO add latest release-->
 ```Bash
-## 下载安装包
-wget "https://github.com/WeBankBlockchain/TrustOracle-Service/releases/xxx/xxx/docker-deploy.zip"
+## 从 GitHub 下载最新部署包
+wget "https://github.com/WeBankBlockchain/TrustOracle-Service/releases/v1.0.0/docker-deploy.zip"
 
-## 解压安装包
+## 解压部署包
 unzip docker-deploy.zip
 
-## 进入安装脚本目录
+## 进入部署脚本目录
 cd docker-deploy
+```
+
+如果需要下载指定版本，在 [版本列表中](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 选择相应版本下载。
+
+```eval_rst
+.. admonition:: 提示
+
+     	- 由于网络原因，如果遇到打不开 Github 页面，或者无法从 GitHub 下载，可以从 CDN 下载。关于 CDN 说明，请参考：`CDN 说明 <../TrustOracle-Service/appendix.html#cdn_instruction>`_
 ```
 
 ### 仓库拉取
 
-部署脚本也可以直接从仓库拉取
+部署脚本也可以使用 Git 直接从仓库拉取
 
 ```Bash
 # 初始化本地目录
@@ -114,90 +123,42 @@ echo "docker/deploy" >> .git/info/sparse-checkout ;
 git remote add origin "https://github.com/WeBankBlockchain/TrustOracle-Service.git";
 git fetch --depth 1 && git checkout master
 
-# 进入安装脚本目录
+# 进入部署脚本目录
 cd docker/deploy
 ```
 
 ## 部署
 
-进入 `deploy.sh` 脚本所在目录，执行命令：
+进入部署脚本（`deploy_all.sh`）所在目录，执行命令：
 
 ```Bash
-# 自动安装依赖服务，从 CDN 拉取 Docker 镜像
-bash deploy.sh -d
-
-# 自动安装依赖服务，从 Docker Hub 官方仓库拉取 Docker 镜像
-bash deploy.sh -d -t docker
+# 自动安装依赖服务，默认从 CDN 拉取 Docker 镜像
+# Docker Hub 官方仓库拉取镜像时，不仅速度比较慢，同时成功率也相对较低
+# 
+# -d        : 自动安装系统依赖
+# -g        : 使用国密
+# -t docker : 从 Docker Hub 官方仓库拉取 Docker 镜像，默认从 CDN 拉取
+bash deploy_all.sh -d
 ```
 
-* `-d`：自动安装依赖服务
-* `-t`：镜像来源，`docker` 表示从 Docker Hub 官方仓库 `https://hub.docker.com/` 拉取 Docker 镜像。
+关于脚本详细参数列表，请参考：[脚本参数](./appendix.html#shell_script_param)
 
 ```eval_rst
 .. admonition:: 提示
 
-     - 如果不使用 `-t` 参数或者使用 `-t cdn`，部署工具会从 CDN 拉取 Docker 镜像
-     - 由于 Docker Hub 的网络原因，部署脚本拉取镜像的速度较慢，耗时过长，容易拉取镜像失败，推荐 **从 CDN 拉取 Docker 镜像**。
-```  
+     	- 重复执行部署脚本时，会提示某些目录已经存在，请根据提示输入字母：b [backup] 或者 d [Delete] 进行操作。
+```
 
 ## 服务启停
-如果一键脚本 `deploy.sh` 执行成功后显示 `Deploy TrustOracle service SUCCESS!!` ，表示部署成功。
+如果一键部署脚本 `deploy_all.sh` 执行成功后显示 `Deploy TrustOracle service SUCCESS!!` ，表示部署成功。
 
-使用 `bash start.sh` 脚本启动 TrustOracle 服务。
+* 使用 `bash start.sh` 启动 TrustOracle 服务。
 
-// TODO. 脚本自动检测服务启动结果，如果失败，则tail -n  xxx 日志
+* 使用 `bash stop.sh`  停止服务。
 
-停止服务使用：`bash stop.sh`
+在启动时，脚本会依次启动服务，并检测服务启动结果。
 
-**备注**：服务进程起来后，需通过日志确认是否正常启动，出现以下内容表示正常；如果服务出现异常，确认修改配置后，重启提示服务进程在运行，则先执行 `stop.sh`，再执行 `start.sh`。
+如果提示 `TrustOracle service start up SUCCESS !!`，表示 TrustOracle 服务启动成功。
 
-```
-	Application() - main run success...
-```
+如果启动失败，根据命令行的提示，检查启动失败服务的日志。关于查看服务的日志，请参考：[日志查看](./appendix.html#check_log)
 
-## 查看日志
-
-在 `log/server` 目录查看：
-
-```
-前置服务日志：tail -f log/server/Oracle-Service.log
-```
-
-<span id="shell_script_param"/>
-
-## 脚本参数
-查看一键脚本 `deploy.sh` 的帮助文档：`bash deploy.sh -h`
-
-```Bash
-[root@host]# bash deploy.sh -h
-
-Usage:
-    deploy.sh [-g] [-t cdn|docker] [-d] [-w v1.4.2] [-f v2.6.0] [-o v1.0.0] [-i fiscoorg] [-h]
-    -g        Use guomi, default no.
-    -t        Where to get docker images, cdn or Docker hub, default cdn.
-    -d        Install dependencies during deployment, default no.
-
-    -w        WeBASE-Front version, default v1.4.2
-    -f        FISCO-BCOS version, default v2.6.0.
-    -o        TrustOracle version, default v1.0.0.
-    -i        Organization of docker images, default fiscoorg.
-    -h        Show help info.
-```
-
-
-| 参数 | 说明  | 是否需要参数值  |  备注 |
-|---|---|:---:|:---|
-| -g  |  启用**国密**   | 不 |  不使用该参数，使用 `ECDSA`  |
-| -d  | 安装 `OpenSSL`，`curl`，`wget`，<br />`Docker`，`Docker Compose` | 不  |    不使用该参数，则不安装 |
-| -t  |  镜像来源，只有 `cdn` 和 `docker` 两个选项  | 需要 | 不使用该参数，默认：`cdn`  |
-| -w  | WeBASE-Front 的 Docker 镜像版本  |需要 | 默认 v1.4.2 |    
-| -f  | FISCO-BCOS 的 Docker 镜像版本  |需要  | 默认 v2.6.0  |    
-| -o  | Oracle-Service 的 Docker 镜像版本  |需要 |默认 v1.0.0  |    
-| -h  | 显示帮助文档 | 不  | 无  |    
-| -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 TrustOracle 服务时使用** <br /> 默认 `fiscoorg`  |
-
-```eval_rst
-.. admonition:: 提示
-
-     - `-i` 参数指定 Docker 镜像的组织名称。例如指定为: `testorg`，Docker 的拉取镜像命令就变成：`docker pull testorg/trustoracle-service:${version}` 
-```
