@@ -118,10 +118,10 @@ cd docker/deploy
 # 自动安装依赖服务，默认从 CDN 拉取 Docker 镜像
 # Docker Hub 官方仓库拉取镜像时，不仅速度比较慢，同时成功率也相对较低
 # 
-# -g : 使用国密
-# -d : 自动安装系统依赖
-# -m : 部署 MySQL 服务
-# -t : 从 Docker Hub 官方仓库拉取 Docker 镜像，添加：-t docker
+# -d        : 自动安装系统依赖
+# -g        : 使用国密
+# -m        : 部署 MySQL 服务
+# -t docker : 从 Docker Hub 官方仓库拉取 Docker 镜像，默认从 CDN 拉取
 bash deploy_single.sh -d
 ```
 
@@ -191,6 +191,11 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 * 修改 TrustOracle-Service 配置，请参考：[修改配置](../TrustOracle-Service/deploy/install.html#modify_service_config)
 
+```eval_rst
+.. admonition:: 提示
+
+    - `trustoracle.yml` 配置文件中的 `${TRUSTORACLE_SERVICE_PORT:5012}` 表示 TrustOracle-Service 在启动时，会优先从系统环境变量中读取 `TRUSTORACLE_SERVICE_PORT` 的值。如果 `TRUSTORACLE_SERVICE_PORT` 环境变量 **没有设置** 或者 **值为空**，则使用默认值 `5012`。
+```
 
 ## 服务启停
 如果一键部署脚本 `deploy_all.sh` 执行成功后显示 `Deploy TrustOracle service SUCCESS!!` ，表示部署成功。
