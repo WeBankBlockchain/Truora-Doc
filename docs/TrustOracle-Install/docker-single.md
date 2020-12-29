@@ -70,8 +70,6 @@ TrustOracle 独立部署工具特性：
 * 下载部署包（**推荐使用**）
 * Github 仓库拉取源码
 
-### 下载部署包
-
 <!-- TODO add latest release-->
 ```Bash
 ## 从 GitHub 下载最新部署包
@@ -89,28 +87,10 @@ cd docker-deploy
 ```eval_rst
 .. admonition:: 提示
 
-     	- 由于网络原因，如果遇到打不开 Github 页面，或者无法从 GitHub 下载，可以从 CDN 下载。关于 CDN 说明，请参考：`CDN 说明 <../TrustOracle-Service/appendix.html#cdn_instruction>`_
+     	- 由于网络原因，如果遇到打不开 Github 页面，或者无法从 GitHub 下载，可以从 CDN 下载。关于 CDN 说明，请参考：`CDN -- 部署工具包 <./appendix.html#cdn_instruction>`_
 ```
 
-### 仓库拉取
-
-部署脚本也可以使用 Git 直接从仓库拉取
-
-```Bash
-# 初始化本地目录
-git init TrustOracle-Service && cd TrustOracle-Service;
-
-# 设置检出子目录 docker/deploy
-git config core.sparsecheckout true ;
-echo "docker/deploy" >> .git/info/sparse-checkout ;
-
-# 设置仓库地址，拉取部署工具
-git remote add origin "https://github.com/WeBankBlockchain/TrustOracle-Service.git";
-git fetch --depth 1 && git checkout master
-
-# 进入部署脚本目录
-cd docker/deploy
-```
+如果需要从代码仓库，拉取部署包源码，请参考：[部署工具源码](./appendix.html#pull_deploy_code)
 
 ## 部署
 

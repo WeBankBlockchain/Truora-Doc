@@ -1,5 +1,27 @@
 # 附录
 
+<span id="pull_deploy_code"/>
+
+## 部署工具源码
+
+拉取部署工具远吗，需要使用 Git 工具。
+
+```Bash
+# 初始化本地目录
+git init TrustOracle-Service && cd TrustOracle-Service;
+
+# 设置检出子目录 docker/deploy
+git config core.sparsecheckout true ;
+echo "docker/deploy" >> .git/info/sparse-checkout ;
+
+# 设置仓库地址，拉取部署工具
+git remote add origin "https://github.com/WeBankBlockchain/TrustOracle-Service.git";
+git fetch --depth 1 && git checkout master
+
+# 进入部署脚本目录
+cd docker/deploy
+```
+
 <span id="check_log"/>
 
 ## 查看日志
@@ -114,4 +136,108 @@ Usage:
 
      - `-d` 参数安装的系统依赖包括：`OpenSSL`，`curl`，`wget`，`Docker`，`Docker Compose`。
      - `-i` 参数指定 Docker 镜像的组织名称。例如指定为: `testorg`，Docker 的拉取镜像命令就变成：`docker pull testorg/trustoracle-service:${version}` 
+```
+
+
+<span id="cdn_instruction" />
+
+## CDN 说明
+由于 Docker 的镜像的大小一般偏大，访问国外时网络很不稳定，在下载大文件或者工具时，往往下载不下来。所以，针对部分工具，提供了 CDN 的下载地址。
+
+<span id="cdn_deploy_tool" />
+
+```eval_rst
+.. important::
+
+    - 部署工具包是 **`zip`** 文件
+    - Docker 镜像是 **`tar`** 文件
+```
+
+### 部署工具包
+部署工具包用来部署 TrustOracle 服务，同时支持：**一键部署** 和 **独立部署** 两种场景。
+
+
+```Bash
+# 下载指定版本时替换 {VERSION} 版本号
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/deploy/docker-deploy-{VERSION}.zip
+```
+
+版本号，从 [https://github.com/WeBankBlockchain/TrustOracle-Service/releases](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 获取。
+
+比如，下载 v1.0.0 版：
+
+```Bash
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/deploy/docker-deploy-v1.0.0.zip
+```
+
+### Docker 镜像
+
+Docker 镜像下载成功后，使用命令进行解压：
+
+```Bash
+# 解压镜像包
+docker load -i xxxx.tar
+
+# 查看镜像版本
+docker images -a
+```
+
+#### TrustOracle
+
+TrustOracle 镜像包含两个服务的镜像：TrustOracle-Service 和 TrustOracle-Web。
+
+```Bash
+## 下载指定版本时替换 {VERSION} 版本号
+
+# 下载 TrustOracle-Service 
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-service-{VERSION}.tar
+
+# 下载 TrustOracle-Web 
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-web-{VERSION}.tar
+```
+
+版本号，从 [https://github.com/WeBankBlockchain/TrustOracle-Service/releases](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 获取。
+
+比如，下载 v1.0.0 版：
+
+```Bash
+# 下载 TrustOracle-Service 
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-service-v1.0.0.tar
+
+# 下载 TrustOracle-Web 
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-web-v1.0.0.tar
+```
+
+
+#### FISCO-BCOS
+FISCO-BCOS 镜像是指 FISCO-BCOS 底层节点镜像，当前仅包含 `v2.6.0` 版本
+
+```Bash
+# 下载 FISCO-BCOS v2.6.0 镜像
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/FISCO-BCOS/fiscobcos-v2.6.0.tar
+```
+
+
+#### WeBASE-Front
+WeBASE-Front 镜像是指 WeBASE 中间件中的子服务 WeBASE-Front 的镜像，当前仅包含 `v1.4.2` 版本
+
+```Bash
+# 下载 WeBASE-Front v1.4.2 镜像
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/WeBASE/webase-front-v1.4.2.tar
+```
+#### MySQL
+MySQL 镜像是 Docker Hub 仓库中的官方 MySQL 镜像，当前仅包含 `5.7` 版本
+
+```Bash
+# 下载 MySQL 5.7 镜像
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/official/mysql-5.7.tar
+```
+
+#### Docker-Compose
+
+Docker-Compose 镜像是 Docker Hub 仓库中的官方 Docker Compose 镜像，当前仅包含 `1.27.4` 版本
+
+```Bash
+# 下载 Docker Compose 1.27.4 镜像
+https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/official/docker-compose-1.27.4.tar
 ```

@@ -332,7 +332,3 @@ sudo yum -y install git
 sudo apt install git
 ```
 
-<span id="cdn_instruction" />
-
-## CDN 说明
-// TODO
