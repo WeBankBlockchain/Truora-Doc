@@ -15,9 +15,14 @@
 ### 安装 Docker
 Docker 官方提供了一键安装工具，可以方便的在主机上安装 Docker 工具。
 
+选择一个镜像云安装 Docker 服务：
+
 ```Bash
-# 安装 Docker 
+# （推荐）使用 阿里云镜像 安装 Docker
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun;
+
+# 使用 微软云镜像 安装 Docker
+curl -fsSL https://get.docker.com | bash -s docker --mirror AzureChinaCloud;
 ```
 
 如果安装出现下面类似，提示 `containerd.io` 版本错误：
@@ -84,26 +89,40 @@ For more examples and ideas, visit:
 
 如果出现以上输出，包含 `Hello from Docker!`，表示 Docker 安装成功。
 
-
 ### 安装 Docker-Compose
-Docker-Compose 是 Docker 官方提供的基于单机的容器编排工具，可以很方便的在单台主机中管理多个容器，包括按依赖顺序启动，关闭，重启等。
+Docker-Compose 是 Docker 官方提供的基于单机的容器编排工具，可以很方便的在单台主机中管理多个容器，包括按照依赖顺序启动，关闭，重启等。
 
-安装 Docker-Compose 也相当简单，执行下面的命令：
-
+* 选择一种方式安装 Docker Compose：
 
 ```Bash
-# 下载 docker-compose 可执行文件
-curl -L https://get.daocloud.io/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose;
+#（推荐）从 daocloud 下载 docker-compose 
+curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose;
 
-# 修改 docker-compose 可执行文件权限
+# 从 官网下载 docker-compose 
+curl -L "https://get.daocloud.io/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m`" -o /usr/local/bin/docker-compose;
+
+```
+
+* `docker-compose` 文件添加执行权限
+
+```Bash
+# docker-compose 文件添加执行权限
 chmod +x /usr/local/bin/docker-compose;
+```
+
+* 检测 Docker Compose 安装
+
+```Bash
+# 输出 Docker Compose 版本号
+$ docker-compose -v
+docker-compose version 1.27.4, build 40524192
 ```
 
 <span id="install_java" />
 
 ## 安装 Java
 
-### Ubuntu 环境安装 Java
+### Ubuntu（Debian） 安装 Java
 
 ```Bash
 # 安装默认Java版本(Java 8或以上)
@@ -112,7 +131,9 @@ sudo apt install -y default-jdk
 java -version 
 ```
 
-### CentOS 环境安装 Java
+<span id="centos_install_java" />
+
+### CentOS 安装 Java
 
 ```Bash
 # 查询 CentOS 原有的 Java 版本
@@ -125,7 +146,11 @@ $ rpm -e --nodeps java-[VERSION]
 $ java -version
 
 # 创建新的文件夹，安装Java 8或以上的版本，将下载的jdk放在software目录
-# 从openJDK官网(https://jdk.java.net/java-se-ri/8)或Oracle官网(https://www.oracle.com/technetwork/java/javase/downloads/index.html)选择Java 8或以上的版本下载，例如下载jdk-8u201-linux-x64.tar.gz
+# 从 openJDK官网 (https://jdk.java.net/java-se-ri/8) 
+#   或
+# Oracle官网(https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+# 选择Java 8或以上的版本下载
+# 例如下载jdk-8u201-linux-x64.tar.gz
 $ mkdir /software
 
 # 解压jdk 
@@ -145,9 +170,7 @@ $ source /etc/profile
 java -version 
 ```
 
-
 <span id="install_nginx" />
-
 
 
 ## 安装 Nginx
@@ -309,7 +332,3 @@ sudo yum -y install git
 sudo apt install git
 ```
 
-<span id="cdn_instruction" />
-
-## CDN 说明
-// TODO

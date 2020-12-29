@@ -1,6 +1,6 @@
 # 合约开发指南
 
-### 1 获取链下API数据
+## 获取链下API数据
  用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。 合约解析如下：       
   - 用户合约需继承FiscoOracleClient合约
    ```
@@ -43,7 +43,7 @@
   ``` 
     
 
-### 2 VRF获取可验证随机数
+## VRF获取可验证随机数
   
   用户合约开发只需继承 [VRFConsumerBase](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/vrf/VRFConsumerBase.sol) 目录下合约即可。必须实现 `fulfillRandomness` 方法，以便 `oracle-service` 将结果回写。
  

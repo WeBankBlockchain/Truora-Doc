@@ -47,6 +47,5 @@ TrustOracle 服务的部署模式有如下两种方式：
    ./docker-all.md
    ./docker-single.md
    ./appendix.md
-   
 ```
 

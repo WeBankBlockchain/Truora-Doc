@@ -1,12 +1,5 @@
 
-# TrustOracle-Service 源码编译
-
-```eval_rst
-.. important:: 
-
-     - CentOS 的 yum 仓库的 OpenJDK 缺少 JCE(Java Cryptography Extension)，导致 Web3SDK 无法正常连接区块链节点，推荐自行从 `OpenJDK网站 <https://jdk.java.net/java-se-ri/11>`_ 自行下载后安装。
-     
-```
+# 编译部署
 
 ## 安装介绍
 
@@ -19,33 +12,29 @@
 | FISCO-BCOS | >= 2.6.0 | 
 | MySQL | >= mysql-community-server[5.7] | 
 | Java | JDK[1.8] | 
-| Git | 下载的源码使用Git | 
+| Git | 下载的源码使用 Git | 
 
+请参考：[附录](../appendix.md) 检查系统是否已经安装相关依赖软件。
 
 ```eval_rst
 .. important:: 
 
-     - CentOS 的 yum 仓库的 OpenJDK 缺少 JCE(Java Cryptography Extension)，导致 Web3SDK 无法正常连接区块链节点，推荐自行从 `OpenJDK网站 <https://jdk.java.net/java-se-ri/11>`_ 自行下载后安装。
-     
+     - CentOS 的 yum 仓库的 OpenJDK 缺少 JCE(Java Cryptography Extension)，导致 Web3SDK 无法正常连接区块链节点。CentOS 用户推荐参考 `CentOS 安装 Java <../appendix.html#centos_install_java>`_ 进行安装。
 ```
-
-如果您还未安装这些依赖，请参考[附录](../appendix.md)
-
 
 ## 拉取代码
+
 执行命令：
-```
+```Bash
+# 拉取源码
 git clone https://github.com/WeBankBlockchain/TrustOracle-Service.git
-```
 
-进入目录：
-
-```
+# 进入目录
 cd TrustOracle-Service
 ```
 
-## 编译代码
 
+## 编译代码
 
 方式一：如果服务器已安装Gradle，且版本为 Gradle-4.10 +
 
@@ -65,16 +54,16 @@ chmod +x ./gradlew && ./gradlew build -x test
 
 ## 修改配置
 
-（1）进入dist目录
+（1）进入 `dist` 目录
 
 ```
 cd dist
 ```
 
-dist目录提供了一份配置模板conf：
+`dist` 目录提供了一份配置模板 `conf`：
 
 
-（2）进入conf目录：
+（2）进入 `conf` 目录：
 
 ```shell
 cd conf
@@ -93,7 +82,7 @@ cp  /${PATH_TO_SDK}/ca.crt .
 
 <span id="modify_service_config" />
 
-（3）修改配置 application.yml 文件（根据实际情况修改）：
+（3）修改配置 `application.yml` 文件（根据实际情况修改）：
 
   * 修改数据库 `IP` 地址，用户名和密码。 
    
@@ -104,7 +93,13 @@ cp  /${PATH_TO_SDK}/ca.crt .
     username: "defaultAccount"
     password: "defaultPassword"
 ```  
+
+  * 国密配置：如果链类型是国密，配置 `encryptType` = 1
   
+```yaml
+sdk:
+  encryptType: 0 #0:standard, 1:guomi
+```
   
   * 多链多群组配置：**不同链之间相互独立，没有关联**
 
@@ -112,9 +107,9 @@ cp  /${PATH_TO_SDK}/ca.crt .
 ```eval_rst
 .. important:: 
 
-    - TrustOracle-Service 在配置多链时，所有链版本必须在 `v2.6.0` + 
-    - 不同链的证书目录不同
-    - 同一个 TrustOracle-Service 连接的多条链，必须同为 **ECDSA(默认，非国密)**，或者同为 **国密**
+    - TrustOracle-Service 在配置多链时，所有链版本必须在 **`v2.6.0 +`**
+    - 多条链时，每一条链的证书需要创建一个目录单独存放
+    - 同一个 TrustOracle-Service 连接的多条链，必须同为 **ECDSA(非国密)**，或者同为 **国密**
 ```
 
 ```yaml 
@@ -152,14 +147,7 @@ group-channel-connections-configs:
 
 ```
 
-  * 国密配置：如果链类型是国密，配置 `encryptType` = 1
-  
-```yaml
-sdk:
-  encryptType: 0 #0:standard, 1:guomi
-```
-
-  * 多链多群组监听配置
+  * 启用链和群组
   
 ```eval_rst
 .. admonition:: 提示
@@ -167,9 +155,7 @@ sdk:
      - 配置多链多群组监听时，配置的链ID和群组ID，必须在 `group-channel-connections-configs` 中配置过
      - `group-channel-connections-configs` 表示 TrustOracle-Service 会连接到哪些链和群组
      - `eventRegisters` 表示启用哪些链和群组
-     
 ```
-
   
 ```yaml
 ########################################################################
