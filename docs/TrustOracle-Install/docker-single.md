@@ -34,6 +34,8 @@
 
 
 ## 前置要求
+
+
 ### 系统要求
 
 | 操作系统         |  版本最低要求     |  
@@ -146,7 +148,7 @@ Enter SDK path, e.g:[ /root/webank/deploy/deploy/fiscobcos/nodes/127.0.0.1/sdk ]
 ```eval_rst
 .. important::
 
-    - 脚本 **不会检查 SDK 文件和链是否匹配**，需要用户自行保证证书。
+    - 脚本 **不会检查 SDK 文件和链是否匹配**。
 ```
 
 * 如果未使用 `-m` 参数，会提示输入 MySQL 的连接信息。直接 **回车** 使用默认值：

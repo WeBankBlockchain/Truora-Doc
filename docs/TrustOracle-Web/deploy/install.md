@@ -1,6 +1,6 @@
-# TrustOracle-Web 源码编译
+# 源码部署
 
-##1. 依赖环境
+## 依赖环境
 
 | 环境  | 版本               |
 | ----- | ------------------ |
@@ -8,7 +8,7 @@
 
 关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../TrustOracle-Service/appendix.html#install_nginx)
 
-## 2. 安装
+## 安装
 
 * 拉取代码：
 
@@ -30,18 +30,17 @@ cp docker/trustoracle-web.conf  /etc/nginx/conf.d
 ```eval_rst
 .. admonition:: 提示
 
-     - 如果项目已经存在 Nginx，只需要把 `docker/trustoracle-web.conf` 拷贝到 Nginx 的子项目配置目录中即可
-     - Nginx 的子项目配置目录从 `/etc/nginx/nginx.conf` 文件中 `include` 配置查看
+    - 如果主机中已经存在 Nginx，只需要把 `docker/trustoracle-web.conf` 拷贝到 Nginx 的配置文件（默认：`/etc/nginx/nginx.conf`）中 `include` 的目录下即可。
 ``` 
 
 ```eval_rst
-.. admonition:: 提示
+.. important::
 
-     - Nginx 的配置文件直接拷贝 `docker/trustoracle-web.conf` 文件即可
-     - **不用** 修改 Nginx 的主配置文件 `/etc/nginx/nginx.conf`
+    - Nginx 的配置文件直接拷贝 `docker/trustoracle-web.conf` 文件即可，**不建议** 修改 Nginx 的主配置文件（默认：`/etc/nginx/nginx.conf`）
 ```
 
-* 拷贝源码到 `Nginx` 的项目目录
+
+* 拷贝源码到 `Nginx` 项目目录
 
 
 ```Bash
@@ -52,7 +51,7 @@ mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.back
 cp -r dist/* /usr/share/nginx/html
 ```
 
-## 3. 启动 Nginx
+## 启动 Nginx
 
 * 启动 `Nginx`
 

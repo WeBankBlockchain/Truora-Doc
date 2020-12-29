@@ -9,7 +9,7 @@ TrustOracle文档
    docs/subsystem.md
    docs/ChangeLOG.md
    docs/TrustOracle-Install/index.md
-   docs/quick-start.md
+   docs/develop/quick-start.md
    docs/CONTRIBUTING.md
 ..
 
