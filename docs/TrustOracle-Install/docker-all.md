@@ -115,9 +115,9 @@ cd docker-deploy
 # 自动安装依赖服务，默认从 CDN 拉取 Docker 镜像
 # Docker Hub 官方仓库拉取镜像时，不仅速度比较慢，同时成功率也相对较低
 # 
-# -d        : 自动安装系统依赖
-# -g        : 使用国密
-# -t docker : 从 Docker Hub 官方仓库拉取 Docker 镜像，默认从 CDN 拉取
+# -d : 自动安装系统依赖
+# -g : 使用国密
+# -k : 从 Docker Hub 官方仓库拉取 Docker 镜像
 bash deploy_all.sh -d
 ```
 
