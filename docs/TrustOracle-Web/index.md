@@ -5,7 +5,7 @@
    :maxdepth: 1
 
    outline.md
-   deploy/index.md
+   deploy.md
    question.md
 
 ```
