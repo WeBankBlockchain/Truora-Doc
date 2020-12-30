@@ -95,8 +95,8 @@ bash util/deploy_util.sh -h
 
 # 参数明细
 Usage:
-    deploy_util.sh [-t cdn|docker] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5000] [-S 5012] [-d] [-g] [-i fiscoorg] [-h]
-    -t        Source of docker images, cdn or Docker hub, default cdn.
+    deploy_util.sh [-k] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5000] [-S 5012] [-d] [-g] [-i fiscoorg] [-h]
+    -k        Pull images from Docker hub.
 
     -m        Deploy a MySQL instance with Docker, default use an external MySQL service.
     -w        Deploy a WeBASE-Front service, default no.
@@ -118,7 +118,7 @@ Usage:
 
 | 参数 | 说明  | 参数是否需要值  |  备注 |
 |---|---|:---:|:---|
-| -t  |  镜像来源，只有 `cdn` 和 `docker` 两个选项  | 需要 | 不使用该参数时，默认：`cdn`  |
+| -k  |  从 Docker Hub 拉取镜像  | 不 | 不使用该参数时，默认从 CDN 拉取|
 | -m  |  部署 MySQL  | 不 |  不使用该参数时，**不部署** MySQL。<br />需要在部署时输入 MySQL 信息  |
 | -w  |  部署 WeBASE-Front    | 不 |  不使用该参数时，**不部署** WeBASE-Front  |
 | -f  |  部署 FISCO-BCOS | 不 |  不使用该参数时，**不部署** FISCO-BCOS  |
