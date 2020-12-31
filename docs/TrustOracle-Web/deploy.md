@@ -71,16 +71,16 @@ www-data 31562 31462  0 17:37 ?        00:00:00 nginx: worker process
 www-data 31563 31462  0 17:37 ?        00:00:00 nginx: worker process
 
 # 检测端口
-$ netstat -anp | grep -i listen| grep -i tcp|grep 5000
+$ netstat -anp | grep -i listen| grep -i tcp|grep 5020
 
-tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      31462/nginx: master
+tcp        0      0 0.0.0.0:5020            0.0.0.0:*               LISTEN      31462/nginx: master
 ```
 
-如果能查看到 `nginx` 的进程，同时 `5000` 端口也被 `Nginx` 服务监听，那么 **启动成功**。
+如果能查看到 `nginx` 的进程，同时 `5020` 端口也被 `Nginx` 服务监听，那么 **启动成功**。
 
 * 浏览器访问
     
-    打开浏览器，输入 `http://[IP]:5000`，比如：`http://127.0.0.1:5000`
+    打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`
 
 ```eval_rst
 .. admonition:: 提示

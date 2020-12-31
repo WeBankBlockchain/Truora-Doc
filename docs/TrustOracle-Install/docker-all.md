@@ -63,8 +63,8 @@
 | 配置 | 最低配置 | 推荐配置 |
 | ---- | -------- | -------- |
 | CPU  | 1.5 GHz   | 2.4 GHz   |
-| 内存 | 2 GB      | 8 GB      |
-| 核心 | 1 核      | 4 核      |
+| 内存 | 4 GB      | 8 GB      |
+| 核心 | 2 核      | 4 核      |
 | 带宽 | 1 Mb      | 10 Mb     |
 
 ## 脚本说明
@@ -142,3 +142,16 @@ bash deploy_all.sh -d
 
 如果启动失败，根据命令行的提示，检查启动失败服务的日志。关于查看服务的日志，请参考：[日志查看](./appendix.html#check_log)
 
+
+## 访问服务
+    
+TrustOracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 TrustOracle-Web 服务，请参考：[TrustOracle-Web 服务介绍](../TrustOracle-Web/outline.html)
+
+
+```eval_rst
+.. admonition:: 提示
+
+     - 注意替换服务器的 `IP` 地址
+```
+
+关于 TrustOracle 服务的 **开发教程**，请参考：[TrustOracle 开发教程](../develop/quick-start.html)
