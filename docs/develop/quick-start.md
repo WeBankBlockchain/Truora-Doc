@@ -17,7 +17,7 @@ TrustOracle 预言机服务中有两个角色：
 
 1. 获取 Oracle 相关合约地址
     * 选择一个 TrustOracle 服务运营方，并从运营方获取到 Oracle 相关合约地址
-    * 如果没有运营方，可以参考：[安装部署](./TrustOracle-Install/index.html) 自行搭建 `TrustOracle` 服务。部署完成后，可以通过 TrustOracle-Web 获取 Oracle 相关合约地址，请参考：[查询系统合约地址](../TrustOracle-Web/outline.html#list_oracle_address)
+    * 如果没有运营方，可以参考：[安装部署](../TrustOracle-Install/index.html) 自行搭建 `TrustOracle` 服务。部署完成后，可以通过 TrustOracle-Web 获取 Oracle 相关合约地址，请参考：[查询系统合约地址](../TrustOracle-Web/outline.html#list_oracle_address)
     
 2. 开发合约
     * 编写，调试合约

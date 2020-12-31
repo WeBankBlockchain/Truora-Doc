@@ -176,7 +176,7 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 ```eval_rst
 .. admonition:: 提示
 
-    - `trustoracle.yml` 配置文件中的 `${TRUSTORACLE_SERVICE_PORT:5012}` 表示 TrustOracle-Service 在启动时，会优先从系统环境变量中读取 `TRUSTORACLE_SERVICE_PORT` 的值。如果 `TRUSTORACLE_SERVICE_PORT` 环境变量 **没有设置** 或者 **值为空**，则使用默认值 `5012`。
+    - `trustoracle.yml` 配置文件中的 `${TRUSTORACLE_SERVICE_PORT:5021}` 表示 TrustOracle-Service 在启动时，会优先从系统环境变量中读取 `TRUSTORACLE_SERVICE_PORT` 的值。如果 `TRUSTORACLE_SERVICE_PORT` 环境变量 **没有设置** 或者 **值为空**，则使用默认值 `5021`。
 ```
 
 ## 服务启停
@@ -192,3 +192,4 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 如果启动失败，根据命令行的提示，检查启动失败服务的日志。关于查看服务的日志，请参考：[日志查看](./appendix.html#check_log)
 
+启动后

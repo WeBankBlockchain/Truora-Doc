@@ -95,7 +95,7 @@ bash util/deploy_util.sh -h
 
 # 参数明细
 Usage:
-    deploy_util.sh [-k] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5000] [-S 5012] [-d] [-g] [-i fiscoorg] [-h]
+    deploy_util.sh [-k] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5020] [-S 5021] [-d] [-g] [-i fiscoorg] [-h]
     -k        Pull images from Docker hub.
 
     -m        Deploy a MySQL instance with Docker, default use an external MySQL service.
@@ -104,8 +104,8 @@ Usage:
 
     -M        Listen port of MySQL, default 3306.
     -W        Listen port of WeBASE-Front, default 5002.
-    -B        Listen port of TrustOracle-Web, default 5000.
-    -S        Listen port of TrustOracle-Service, default 5012.
+    -B        Listen port of TrustOracle-Web, default 5020.
+    -S        Listen port of TrustOracle-Service, default 5021.
 
     -d        Install dependencies during deployment, default no.
     -g        Use guomi, default no.
@@ -124,8 +124,8 @@ Usage:
 | -f  |  部署 FISCO-BCOS | 不 |  不使用该参数时，**不部署** FISCO-BCOS  |
 | -M  |  设置 MySQL 端口 | 需要 |  不使用该参数时，默认：`3306` |
 | -W  |  设置 WeBASE-Front  端口 | 需要 | 不使用该参数时，默认：`5002` |
-| -B  |  设置 TrustOracle-Web 端口 | 需要 | 不使用该参数时，默认：`5000` |
-| -S  |  设置 TrustOracle-Service 端口 | 需要 | 不使用该参数时，默认：`5012` |
+| -B  |  设置 TrustOracle-Web 端口 | 需要 | 不使用该参数时，默认：`5020` |
+| -S  |  设置 TrustOracle-Service 端口 | 需要 | 不使用该参数时，默认：`5021` |
 | -d  | 安装系统依赖 | 不  |    不使用该参数时，则不安装 |
 | -g  |  启用**国密**   | 不 |  不使用该参数时，使用 `ECDSA`  |
 | -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 TrustOracle 服务时使用** <br /> 默认 `fiscoorg`  |
