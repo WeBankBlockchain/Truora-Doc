@@ -171,7 +171,7 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 .....
 ```
 
-* 修改 TrustOracle-Service 配置，请参考：[修改配置](../TrustOracle-Service/deploy/install.html#modify_service_config)
+* 修改 TrustOracle-Service 配置，请参考：[修改配置](../TrustOracle-Service/deploy.html#modify_service_config)
 
 ```eval_rst
 .. admonition:: 提示
