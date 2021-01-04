@@ -26,7 +26,7 @@ TrustOracle 预言机服务中有两个角色：
 
 ### 获取链下 API 数据
 
- 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。 合约解析如下：       
+ 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。 合约解析如下：
   - 用户合约需继承FiscoOracleClient合约
    ```
     contract APISampleOracle is FiscoOracleClient
@@ -70,4 +70,6 @@ TrustOracle 预言机服务中有两个角色：
        json(https://devapi.qweather.com/v7/weather/3d?location=101280601&key=90d8a8ee98ff495694dce72e96f53a18).daily[1].tempMax
 ``` 
   
-  
+
+
+## 开发示例
