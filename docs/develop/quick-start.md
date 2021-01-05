@@ -26,7 +26,8 @@ TrustOracle 预言机服务中有两个角色：
 
 ### 获取链下 API 数据
 
- 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。 合约解析如下：
+ 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/TrustOracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。
+  默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`均在 `TrustOracle-Service` 同级目录。合约解析如下：
   - 用户合约需继承FiscoOracleClient合约
    ```
     contract APISampleOracle is FiscoOracleClient
