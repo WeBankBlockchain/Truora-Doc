@@ -160,7 +160,7 @@ group-channel-connections-configs:
       gmCaCert: classpath:gmca.crt
       gmSslCert: classpath:gmsdk.crt
       gmSslKey: classpath:gmsdk.key
-      gmEnSslCert: classpath:gmensdk.key
+      gmEnSslCert: classpath:gmensdk.crt
       gmEnSslKey: classpath:gmensdk.key
       all-channel-connections:
          - group-id: 1
