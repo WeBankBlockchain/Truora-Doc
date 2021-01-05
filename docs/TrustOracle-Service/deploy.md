@@ -77,7 +77,7 @@ cp  /${PATH_TO_SDK}/ca.crt .
 .. important::
 
     - TrustOracle-Service 服务需要连接 FISCO-BCOS 节点，拷贝节点所在目录 `nodes/${ip}/sdk` 下的 `ca.crt`、`node.crt` 和 `node.key` 文件拷贝到当前 `conf` 目录。
-
+      国密节点则拷贝拷贝节点所在目录 `nodes/${ip}/sdk/gm` 下的 `gmca.crt`、`gmsdk.key`、`gmsdk.crt`、`gmensdk.crt`、`gmensdk.key`文件拷贝到当前 `conf` 目录。
 ```
 
 <span id="modify_service_config" />
@@ -146,6 +146,46 @@ group-channel-connections-configs:
     #        - 127.0.0.1:20200
 
 ```
+ 国密配置  
+```yaml 
+########################################################################
+# 配置 TrustOracle 连接的链和群组信息（证书和地址）:
+#   1. 同一条链可以配置多个群组
+#   2. 可以配置多条链，要求同为 ECDSA（默认，非国密） 或者 国密
+########################################################################
+group-channel-connections-configs:
+  configs:
+    ## 第一条链的连接信息，证书，群组列表和 IP:Port
+    - chainId: 1
+      gmCaCert: classpath:gmca.crt
+      gmSslCert: classpath:gmsdk.crt
+      gmSslKey: classpath:gmsdk.key
+      gmEnSslCert: classpath:gmensdk.key
+      gmEnSslKey: classpath:gmensdk.key
+      all-channel-connections:
+         - group-id: 1
+           connections-str:
+             # node listen_ip:channel_listen
+             - 127.0.0.1:20200
+        ## 群组 2 的信息
+        #- group-id: 2
+        #  connections-str:
+        #    - 127.0.0.1:20200
+
+    ## 第二条链的连接信息，证书，群组列表以及对应的 IP:Port
+    #- chainId: 2
+    #  gmCaCert: classpath:gmca.crt
+    #  gmSslCert: classpath:gmsdk.crt
+    #  gmSslKey: classpath:gmsdk.key
+    #  gmEnSslCert: classpath:gmensdk.key
+    #  gmEnSslKey: classpath:gmensdk.key
+    #  all-channel-connections:
+    #    - group-id: 1
+    #      connections-str:
+    #        - 127.0.0.1:20200
+
+``` 
+ 
 
   * 启用链和群组
   
