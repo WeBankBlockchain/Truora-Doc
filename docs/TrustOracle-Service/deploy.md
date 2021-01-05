@@ -77,7 +77,7 @@ cp  /${PATH_TO_SDK}/ca.crt .
 .. important::
 
     - TrustOracle-Service 服务需要连接 FISCO-BCOS 节点，拷贝节点所在目录 `nodes/${ip}/sdk` 下的 `ca.crt`、`node.crt` 和 `node.key` 文件拷贝到当前 `conf` 目录。
-      国密节点则拷贝拷贝节点所在目录 `nodes/${ip}/sdk/gm` 下的 `gmca.crt`、`gmsdk.key`、`gmsdk.crt`、`gmensdk.crt`、`gmensdk.key`文件拷贝到当前 `conf` 目录。
+      国密节点请务必使用-G选项开启国密连接，并拷贝节点所在目录 `nodes/${ip}/sdk/gm` 下的 `gmca.crt`、`gmsdk.key`、`gmsdk.crt`、`gmensdk.crt`、`gmensdk.key`文件拷贝到当前 `conf` 目录。
 ```
 
 <span id="modify_service_config" />
