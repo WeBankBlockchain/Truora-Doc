@@ -26,7 +26,7 @@
 
  TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
 ```
-![oracle结构图](../images/oracle-skeleton.png)
+![oracle结构图](../images/oracle-frame.png)
 
 ## 设计原则
 ```eval_rst 
