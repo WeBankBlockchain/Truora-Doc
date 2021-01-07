@@ -56,16 +56,16 @@ cat fiscobcos/nodes/127.0.0.1/node0/log/log_xxxxxxxxx.xx.log
 ```
 
 ### TrustOracle-Service
-TrustOracle-Service 的日志位于相对目录 `trustoracle/log/server/` 中。
+TrustOracle-Service 的日志位于相对目录 `trustoracle/deploy/log/server/` 中。
 
 查看 TrustOracle-Service 日志：
 
 ```Bash
 # 服务启动日志
-cat trustoracle/log/server/Oracle-Service.log
+cat trustoracle/deploy/log/server/Oracle-Service.log
 
 # 服务错误日志
-cat trustoracle/log/server/Oracle-Service-error.log
+cat trustoracle/deploy/log/server/Oracle-Service-error.log
 ```
 
 ### TrustOracle-Web( Nginx )
@@ -76,6 +76,9 @@ TrustOracle-Web 部署在一个 Nginx 的 Docker 容器中。
 ```
 docker logs trustoracle-web
 ```
+
+TrustOracle-Web 的访问日志位于相对目录 `trustoracle/deploy/log/nginx/oracle-access.log` 中。
+TrustOracle-Web 的错误日志位于相对目录 `trustoracle/deploy/log/nginx/oracle-error.log` 中。
 
 <span id="shell_script_param"/>
 
@@ -95,12 +98,12 @@ bash util/deploy_util.sh -h
 
 # 参数明细
 Usage:
-    deploy_util.sh [-k] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5020] [-S 5021] [-d] [-g] [-i fiscoorg] [-h]
+    deploy_util.sh [-k] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5020] [-S 5021] [-d] [-g] [-i fiscoorg] [-t] [-p] [-h]
     -k        Pull images from Docker hub.
 
-    -m        Deploy a MySQL instance with Docker, default no.
-    -w        Deploy a WeBASE-Front service, default no.
-    -f        Deploy a 4 nodes FISCO-BCOS service, default no.
+    -m        Deploy a MySQL instance with Docker, default yes.
+    -w        Deploy a WeBASE-Front service, default yes.
+    -f        Deploy a 4 nodes FISCO-BCOS service, default yes.
 
     -M        Listen port of MySQL, default 3306.
     -W        Listen port of WeBASE-Front, default 5002.
@@ -111,6 +114,8 @@ Usage:
     -g        Use guomi, default no.
 
     -i        Organization of docker images, default fiscoorg.
+    -t        Use [dev] tag for images of TrustOracle-Service and TrustOracle-Web. Only for test, default off.
+    -p        Pull [dev] latest for images of TrustOracle-Service and TrustOracle-Web. Only works when option [-t] is on, default off.
 
     -h        Show help info.
 ```
@@ -129,13 +134,16 @@ Usage:
 | -d  | 安装系统依赖 | 不  |    不使用该参数时，则不安装 |
 | -g  |  启用**国密**   | 不 |  不使用该参数时，使用 `ECDSA`  |
 | -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 TrustOracle 服务时使用** <br /> 默认 `fiscoorg`  |
+| -t  | trustoracle-web 和 trustoracle-service <br /> 镜像使用 `dev` 版本，<br />**仅测试使用**|不  | 不使用该参数时，<br />TrustOracle-Web 和 TrustOracle-Service <br/>**默认使用 Release 版本（v1.x.x）** |
+| -p  | 拉取 trustoracle-web 和 trustoracle-service <br /> 镜像 `dev` 版本的最新版，<br />**仅开启 `-t` 参数后有效** |不  |  不使用该参数时，默认不拉取 |
 | -h  | 显示帮助文档 | 不  | 无  |    
 
 ```eval_rst
 .. admonition:: 提示
 
-     - `-d` 参数安装的系统依赖包括：`OpenSSL`，`curl`，`wget`，`Docker`，`Docker Compose`。
+     - `-d` 参数安装的系统依赖包括：`OpenSSL`，`curl`，`wget`，`Docker`，`Docker Compose`
      - `-i` 参数指定 Docker 镜像的组织名称。例如指定为: `testorg`，Docker 的拉取镜像命令就变成：`docker pull testorg/trustoracle-service:${version}` 
+     - `-p` 参数只有在启用 `-t` 参数后才有效
 ```
 
 
