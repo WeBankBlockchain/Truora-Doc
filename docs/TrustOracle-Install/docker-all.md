@@ -19,7 +19,7 @@
 
 部署后的架构如下：
 
-![TrustOracle-Docker-deploy](../../images/TrustOracle-Docker-Deploy.png)
+![trustoracle-docker-deploy](../../images/trustoracle-docker-deploy.png)
 
 
 * **WeBASE-Front**
