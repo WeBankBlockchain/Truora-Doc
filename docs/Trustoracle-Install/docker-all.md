@@ -37,7 +37,7 @@
     * TrustOracle-Service 内置合约地址查询
     * 查询所有 TrustOracle-Service 服务列表
 
-    关于 TrustOracle-Web，请参考：[TrustOracle-Web](../TrustOracle-Web/outline.md) 
+    关于 TrustOracle-Web，请参考：[TrustOracle-Web](../Trustoracle-Web/outline.md) 
 * **TrustOracle-Service**
 
     TrustOracle-Service 是 TrustOracle 的服务端：
@@ -45,7 +45,7 @@
     * 接收链上事件，调用 Http API 接口或 VRF 随机数生成库，获取结果
     * 结果上链，供用户合约查询
     
-    关于 TrustOracle 原理，请参考：[TrustOracle-Service](../TrustOracle-Service/outline.md) 
+    关于 TrustOracle 原理，请参考：[TrustOracle-Service](../Trustoracle-Service/outline.md) 
 
 
 ## 前置要求
@@ -145,7 +145,7 @@ bash deploy_all.sh -d
 
 ## 访问服务
     
-TrustOracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 TrustOracle-Web 服务，请参考：[TrustOracle-Web 服务介绍](../TrustOracle-Web/outline.html)
+TrustOracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 TrustOracle-Web 服务，请参考：[TrustOracle-Web 服务介绍](../Trustoracle-Web/outline.html)
 
 
 ```eval_rst

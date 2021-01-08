@@ -171,7 +171,7 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 .....
 ```
 
-* 修改 TrustOracle-Service 配置，请参考：[修改配置](../TrustOracle-Service/deploy.html#modify_service_config)
+* 修改 TrustOracle-Service 配置，请参考：[修改配置](../Trustoracle-Service/deploy.html#modify_service_config)
 
 ```eval_rst
 .. admonition:: 提示
@@ -194,7 +194,7 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 ## 访问服务
     
-TrustOracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 TrustOracle-Web 服务，请参考：[TrustOracle-Web 服务介绍](../TrustOracle-Web/outline.html)
+TrustOracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 TrustOracle-Web 服务，请参考：[TrustOracle-Web 服务介绍](../Trustoracle-Web/outline.html)
 
 
 ```eval_rst
