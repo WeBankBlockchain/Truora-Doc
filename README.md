@@ -1,1 +1,1 @@
-# [TrustOracle文档](https://trustoracle.readthedocs.io/zh_CN/latest/)
+# [Trustoracle文档](https://trustoracle.readthedocs.io/zh_CN/latest/)

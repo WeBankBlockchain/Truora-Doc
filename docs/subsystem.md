@@ -1,9 +1,9 @@
-# TrustOracle 子系统
+# Trustoracle 子系统
 
 ```eval_rst
 .. toctree::
    :maxdepth: 1
 
-   ./TrustOracle-Service/index.md
-   ./TrustOracle-Web/index.md
+   ./Trustoracle-Service/index.md
+   ./Trustoracle-Web/index.md
 ```

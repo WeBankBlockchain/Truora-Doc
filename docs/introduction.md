@@ -1,4 +1,4 @@
-# TrustOracle介绍
+# Trustoracle介绍
 
 ## 预言机简介
 ```eval_rst 
@@ -14,17 +14,17 @@
 
 ```
 
-## TrustOracle简介
+## Trustoracle简介
 ```eval_rst 
-.. admonition:: **TrustOracle简介**
+.. admonition:: **Trustoracle简介**
 
- TrustOracle 是 `FISCO-BCOS <https://github.com/FISCO-BCOS/FISCO-BCOS>`_ 区块链平台的预言机服务解决方案，是在广泛调研的基础上针对 **联盟链** 场景设计的可信预言机服务。
+ Trustoracle 是 `FISCO-BCOS <https://github.com/FISCO-BCOS/FISCO-BCOS>`_ 区块链平台的预言机服务解决方案，是在广泛调研的基础上针对 **联盟链** 场景设计的可信预言机服务。
 
  区块链愈发展，对链下数据的需求就会愈强烈，预言机的重要性也会愈发凸显。
 
- 作为连接 `FISCO-BCOS` 联盟链和互联网的桥梁，TrustOracle致力于解决互联网数据安全可信的上链，助力扩宽联盟链的应用场景和丰富联盟链的生态。
+ 作为连接 `FISCO-BCOS` 联盟链和互联网的桥梁，Trustoracle致力于解决互联网数据安全可信的上链，助力扩宽联盟链的应用场景和丰富联盟链的生态。
 
- TrustOracle 服务主要由后端 `Java` 组件 `TrustOracle-Service <https://github.com/WeBankBlockchain/TrustOracle-Service>`_ 和前端 `Vue` 组件 `TrustOracle-Web <https://github.com/WeBankBlockchain/TrustOracle-Web>`_ 组成。
+ Trustoracle 服务主要由后端 `Java` 组件 `Trustoracle-Service <https://github.com/WeBankBlockchain/Trustoracle-Service>`_ 和前端 `Vue` 组件 `Trustoracle-Web <https://github.com/WeBankBlockchain/Trustoracle-Web>`_ 组成。
 ```
 ![oracle结构图](../images/oracle-frame.png)
 
@@ -32,7 +32,7 @@
 ```eval_rst 
 .. admonition:: **设计原则**  
 
-   TrustOracle是一整套预言机方案解决的集合，包含中心化和去中心化部署，用户可以针对不同的业务场景选择适合的部署方式。
+   Trustoracle是一整套预言机方案解决的集合，包含中心化和去中心化部署，用户可以针对不同的业务场景选择适合的部署方式。
    此外，不局限于解决互联网数据上链，会结合联盟链场景制定数据提供商的规范，如数据格式规范，治理规范。以给联盟链提供可信可验证的优质数据。  
    
    **中心化部署**   
@@ -80,17 +80,17 @@
 ```eval_rst 
 .. admonition:: **技术路线**
 
-   目前已完成中心化方式获取链下数据， TrustOracle在2021年度的技术路线如下：
-    - **Q1--TrustOracle中心化预言机功能**   
+   目前已完成中心化方式获取链下数据， Trustoracle在2021年度的技术路线如下：
+    - **Q1--Trustoracle中心化预言机功能**   
  
       主要完成中心化预言机功能，支持国密和非国密环境下的链下API访问和VRF功能，支持监听多链多群组，支持请求的加密，预言机采集数据签名和链上验签。
-    - **Q2--TrustOracle去中心化预言机功能** 
+    - **Q2--Trustoracle去中心化预言机功能** 
  
-      主要完成去中心化预言机的链上聚合功能。支持TrustOracle的分布式部署以及结果的链上聚合（求平均，中位数，最大值，最小值），和数据提供商规范制定， 增加AMOP的支持。
-    - **Q3--TrustOracle解决方案**  
+      主要完成去中心化预言机的链上聚合功能。支持Trustoracle的分布式部署以及结果的链上聚合（求平均，中位数，最大值，最小值），和数据提供商规范制定， 增加AMOP的支持。
+    - **Q3--Trustoracle解决方案**  
 
       主要完成基于TustOracle应用实例开发。如物联网，供应链金融，游戏等场景结合预言机开发具体的应用实例。
-    - **Q4--TrustOracle去中心化预言机功能** 
+    - **Q4--Trustoracle去中心化预言机功能** 
  
       主要完成去中心化预言机的链下聚合功能，增加p2p网络以及密码学套件，支持BLS门限签名技术，实现链下聚合功能。
 ```
