@@ -8,14 +8,14 @@
 
 ```Bash
 # 初始化本地目录
-git init TrustOracle-Service && cd TrustOracle-Service;
+git init Trustoracle-Service && cd Trustoracle-Service;
 
 # 设置检出子目录 docker/deploy
 git config core.sparsecheckout true ;
 echo "docker/deploy" >> .git/info/sparse-checkout ;
 
 # 设置仓库地址，拉取部署工具
-git remote add origin "https://github.com/WeBankBlockchain/TrustOracle-Service.git";
+git remote add origin "https://github.com/WeBankBlockchain/Trustoracle-Service.git";
 git fetch --depth 1 && git checkout master
 
 # 进入部署脚本目录
@@ -55,10 +55,10 @@ FISCO-BCOS 的日志位于相对目录 `fiscobcos/nodes/127.0.0.1/node0/log` 中
 cat fiscobcos/nodes/127.0.0.1/node0/log/log_xxxxxxxxx.xx.log
 ```
 
-### TrustOracle-Service
-TrustOracle-Service 的日志位于相对目录 `trustoracle/deploy/log/server/` 中。
+### Trustoracle-Service
+Trustoracle-Service 的日志位于相对目录 `trustoracle/deploy/log/server/` 中。
 
-查看 TrustOracle-Service 日志：
+查看 Trustoracle-Service 日志：
 
 ```Bash
 # 服务启动日志
@@ -68,8 +68,8 @@ cat trustoracle/deploy/log/server/Oracle-Service.log
 cat trustoracle/deploy/log/server/Oracle-Service-error.log
 ```
 
-### TrustOracle-Web( Nginx )
-TrustOracle-Web 部署在一个 Nginx 的 Docker 容器中。
+### Trustoracle-Web( Nginx )
+Trustoracle-Web 部署在一个 Nginx 的 Docker 容器中。
 
 查看 Nginx 的日志：
 
@@ -77,8 +77,8 @@ TrustOracle-Web 部署在一个 Nginx 的 Docker 容器中。
 docker logs trustoracle-web
 ```
 
-TrustOracle-Web 的访问日志位于相对目录 `trustoracle/deploy/log/nginx/oracle-access.log` 中。
-TrustOracle-Web 的错误日志位于相对目录 `trustoracle/deploy/log/nginx/oracle-error.log` 中。
+Trustoracle-Web 的访问日志位于相对目录 `trustoracle/deploy/log/nginx/oracle-access.log` 中。
+Trustoracle-Web 的错误日志位于相对目录 `trustoracle/deploy/log/nginx/oracle-error.log` 中。
 
 <span id="shell_script_param"/>
 
@@ -107,15 +107,15 @@ Usage:
 
     -M        Listen port of MySQL, default 3306.
     -W        Listen port of WeBASE-Front, default 5002.
-    -B        Listen port of TrustOracle-Web, default 5020.
-    -S        Listen port of TrustOracle-Service, default 5021.
+    -B        Listen port of Trustoracle-Web, default 5020.
+    -S        Listen port of Trustoracle-Service, default 5021.
 
     -d        Install dependencies during deployment, default no.
     -g        Use guomi, default no.
 
     -i        Organization of docker images, default fiscoorg.
-    -t        Use [dev] tag for images of TrustOracle-Service and TrustOracle-Web. Only for test, default off.
-    -p        Pull [dev] latest for images of TrustOracle-Service and TrustOracle-Web. Only works when option [-t] is on, default off.
+    -t        Use [dev] tag for images of Trustoracle-Service and Trustoracle-Web. Only for test, default off.
+    -p        Pull [dev] latest for images of Trustoracle-Service and Trustoracle-Web. Only works when option [-t] is on, default off.
 
     -h        Show help info.
 ```
@@ -129,12 +129,12 @@ Usage:
 | -f  |  部署 FISCO-BCOS | 不 |  不使用该参数时，**不部署** FISCO-BCOS  |
 | -M  |  设置 MySQL 端口 | 需要 |  不使用该参数时，默认：`3306` |
 | -W  |  设置 WeBASE-Front  端口 | 需要 | 不使用该参数时，默认：`5002` |
-| -B  |  设置 TrustOracle-Web 端口 | 需要 | 不使用该参数时，默认：`5020` |
-| -S  |  设置 TrustOracle-Service 端口 | 需要 | 不使用该参数时，默认：`5021` |
+| -B  |  设置 Trustoracle-Web 端口 | 需要 | 不使用该参数时，默认：`5020` |
+| -S  |  设置 Trustoracle-Service 端口 | 需要 | 不使用该参数时，默认：`5021` |
 | -d  | 安装系统依赖 | 不  |    不使用该参数时，则不安装 |
 | -g  |  启用**国密**   | 不 |  不使用该参数时，使用 `ECDSA`  |
-| -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 TrustOracle 服务时使用** <br /> 默认 `fiscoorg`  |
-| -t  | trustoracle-web 和 trustoracle-service <br /> 镜像使用 `dev` 版本，<br />**仅测试使用**|不  | 不使用该参数时，<br />TrustOracle-Web 和 TrustOracle-Service <br/>**默认使用 Release 版本（v1.x.x）** |
+| -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 Trustoracle 服务时使用** <br /> 默认 `fiscoorg`  |
+| -t  | trustoracle-web 和 trustoracle-service <br /> 镜像使用 `dev` 版本，<br />**仅测试使用**|不  | 不使用该参数时，<br />Trustoracle-Web 和 Trustoracle-Service <br/>**默认使用 Release 版本（v1.x.x）** |
 | -p  | 拉取 trustoracle-web 和 trustoracle-service <br /> 镜像 `dev` 版本的最新版，<br />**仅开启 `-t` 参数后有效** |不  |  不使用该参数时，默认不拉取 |
 | -h  | 显示帮助文档 | 不  | 无  |    
 
@@ -162,22 +162,22 @@ Usage:
 ```
 
 ### 部署工具包
-部署工具包用来部署 TrustOracle 服务，同时支持：**一键部署** 和 **独立部署** 两种场景。
+部署工具包用来部署 Trustoracle 服务，同时支持：**一键部署** 和 **独立部署** 两种场景。
 
 
 ```Bash
 # 下载指定版本时替换 {VERSION} 版本号
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/deploy/docker-deploy-{VERSION}.zip" -O docker-deploy.zip
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/deploy/docker-deploy-{VERSION}.zip" -O docker-deploy.zip
 # 解压部署包
 unzip docker-deploy.zip
 ```
 
-版本号，从 [https://github.com/WeBankBlockchain/TrustOracle-Service/releases](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 获取。
+版本号，从 [https://github.com/WeBankBlockchain/Trustoracle-Service/releases](https://github.com/WeBankBlockchain/Trustoracle-Service/releases) 获取。
 
 比如，下载 v1.0.0 版：
 
 ```Bash
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/deploy/docker-deploy-v1.0.0.zip" -O docker-deploy.zip
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/deploy/docker-deploy-v1.0.0.zip" -O docker-deploy.zip
 # 解压部署包
 unzip docker-deploy.zip
 ```
@@ -194,37 +194,37 @@ docker load -i xxxx.tar
 docker images -a
 ```
 
-#### TrustOracle
+#### Trustoracle
 
-TrustOracle 镜像包含两个服务的镜像：TrustOracle-Service 和 TrustOracle-Web。
+Trustoracle 镜像包含两个服务的镜像：Trustoracle-Service 和 Trustoracle-Web。
 
 ```Bash
 ## 下载指定版本时替换 {VERSION} 版本号
 
-## 下载 TrustOracle-Service 
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-service-{VERSION}.tar" -O trustoracle-service.tar
+## 下载 Trustoracle-Service 
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/trustoracle/trustoracle-service-{VERSION}.tar" -O trustoracle-service.tar
 # 加载镜像
 docker load -i trustoracle-service.tar
 
-# 下载 TrustOracle-Web 
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-web-{VERSION}.tar" -O trustoracle-web.tar
+# 下载 Trustoracle-Web 
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/trustoracle/trustoracle-web-{VERSION}.tar" -O trustoracle-web.tar
 # 加载镜像
 docker load -i trustoracle-web.tar
 ```
 
-版本号，从 [https://github.com/WeBankBlockchain/TrustOracle-Service/releases](https://github.com/WeBankBlockchain/TrustOracle-Service/releases) 获取。
+版本号，从 [https://github.com/WeBankBlockchain/Trustoracle-Service/releases](https://github.com/WeBankBlockchain/Trustoracle-Service/releases) 获取。
 
 比如，下载 v1.0.0 版：
 
 ```Bash
-# 下载 TrustOracle-Service 
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-service-v1.0.0.tar" -O trustoracle-service.tar
+# 下载 Trustoracle-Service 
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/trustoracle/trustoracle-service-v1.0.0.tar" -O trustoracle-service.tar
 # 加载镜像
 docker load -i trustoracle-service.tar
 
 
-# 下载 TrustOracle-Web 
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/trustoracle/trustoracle-web-v1.0.0.tar" -O trustoracle-web.tar
+# 下载 Trustoracle-Web 
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/trustoracle/trustoracle-web-v1.0.0.tar" -O trustoracle-web.tar
 # 加载镜像
 docker load -i trustoracle-web.tar
 ```
@@ -235,7 +235,7 @@ FISCO-BCOS 镜像是指 FISCO-BCOS 底层节点镜像，当前仅包含 `v2.6.0`
 
 ```Bash
 # 下载 FISCO-BCOS v2.6.0 镜像
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/FISCO-BCOS/fiscobcos-v2.6.0.tar" -O fiscobcos.tar
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/FISCO-BCOS/fiscobcos-v2.6.0.tar" -O fiscobcos.tar
 # 加载镜像
 docker load -i fiscobcos.tar
 ```
@@ -246,7 +246,7 @@ WeBASE-Front 镜像是指 WeBASE 中间件中的子服务 WeBASE-Front 的镜像
 
 ```Bash
 # 下载 WeBASE-Front v1.4.2 镜像
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/WeBASE/webase-front-v1.4.2.tar" -O webase-front.tar
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/WeBASE/webase-front-v1.4.2.tar" -O webase-front.tar
 # 加载镜像
 docker load -i webase-front.tar
 ```
@@ -255,7 +255,7 @@ MySQL 镜像是 Docker Hub 仓库中的官方 MySQL 镜像，当前仅包含 `5.
 
 ```Bash
 # 下载 MySQL 5.7 镜像
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/official/mysql-5.7.tar" -O mysql.tar
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/official/mysql-5.7.tar" -O mysql.tar
 # 加载镜像
 docker load -i mysql.tar
 ```
@@ -266,7 +266,7 @@ Docker-Compose 镜像是 Docker Hub 仓库中的官方 Docker Compose 镜像，�
 
 ```Bash
 # 下载 Docker Compose 1.27.4 镜像
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/TrustOracle/docker/official/docker-compose-1.27.4.tar" -O docker-compose.tar
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Trustoracle/docker/official/docker-compose-1.27.4.tar" -O docker-compose.tar
 # 加载镜像
 docker load -i docker-compose.tar
 ```
