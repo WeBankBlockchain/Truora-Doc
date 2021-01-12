@@ -17,7 +17,7 @@ Trustoracle 预言机服务中有两个角色：
 
 1. 获取 Oracle 相关合约地址
     * 选择一个 Trustoracle 服务运营方，并从运营方获取到 Oracle 相关合约地址
-    * 如果没有运营方，可以参考：[安装部署](../Trustoracle-Install/index.html) 自行搭建 `TrustOracle` 服务。部署完成后，可以通过 Trustoracle-Web 获取 Oracle 相关合约地址，请参考：[查询系统合约地址](../Trustoracle-Web/outline.html#list_oracle_address)
+    * 如果没有运营方，可以参考：[安装部署](../Trustoracle-Install/index.html) 自行搭建 `Trustoracle` 服务。部署完成后，可以通过 Trustoracle-Web 获取 Oracle 相关合约地址，请参考：[查询系统合约地址](../Trustoracle-Web/outline.html#list_oracle_address)
     
 2. 开发合约
     * 编写，调试合约
@@ -26,7 +26,7 @@ Trustoracle 预言机服务中有两个角色：
 
 ### 获取链下 API 数据
 
- 用户可以参考 [APISampleOracle.sol](https://github.com/yanyanho/Trustoracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。
+ 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/dev/contracts/0.4/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。
   默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`均在 `Trustoracle-Service` 同级目录。合约解析如下：
   - 用户合约需继承FiscoOracleClient合约
    ```

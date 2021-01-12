@@ -6,7 +6,7 @@
 | ----- | ------------------ |
 | Nginx | Nginx 1.6 或以上版本 |
 
-关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../TrustOracle-Service/appendix.html#install_nginx)
+关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../Trustoracle-Service/appendix.html#install_nginx)
 
 ## 安装
 
@@ -14,10 +14,10 @@
 
 ```Bash
 # 拉取代码
-git clone https://github.com/WeBankBlockchain/TrustOracle-Web.git;
+git clone https://github.com/WeBankBlockchain/Trustoracle-Web.git;
     
 # 进入目录
-cd TrustOracle-Web
+cd Trustoracle-Web
 ```
 
 * 拷贝 `Nginx` 配置文件

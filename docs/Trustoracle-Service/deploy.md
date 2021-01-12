@@ -27,10 +27,10 @@
 执行命令：
 ```Bash
 # 拉取源码
-git clone https://github.com/WeBankBlockchain/TrustOracle-Service.git
+git clone https://github.com/WeBankBlockchain/Trustoracle-Service.git
 
 # 进入目录
-cd TrustOracle-Service
+cd Trustoracle-Service
 ```
 
 
@@ -48,43 +48,94 @@ gradle build -x test
 chmod +x ./gradlew && ./gradlew build -x test
 ```
 
-构建完成后，会在根目录 TrustOracle-Service 下生成已编译的代码目录 dist。
+构建完成后，会在根目录 Trustoracle-Service 下生成已编译的代码目录 dist。
+
+<span id="encrypt_type">
+
+## 加密类型
+FISCO-BCOS 链有两种类型： **非国密（ECDSA）** 和 **国密（SM2）** 。
+
+在使用 SDK 连接 FISCO-BCOS 链的节点时，也有两种方式：**非国密（ECDSA）连接** 和 **国密（SM2）连接**。 
+
+关于 **链类型** 和 **链连接** 的关系如下：
+
+| 链类型  | 非国密链（ECDSA） |  国密链（SM2） |
+|---|:---:|:---:|
+| 非国密连接（ECDSA）  |  支持 | 支持  |
+| 国密连接（SM2）  | 不支持  | 支持  |
+
+```eval_rst
+.. admonition:: 提示
+
+    - **非国密** 链 **只支持** 非国密连接
+    - **国密** 链 **支持** 非国密连接 和 国密连接，但是需要根据节点的 `config.ini` 文件，检查节点是否已经开启国密连接
+```
+
+在部署 Trustoracle-Service，需要同时配置 **链类型** 和 **连接类型**。
+
+<span id="chain_type"/>
+
+### 链类型
+在使用 `build_chain.sh` 脚本部署 FISCO-BCOS 链时，如果使用了 `-g` 参数，则链类型为 **国密链**。
+
+<span id="connection_type"/>
+
+### 连接类型
+如果 FISCO-BCOS 版本小于或等于 `v2.4.x`，**只能使用** **非国密方式（ECDSA）** 连接链。
+
+如果 FISCO-BCOS 版本大于或等于 `v2.5.x`，执行命令：
+
+```Bash
+# 查看 sm_crypto_channel 配置项
+grep "sm_crypto_channel" nodes/127.0.0.1/node0/config.ini 
+```
+
+* 如果输出：
+
+```ini
+    sm_crypto_channel=true
+```
+
+表示节点已经启用 国密（SM2）连接，**只能使用** **国密方式（SM2）** 连接链。
+
+* 如果没有输出，或者输出如下：
+
+```ini
+    sm_crypto_channel=false
+```
+
+表示节点未启用 国密连接，**只能使用** **非国密方式（ECDSA）** 连接链。
+
+
+```eval_rst
+.. important::
+
+    - 不同的连接方式，需要拷贝的证书不同
+    - 使用 **非国密** 的方式连接节点，需要拷贝 `sdk/` 目录下 `ca.crt`、`node.crt` 和 `node.key` 文件
+    - 使用 **国密** 的方式连接节点，需要拷贝 `sdk/gm` 目录下 `gm` 开头的所有文件
+```
 
 
 
 ## 修改配置
 
-（1）进入 `dist` 目录
+进入 `dist` 目录
 
 ```
 cd dist
 ```
 
-`dist` 目录提供了一份配置模板 `conf`：
+`dist` 目录提供了一份配置模板 `conf`
 
+### 配置数据库
+修改配置 `conf/application.yml` 文件
 
-（2）进入 `conf` 目录：
-
-```shell
+```Bash
+# 进入 conf 目录
 cd conf
-
-# 拷贝 SDK 连接证书
-cp  /${PATH_TO_SDK}/node.* .
-cp  /${PATH_TO_SDK}/ca.crt .
 ```
 
-```eval_rst
-.. important::
-
-    - TrustOracle-Service 服务需要连接 FISCO-BCOS 节点，拷贝节点所在目录 `nodes/${ip}/sdk` 下的 `ca.crt`、`node.crt` 和 `node.key` 文件拷贝到当前 `conf` 目录。
-      国密节点请务必使用-G选项开启国密连接，并拷贝节点所在目录 `nodes/${ip}/sdk/gm` 下的 `gmca.crt`、`gmsdk.key`、`gmsdk.crt`、`gmensdk.crt`、`gmensdk.key`文件拷贝到当前 `conf` 目录。
-```
-
-<span id="modify_service_config" />
-
-（3）修改配置 `application.yml` 文件（根据实际情况修改）：
-
-  * 修改数据库 `IP` 地址，用户名和密码。 
+* 修改数据库 `IP` 地址，用户名和密码。 
    
 ```yaml
  datasource:
@@ -94,29 +145,77 @@ cp  /${PATH_TO_SDK}/ca.crt .
     password: "defaultPassword"
 ```  
 
-  * 国密配置：如果链类型是国密，配置 `encryptType` = 1
-  
+### 配置链类型
+
+如果链类型是国密，配置 `encryptType: 1`，关于链类型，请参考：[链类型](./deploy.html#chain_type)
+
 ```yaml
 sdk:
-  encryptType: 0 #0:standard, 1:guomi
-```
-  
-  * 多链多群组配置：**不同链之间相互独立，没有关联**
+  #0:standard, 1:guomi
+  encryptType: 1 
+```  
 
+### 拷贝证书
+
+在拷贝证书文件之前，需要确定使用哪种方式连接到链接点：非国密连接（ECDSA）还是 国密连接（SM2），请参考：[连接类型](./deploy.html#connection_type)
+
+  * 非国密连接
+  
+```shell
+# 进入 conf 目录
+cd conf
+
+# 非国密连接
+cp  /${PATH_TO_SDK}/node.* .
+cp  /${PATH_TO_SDK}/ca.crt .
+```
+
+```eval_rst
+.. important::
+
+    - **非国密链：** 拷贝节点所在目录 `nodes/${ip}/sdk` 下的 `ca.crt`、`node.crt` 和 `node.key` 文件拷贝到 `conf` 目录
+```
+
+  * 国密连接
+  
+    
+```shell
+# 进入 conf 目录
+cd conf
+
+# 国密连接
+cp  /${PATH_TO_SDK}/gm/gm.* .
+```
+
+```eval_rst
+.. important::
+
+    - **国密链：** 拷贝节点所在目录 `nodes/${ip}/sdk/gm` 下的 `gm` 开头的所有文件拷贝到 `conf` 目录
+```
+
+<span id="modify_service_config" />
+
+### 多链（群组）支持
+
+#### 配置连接
+Trustoracle-Service 支持同时连接多条链，以及连接同一条链中的多个群组。
+
+同一个 Trustoracle-Service 连接多条链时，要求 **链类型** 都相同，同时采用 **相同的连接方式** 连接到链接点。
 
 ```eval_rst
 .. important:: 
 
-    - TrustOracle-Service 在配置多链时，所有链版本必须在 **`v2.6.0 +`**
-    - 多条链时，每一条链的证书需要创建一个目录单独存放
-    - 同一个 TrustOracle-Service 连接的多条链，必须同为 **ECDSA(非国密)**，或者同为 **国密**
+    - 不同链之间相互独立，没有关联
+    - 多条链时，创建独立目录存放不同链的证书文件，同时拷贝证书文件
 ```
+
+  * 如果采用 **非国密连接（ECDSA）**，修改 `application-ecdsa.yml` 文件
 
 ```yaml 
 ########################################################################
-# 配置 TrustOracle 连接的链和群组信息（证书和地址）:
+# 配置 Trustoracle 连接的链和群组信息（证书和地址）:
 #   1. 同一条链可以配置多个群组
-#   2. 可以配置多条链，要求同为 ECDSA（默认，非国密） 或者 国密
+#   2. 可以配置多条链
 ########################################################################
 group-channel-connections-configs:
   configs:
@@ -129,7 +228,7 @@ group-channel-connections-configs:
          - group-id: 1
            connections-str:
              # node listen_ip:channel_listen
-             - 127.0.0.1:20200
+             - 127.0.0.1:${FISCO_BCOS_PORT:20200}
         ## 群组 2 的信息
         #- group-id: 2
         #  connections-str:
@@ -146,12 +245,14 @@ group-channel-connections-configs:
     #        - 127.0.0.1:20200
 
 ```
- 国密配置  
+
+* 如果采用 **国密连接（SM2）**，修改 `application-sm2.yml` 文件
+
 ```yaml 
 ########################################################################
-# 配置 TrustOracle 连接的链和群组信息（证书和地址）:
+# 配置 Trustoracle 连接的链和群组信息（证书和地址）:
 #   1. 同一条链可以配置多个群组
-#   2. 可以配置多条链，要求同为 ECDSA（默认，非国密） 或者 国密
+#   2. 可以配置多条链
 ########################################################################
 group-channel-connections-configs:
   configs:
@@ -166,7 +267,7 @@ group-channel-connections-configs:
          - group-id: 1
            connections-str:
              # node listen_ip:channel_listen
-             - 127.0.0.1:20200
+             - 127.0.0.1:${FISCO_BCOS_PORT:20200}
         ## 群组 2 的信息
         #- group-id: 2
         #  connections-str:
@@ -174,33 +275,34 @@ group-channel-connections-configs:
 
     ## 第二条链的连接信息，证书，群组列表以及对应的 IP:Port
     #- chainId: 2
-    #  gmCaCert: classpath:gmca.crt
-    #  gmSslCert: classpath:gmsdk.crt
-    #  gmSslKey: classpath:gmsdk.key
-    #  gmEnSslCert: classpath:gmensdk.key
-    #  gmEnSslKey: classpath:gmensdk.key
+    #  gmCaCert: classpath:2/gmca.crt
+    #  gmSslCert: classpath:2/gmsdk.crt
+    #  gmSslKey: classpath:2/gmsdk.key
+    #  gmEnSslCert: classpath:2/gmensdk.crt
+    #  gmEnSslKey: classpath:2/gmensdk.key
     #  all-channel-connections:
     #    - group-id: 1
     #      connections-str:
     #        - 127.0.0.1:20200
 
 ``` 
- 
 
-  * 启用链和群组
+#### 启用链和群组
+  
+根据连接类型，修改 `application-ecdsa.yml` 或 `application-sm2.yml` 文件中 `event.eventRegisters` 配置。
   
 ```eval_rst
 .. admonition:: 提示
 
      - 配置多链多群组监听时，配置的链ID和群组ID，必须在 `group-channel-connections-configs` 中配置过
-     - `group-channel-connections-configs` 表示 TrustOracle-Service 会连接到哪些链和群组
+     - `group-channel-connections-configs` 表示 Trustoracle-Service 会连接到哪些链和群组
      - `eventRegisters` 表示启用哪些链和群组
 ```
   
 ```yaml
 ########################################################################
 # 配置事件监听：
-#   1. 配置 TrustOracle 需要监听的链（ChainId）和群组（groupId）
+#   1. 配置 Trustoracle 需要监听的链（ChainId）和群组（groupId）
 #   2. 配置的 chainId 和 groupId 需要在 group-channel-connections-configs 存在
 ########################################################################
 event:
@@ -211,13 +313,31 @@ event:
    #- {chainId: 2, group: 2}
 ```  
 
+
+
 ## 服务启停
 
-返回到dist目录执行：
+返回到 `dist` 目录执行：
+
+* 启动
+
+```Bash
+# 采用非国密连接（ECDSA）
+bash start.sh
+
+# 采用国密连接（SM2），添加 gm 参数
+bash start.sh gm
+```
+
+* 停止
 ```shell
-启动: bash start.sh
-停止: bash stop.sh
-检查: bash status.sh
+bash stop.sh
+```
+
+* 检查
+
+```shell
+bash status.sh
 ```
 **备注**：服务进程起来后，需通过日志确认是否正常启动，出现以下内容表示正常；如果服务出现异常，确认修改配置后，重启提示服务进程在运行，则先执行 `stop.sh`，再执行 `start.sh`。
 

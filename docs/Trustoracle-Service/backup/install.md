@@ -1,12 +1,12 @@
 # 快速开始
-TrustOracle 支持两种安装方式：
+Trustoracle 支持两种安装方式：
 
 * Docker + Shell 一键安装
 * 源码编译
 
 ### 部署说明：
 # 快速开始
-TrustOracle 支持两种安装方式：
+Trustoracle 支持两种安装方式：
 
 ## 1. 前提条件
 ## 一键安装

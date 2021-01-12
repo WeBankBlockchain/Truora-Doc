@@ -1,4 +1,4 @@
-# TrustOracle-Service
+# Trustoracle-Service
 
 ```eval_rst
 .. toctree::
