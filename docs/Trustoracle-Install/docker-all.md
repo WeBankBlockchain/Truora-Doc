@@ -39,6 +39,8 @@
 
 
     关于 Trustoracle-Web，请参考：[Trustoracle-Web](../Trustoracle-Web/outline.md) 
+* **Trustoracle-Service**
+
     Trustoracle-Service 是 Trustoracle 的服务端：
     * 监听 FISCO-BCOS 链上 Trustoracle 合约的事件
     * 接收链上事件，调用 Http API 接口或 VRF 随机数生成库，获取结果

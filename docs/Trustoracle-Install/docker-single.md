@@ -208,7 +208,6 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 .....
 ```
 
-* 修改 TrustOracle-Service 配置，请参考：[修改配置](../Trustoracle-Service/deploy.html#modify_service_config)
 ### 多链配置
 使用独立部署的 Trustoracle 服务，支持同时连接多链，以及一条链的多个群组。
 
@@ -285,7 +284,6 @@ event:
 ```
 
 详细配置修改，请参考：[修改配置](../Trustoracle-Service/deploy.html#modify_service_config)
->>>>>>> upstream/dev:docs/TrustOracle-Install/docker-single.md
 
 ```eval_rst
 .. admonition:: 提示
