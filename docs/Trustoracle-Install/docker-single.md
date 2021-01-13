@@ -73,7 +73,7 @@ Trustoracle 独立部署工具特性：
 <!-- TODO add latest release-->
 ```Bash
 ## 从 GitHub 下载最新部署包
-wget "https://github.com/WeBankBlockchain/Trustoracle-Service/releases/v1.0.0/docker-deploy.zip"
+wget "https://github.com/WeBankBlockchain/Trustoracle-Service/releases/download/v1.0.0/docker-deploy.zip"
 
 ## 解压部署包
 unzip docker-deploy.zip
