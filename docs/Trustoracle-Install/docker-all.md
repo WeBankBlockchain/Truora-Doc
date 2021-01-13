@@ -13,9 +13,9 @@
 适合以下场景：
 
 * 快速体验 Trustoracle 服务
-* Oracle 服务的开发和调试
+* 预言机服务的开发和调试
 
-使用一键部署工具，部署 Trustoracle 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 Oracle 合约的开发和调试环境。
+使用一键部署工具，部署 Trustoracle 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 `Trustoracle` 合约的开发和调试环境。
 
 部署后的架构如下：
 
@@ -32,8 +32,8 @@
 * **Trustoracle-Web**
     
     Trustoracle-Web 是 Trustoracle 服务的前端 Web，主要包含以下几个功能：
-    * 分页查询 Oracle 请求历史记录
-    * 单个查询 Oracle 请求明细（状态，响应结果，错误信息等）
+    * 分页查询 预言机 请求历史记录
+    * 单个查询 预言机 请求明细（状态，响应结果，错误信息等）
     * Trustoracle-Service 内置合约地址查询
     * 查询所有 Trustoracle-Service 服务列表
 
