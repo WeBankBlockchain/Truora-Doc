@@ -9,7 +9,7 @@ Trustoracle 服务的部署模式有如下两种方式：
 .. admonition:: 适用场景
 
      - 快速体验 Trustoracle 服务
-     - Oracle 服务的开发和调试
+     - 预言机服务的开发和调试
 ```
 
 一键部署使用一键部署脚本（`deploy-all.sh`），在部署 Trustoracle 服务时，会自动部署依赖服务，包括：
@@ -20,7 +20,7 @@ Trustoracle 服务的部署模式有如下两种方式：
 |  WeBASE-Front | 提供 Solidity 合约的可视化开发，编译，部署和调试功能  |
 |  Trustoracle-Service | Trustoracle 的 **后** 端服务  |
 | Trustoracle-Web  | Trustoracle 的 **前** 端页面  |
-| MySQL  |  数据库服务，存储请求历史记录， Oracle 相关合约的地址 |
+| MySQL  |  数据库服务，存储请求历史记录， 预言机相关合约的地址 |
 
 
 

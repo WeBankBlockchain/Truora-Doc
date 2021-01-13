@@ -4,20 +4,20 @@ Trustoracle 预言机服务中有两个角色：
 
 * **Trustoracle 服务运营方**
 
-    服务运运营方需要部署 `Trustoracle-Service` 和 `Trustoracle-Web` 服务，并且部署 Oracle 相关合约到链上，为预言机用户提供服务。
+    服务运运营方需要部署 `Trustoracle-Service` 和 `Trustoracle-Web` 服务，并且部署预言机相关合约到链上，为预言机用户提供服务。
 
 * **预言机用户**
     
-    预言机用户需要根据自身业务，选择一个 Trustoracle 服务运营方，并编写预言机合约（需要从服务运营方处获取 Oracle 相关合约的地址），使用服务运营方提供的预言机服务。
+    预言机用户需要根据自身业务，选择一个 Trustoracle 服务运营方，并编写预言机合约（需要从服务运营方处获取预言机相关合约的地址），使用服务运营方提供的预言机服务。
   
 
 ## 开发流程
 
 预言机服务开发的流程：
 
-1. 获取 Oracle 相关合约地址
-    * 选择一个 Trustoracle 服务运营方，并从运营方获取到 Oracle 相关合约地址
-    * 如果没有运营方，可以参考：[安装部署](../Trustoracle-Install/index.html) 自行搭建 `Trustoracle` 服务。部署完成后，可以通过 Trustoracle-Web 获取 Oracle 相关合约地址，请参考：[查询系统合约地址](../Trustoracle-Web/outline.html#list_oracle_address)
+1. 获取 预言机 相关合约地址
+    * 选择一个 Trustoracle 服务运营方，并从运营方获取到 预言机 相关合约地址
+    * 如果没有运营方，可以参考：[安装部署](../Trustoracle-Install/index.html) 自行搭建 `Trustoracle` 服务。部署完成后，可以通过 Trustoracle-Web 获取 预言机 相关合约地址，请参考：[查询系统合约地址](../Trustoracle-Web/outline.html#list_oracle_address)
     
 2. 开发合约
     * 编写，调试合约
@@ -71,6 +71,3 @@ Trustoracle 预言机服务中有两个角色：
        json(https://devapi.qweather.com/v7/weather/3d?location=101280601&key=90d8a8ee98ff495694dce72e96f53a18).daily[1].tempMax
 ``` 
   
-
-
-## 开发示例
