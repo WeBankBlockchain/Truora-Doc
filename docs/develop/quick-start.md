@@ -32,7 +32,7 @@ Trustoracle 预言机服务中有两个角色：
    ```
     contract APISampleOracle is FiscoOracleClient
    ``` 
-  - 构造函数需要传入指定的`Trustoracle`服务的 `OracleCore`合约 地址。地址可以通过接口获取。  
+  - 构造函数需要传入指定的`Trustoracle`服务的 `OracleCore`合约 地址。地址可以通过前端界面或者后端接口获取。  
    ```
       constructor(address oracleAddress) public {  
             oracleCoreAddress = oracleAddress;      
@@ -70,4 +70,47 @@ Trustoracle 预言机服务中有两个角色：
      // 查询某城市某天最高温度  
        json(https://devapi.qweather.com/v7/weather/3d?location=101280601&key=90d8a8ee98ff495694dce72e96f53a18).daily[1].tempMax
 ``` 
+
+## 业务合约参考
+
+下面以一个简单抽奖合约为例，介绍下一个简单抽奖业务怎么使用 `Trustoracle` 预言机合约。
+    
+ 抽奖合约[LotteryOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/LotteryOracle.sol) 实现了一个简单的抽奖逻辑，
+ 通过使用上述[APISampleOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 获取随机数结果。请保证 `APISampleOracle` 合约的url是获取获取随机数的url。
+      默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`自行修改合约第一行的编译器版本即可。合约解析如下：
+      
+  - 构造函数需要传入获取随机数合约 `APISampleOracle` 地址。  
+       ```
+          constructor(address randomOracle) public {
+                 oracle = APISampleOracle(randomOracle);
+                 lotteryId = 0;
+                 lottery_state = LOTTERY_STATE.CLOSED;
+             }
+       ```       
+   - 开始抽奖函数需要传入参与者的地址。简单状态校验后，然后通过调用 `APISampleOracle` 的 `request` 函数获取随机数。
+      
+       ```
+          function start_new_lottery(address[] memory _players) public {
+                require(lottery_state == LOTTERY_STATE.CLOSED, "can't start a new lottery yet");
+                lottery_state = LOTTERY_STATE.OPEN;
+                players = _players;
+                lotteryId++;
+                requestId = oracle.request();
+            }
+       ```
+     
+   - 获取抽奖结果函数回返回中奖者地址。`pickWinner` 函数获取随机数结果，并对总参与人数取余，得出中奖者地址。  
+      ```
+       function pickWinner() public returns(address) {
+              require(oracle.checkIdFulfilled(requestId) == false, " oracle query has not been fulfilled!");
+      
+              int256 randomness  = oracle.getById(requestId);
+              uint256 index = uint256(randomness) % players.length;
+              address winner = players[index];
+              players = new address[](0);
+              lottery_state = LOTTERY_STATE.CLOSED;
+              emit Winner(lotteryId, winner, randomness);
+              return winner;
+          }
+      ``` 
   
