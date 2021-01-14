@@ -45,8 +45,8 @@ Trustoracle 预言机服务中有两个角色：
         {
     
           // Set your URL
-               url = "plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)";
-          //   url = "json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY";
+          // url = "plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)";
+             url = "json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY";
              bytes32  requestId = oracleQuery(oracleCoreAddress, url, timesAmount);
              validIds[requestId] = true;
              return requestId;
@@ -76,7 +76,7 @@ Trustoracle 预言机服务中有两个角色：
 下面以一个简单抽奖合约为例，介绍下一个简单抽奖业务怎么使用 `Trustoracle` 预言机合约。
     
  抽奖合约[LotteryOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/LotteryOracle.sol) 实现了一个简单的抽奖逻辑，
-    通过使用上述[APISampleOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 获取随机数结果。
+ 通过使用上述[APISampleOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 获取随机数结果。请保证 `APISampleOracle` 合约的url是获取获取随机数的url。
       默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`自行修改合约第一行的编译器版本即可。合约解析如下：
       
   - 构造函数需要传入获取随机数合约 `APISampleOracle` 地址。  
