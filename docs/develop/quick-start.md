@@ -73,13 +73,13 @@ Trustoracle 预言机服务中有两个角色：
 
 ## 业务合约参考
 
-    下面以一个简单抽奖合约为例，介绍下一个简单抽奖业务怎么使用 `Trustoracle` 预言机合约。
+下面以一个简单抽奖合约为例，介绍下一个简单抽奖业务怎么使用 `Trustoracle` 预言机合约。
     
-    抽奖合约[LotteryOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/LotteryOracle.sol) 实现了一个简单的抽奖逻辑，
-    通过使用上述[APISampleOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol)获取随机数结果。
+ 抽奖合约[LotteryOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/LotteryOracle.sol) 实现了一个简单的抽奖逻辑，
+    通过使用上述[APISampleOracle.sol](https://github.com/WeBankBlockchain/Trustoracle-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 获取随机数结果。
       默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`自行修改合约第一行的编译器版本即可。合约解析如下：
       
-      - 构造函数需要传入获取随机数合约APISampleOracle地址。  
+  - 构造函数需要传入获取随机数合约 `APISampleOracle` 地址。  
        ```
           constructor(address randomOracle) public {
                  oracle = APISampleOracle(randomOracle);
@@ -87,7 +87,7 @@ Trustoracle 预言机服务中有两个角色：
                  lottery_state = LOTTERY_STATE.CLOSED;
              }
        ```       
-      - 开始抽奖函数需要传入参与者的地址。简单状态校验后，然后通过调用APISampleOracle的 `request` 函数获取随机数。
+   - 开始抽奖函数需要传入参与者的地址。简单状态校验后，然后通过调用 `APISampleOracle` 的 `request` 函数获取随机数。
       
        ```
           function start_new_lottery(address[] memory _players) public {
@@ -98,7 +98,8 @@ Trustoracle 预言机服务中有两个角色：
                 requestId = oracle.request();
             }
        ```
-      - 获取抽奖结果函数回返回中奖者地址。`pickWinner` 函数获取随机数结果，并对总参与人数取余，得出中奖者地址。  
+     
+   - 获取抽奖结果函数回返回中奖者地址。`pickWinner` 函数获取随机数结果，并对总参与人数取余，得出中奖者地址。  
       ```
        function pickWinner() public returns(address) {
               require(oracle.checkIdFulfilled(requestId) == false, " oracle query has not been fulfilled!");
