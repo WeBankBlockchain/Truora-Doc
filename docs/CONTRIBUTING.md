@@ -23,15 +23,9 @@
 随后打开命令行窗口，敲入如下 `git` 命令：
 
 ```
-git clone "刚才复制的 url 链接"
+git clone https://github.com/{WeBankBlockchain}/Trustoracle-Service.git
 ```
-"刚才复制的 `url` 链接"（去掉双引号）就是复制到你账户名下的代码仓库地址。获取这链接地址的方法请见上一步。
-
-```
-git clone https://github.com/"你的 Github 用户名"/Trustoracle-Service.git
-```
-
-'你的 Github 用户名' 指的就是你的 Github 用户名。这一步，你将复制你账户名下的 Trustoracle-Service 这个代码仓库克隆到你的本地电脑上。
+替换大括号为自己的账号，将 fork 后的仓库 Trustoracle-Service 克隆到你的本地电脑上。
 
 ## 代码修改
 ```
@@ -42,16 +36,18 @@ vim XXX
 
 ## Commit修改
 
-```
-git commit -m "一个伟大改进"
+```Bash
+git commit -m "A great commit"
 ```
 
 ## 将改动 Push 到 GitHub
 
-使用 `git push` 命令发布代码
+使用 `git push` 命令发布代码，替换大括号中 `dev` 为自己的分支。
+
+```Bash
+git push origin {dev}
 ```
-git push origin <分支的名称>
-```
+
 
 ## 提出 Pull Request 将你的修改供他人审阅
 
