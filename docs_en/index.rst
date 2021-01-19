@@ -2,7 +2,7 @@
 FISCO-BCOS Technical Documents
 ##############################################################
 
-.. image:: _static/images/FISCO_BCOS_Logo.svg
+.. image:: _static/images/Truora-Logo.svg
 
 .. admonition:: Overview
 
