@@ -98,24 +98,25 @@ bash util/deploy_util.sh -h
 
 # 参数明细
 Usage:
-    deploy_util.sh [-k] [-m] [-w] [f] [-M 3306] [-W 5002] [-B 5020] [-S 5021] [-d] [-g] [-i fiscoorg] [-t] [-p] [-h]
+    deploy_util.sh [-k] [-m] [-w] [-f] [-M 3306] [-W 5002] [-B 5020] [-S 5021] [-d] [-g] [-i fiscoorg] [-t] [-p] [-D] [-h]
     -k        Pull images from Docker hub.
 
-    -m        Deploy a MySQL instance with Docker, default yes.
-    -w        Deploy a WeBASE-Front service, default yes.
-    -f        Deploy a 4 nodes FISCO-BCOS service, default yes.
+    -m        Deploy a MySQL instance with Docker.
+    -w        Deploy a WeBASE-Front service.
+    -f        Deploy a 4 nodes FISCO-BCOS service.
 
     -M        Listen port of MySQL, default 3306.
     -W        Listen port of WeBASE-Front, default 5002.
     -B        Listen port of Truora-Web, default 5020.
     -S        Listen port of Truora-Service, default 5021.
 
-    -d        Install dependencies during deployment, default no.
-    -g        Use guomi, default no.
+    -d        Install dependencies during deployment.
+    -g        Use guomi.
 
     -i        Organization of docker images, default fiscoorg.
-    -t        Use [dev] tag for images of Truora-Service and Truora-Web. Only for test, default off.
-    -p        Pull [dev] latest for images of Truora-Service and Truora-Web. Only works when option [-t] is on, default off.
+    -t        Use [dev] tag for images of Truora-Service and Truora-Web. Only for test.
+    -p        Pull [dev] latest for images of Truora-Service and Truora-Web. Only works when option [-t] is on.
+    -D        Set log level of Truora to [ DEBUG ], default [ INFO ].
 
     -h        Show help info.
 ```
@@ -136,6 +137,7 @@ Usage:
 | -i  | 指定 Docker 镜像的组织名称 |需要  |  **仅开发 Truora 服务时使用** <br /> 默认 `fiscoorg`  |
 | -t  | truora-web 和 truora-service <br /> 镜像使用 `dev` 版本，<br />**仅测试使用**|不  | 不使用该参数时，<br />Truora-Web 和 Truora-Service <br/>**默认使用 Release 版本（v1.x.x）** |
 | -p  | 拉取 truora-web 和 truora-service <br /> 镜像 `dev` 版本的最新版，<br />**仅开启 `-t` 参数后有效** |不  |  不使用该参数时，默认不拉取 |
+| -D  | 设置 Truora-Service 服务 <br />日志级别为 `DEBUG` |不  |  不使用该参数时，默认 `INFO` |
 | -h  | 显示帮助文档 | 不  | 无  |    
 
 ```eval_rst

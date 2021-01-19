@@ -51,7 +51,7 @@
    ```
     contract RandomNumberConsumer is VRFConsumerBase
    ``` 
-  - 构造函数需要传入指定的 `Truora` 服务方的 `_keyHash` 和 `_coordinator` 地址 。上述值可以通过接口获得。
+  - 构造函数需要传入指定的 Truora 服务方的 `_keyHash` 和 `_coordinator` 地址 。上述值可以通过接口获得。
    ```
     constructor(address _coordinator, bytes32 _keyHash)
           VRFConsumerBase(

@@ -15,7 +15,7 @@
 * 快速体验 Truora 服务
 * 预言机服务的开发和调试
 
-使用一键部署工具，部署 Truora 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 `Truora` 合约的开发和调试环境。
+使用一键部署工具，部署 Truora 服务时，会同时部署一个 WeBASE-Front（Solidity 合约的开发和调试环境）服务，作为 Truora 合约的开发和调试环境。
 
 部署后的架构如下：
 

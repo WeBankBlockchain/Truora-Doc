@@ -6,7 +6,7 @@
 ```eval_rst
 .. admonition:: **简介**
 
-    `Truora-Service <https://github.com/WeBankBlockchain/Truora-Service>`_ 是 `Truora` 的后台服务，主要分为链上部分和链下部分。链上部分主要是 `oracle` 相关合约，链下部分主要是 `Java` 服务，负责连接节点，监听合约的事件，采集结果并回写到 `oracle` 合约。
+    `Truora-Service <https://github.com/WeBankBlockchain/Truora-Service>`_ 是 Truora 的后台服务，主要分为链上部分和链下部分。链上部分主要是 `oracle` 相关合约，链下部分主要是 `Java` 服务，负责连接节点，监听合约的事件，采集结果并回写到 `oracle` 合约。
     `Truora-Service` 支持多集群部署(监听同一条链并共用同一个数据库)。
 
 ```
