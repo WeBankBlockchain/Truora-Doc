@@ -1,8 +1,8 @@
-# Trustoracle 贡献指南
+# Truora 贡献指南
 
 欢迎，提前感谢你的帮助和支持！
 
-如果你是第一次贡献，只需按照以下简单步骤操作即可。我们将以修改为 Trustoracle-Service 例子给你介绍。
+如果你是第一次贡献，只需按照以下简单步骤操作即可。我们将以修改为 Truora-Service 例子给你介绍。
 
 如果你的电脑上尚未安装 `git`, 请按照这个[ 安装指引 ](https://help.github.com/articles/set-up-git/)进行安装。
 
@@ -23,13 +23,13 @@
 随后打开命令行窗口，敲入如下 `git` 命令：
 
 ```
-git clone https://github.com/{WeBankBlockchain}/Trustoracle-Service.git
+git clone https://github.com/{WeBankBlockchain}/Truora-Service.git
 ```
-替换大括号为自己的账号，将 fork 后的仓库 Trustoracle-Service 克隆到你的本地电脑上。
+替换大括号为自己的账号，将 fork 后的仓库 Truora-Service 克隆到你的本地电脑上。
 
 ## 代码修改
 ```
-cd Trustoracle-Service
+cd Truora-Service
 
 vim XXX
 ```

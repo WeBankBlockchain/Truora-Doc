@@ -6,7 +6,7 @@
 | ----- | ------------------ |
 | Nginx | Nginx 1.6 或以上版本 |
 
-关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../Trustoracle-Service/appendix.html#install_nginx)
+关于 `Nginx` 安装，请参考 [附录--安装 Nginx](../../Truora-Service/appendix.html#install_nginx)
 
 ## 安装
 
@@ -14,29 +14,29 @@
 
 ```Bash
 # 拉取代码
-git clone https://github.com/WeBankBlockchain/Trustoracle-Web.git;
+git clone https://github.com/WeBankBlockchain/Truora-Web.git;
     
 # 进入目录
-cd Trustoracle-Web
+cd Truora-Web
 ```
 
 * 拷贝 `Nginx` 配置文件
     
 ```Bash
 # 拷贝项目的 Nginx 配置
-cp docker/trustoracle-web.conf  /etc/nginx/conf.d
+cp docker/truora-web.conf  /etc/nginx/conf.d
 ```
 
 ```eval_rst
 .. admonition:: 提示
 
-    - 如果主机中已经存在 Nginx，只需要把 `docker/trustoracle-web.conf` 拷贝到 Nginx 的配置文件（默认：`/etc/nginx/nginx.conf`）中 `include` 的目录下即可。
+    - 如果主机中已经存在 Nginx，只需要把 `docker/truora-web.conf` 拷贝到 Nginx 的配置文件（默认：`/etc/nginx/nginx.conf`）中 `include` 的目录下即可。
 ``` 
 
 ```eval_rst
 .. important::
 
-    - Nginx 的配置文件直接拷贝 `docker/trustoracle-web.conf` 文件即可，**不建议** 修改 Nginx 的主配置文件（默认：`/etc/nginx/nginx.conf`）
+    - Nginx 的配置文件直接拷贝 `docker/truora-web.conf` 文件即可，**不建议** 修改 Nginx 的主配置文件（默认：`/etc/nginx/nginx.conf`）
 ```
 
 
