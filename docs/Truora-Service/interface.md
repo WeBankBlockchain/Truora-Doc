@@ -1,6 +1,6 @@
 # 接口规范
 
-## Trustoracle-Service 
+## Truora-Service
 
 <span id="list_oracle_address" />
 
@@ -131,7 +131,7 @@ HTTP GET
       // URL 返回的结果
       "result": "15.962067",
       
-      // 放大倍数，Trustoracle-Service 会将 URL 返回的结果 乘以 该倍数后上传到链上
+      // 放大倍数，Truora-Service 会将 URL 返回的结果 乘以 该倍数后上传到链上
       // 防止小数
       "timesAmount": "1000000000000000000",
       
@@ -216,7 +216,7 @@ HTTP GET
     // URL 返回的结果
     "result": "15.962067",
     
-    // 放大倍数，Trustoracle-Service 会将 URL 返回的结果 乘以 该倍数后上传到链上
+    // 放大倍数，Truora-Service 会将 URL 返回的结果 乘以 该倍数后上传到链上
     // 防止小数
     "timesAmount": "1000000000000000000",
     
@@ -230,11 +230,11 @@ HTTP GET
 
 
 
-### 查询 Trustoracle-Service 服务信息
+### 查询 Truora-Service 服务信息
 
 #### 接口描述
 
-> 查询 Trustoracle-Service 服务信息，包括 `keyHash` 和 `publicKeyList`
+> 查询 Truora-Service 服务信息，包括 `keyHash` 和 `publicKeyList`
 
 #### 接口URL
 
@@ -270,12 +270,12 @@ HTTP GET
       "index": 0,
       // 
       "oracleServiceAddress": "0x9c9c89314573086ace5a5825b33d52eee1f99a8a",
-      // Trustoracle-Service 的 PublicKey
+      // Truora-Service 的 PublicKey
       "publicKeyList": [
         "1c8f2ab90b4323f182e85fcd25e4d8b17267b9decb1305592b3d66952ce3d82a",
         "008e89fdc1b5807c400e6339eb5428318be0d5a09696693ce40f27eede2d162a56"
       ],
-      // Trustoracle-Service 的 keyHash
+      // Truora-Service 的 keyHash
       "keyHash": "45f6483e01a8956d4ce4700d9c9c89314573086ace5a5825b33d52eee1f99a8a",
       "operator": "operator",
       "url": "http://localhost",

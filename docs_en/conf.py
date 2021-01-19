@@ -99,7 +99,7 @@ templates_path = ['../_templates']
 master_doc = 'index'
 
 # General information about the project.
-project = u'FISCO-BCOS EN'
+project = u'Truora EN'
 copyright = u'© 2020. All rights reserved.'
 author = u'WeBankFinTech'
 
@@ -168,7 +168,7 @@ todo_include_todos = True
 # VCS options: https://docs.readthedocs.io/en/latest/vcs.html#github
 html_context = {
     "display_github": True, # Integrate GitHub
-    "github_repo": "FISCO-BCOS-DOC", # Repo name
+    "github_repo": "TRU-ORA-DOC", # Repo name
     "github_version": "master", # Version
     "conf_py_path": "/", # Path in the checkout to the docs root
 }
@@ -264,7 +264,7 @@ html_search_language = 'en'
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'FISCO-BCOS_en_doc'
+htmlhelp_basename = 'Truora_en_doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -303,7 +303,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'FISCO-BCOS_en.tex', u'FISCO-BCOS Documentation',
+  (master_doc, 'Truora_en.tex', u'Truora Documentation',
    u'WeBankFinTech', 'manual'),
 ]
 
@@ -333,7 +333,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'FISCO-BCOS', u'FISCO-BCOS EN Documentation',
+    (master_doc, 'Truora', u'Truora EN Documentation',
      [author], 1)
 ]
 
@@ -347,8 +347,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'FISCO-BCOS', u'FISCO-BCOS EN Documentation',
-   author, 'WeBankFinTech', 'english documents of FISCO-BCOS',
+  (master_doc, 'Truora', u'Truora EN Documentation',
+   author, 'WeBankFinTech', 'english documents of Truora',
    'Miscellaneous'),
 ]
 

@@ -1,4 +1,4 @@
-# Trustoracle-Service
+# Truora-Service
 
 ```eval_rst
 .. toctree::
