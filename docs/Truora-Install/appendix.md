@@ -16,7 +16,7 @@ echo "docker/deploy" >> .git/info/sparse-checkout ;
 
 # 设置仓库地址，拉取部署工具
 git remote add origin "https://github.com/WeBankBlockchain/Truora-Service.git";
-git fetch --depth 1 && git checkout master
+git fetch --depth 1 && git checkout main
 
 # 进入部署脚本目录
 cd docker/deploy
