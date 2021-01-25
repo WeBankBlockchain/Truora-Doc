@@ -93,9 +93,6 @@ wget "https://github.com/WeBankBlockchain/Truora-Service/releases/download/v1.0.
 
 ## 解压部署包
 unzip docker-deploy.zip
-
-## 进入部署脚本目录
-cd docker-deploy
 ```
 
 如果需要下载指定版本，在 [版本列表中](https://github.com/WeBankBlockchain/Truora-Service/releases) 选择相应版本下载。
