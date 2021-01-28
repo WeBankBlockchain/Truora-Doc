@@ -2,7 +2,7 @@
 ```eval_rst
 .. admonition:: 提示
 
-    - 由于 Docker 的网络限制，使用独立部署 Trustoracle 服务时，**仅支持 Linux 操作系统！！**
+    - 由于 Docker 的网络限制，使用独立部署 Truora 服务时，**仅支持 Linux 操作系统！！**
 ```
 
 ```eval_rst
@@ -12,24 +12,24 @@
 ```
 ## 安装介绍
 
-独立部署是基于 `Docker`，`Docker-Compose` 和 `Bash Shell` 封装的一个部署工具，提供一键部署 Trustoracle 服务，并连接到已有 FISCO-BCOS 链。
+独立部署是基于 `Docker`，`Docker-Compose` 和 `Bash Shell` 封装的一个部署工具，提供一键部署 Truora 服务，并连接到已有 FISCO-BCOS 链。
 
 适合以下场景：
 
 * 已有 FISCO-BCOS 底层节点
 
-使用独立部署工具，部署 Trustoracle 服务时，会部署 Trustoracle-Service 和 Trustoracle-Web 服务，此外，可以选择是否部署一个 MySQL 服务。
+使用独立部署工具，部署 Truora 服务时，会部署 Truora-Service 和 Truora-Web 服务，此外，可以选择是否部署一个 MySQL 服务。
 
 ```eval_rst
 .. important::
 
-    - 使用独立部署时，Trustoracle-Service 需要链接到 FISCO-BCOS 节点。需要手动提供链接节点的 sdk 相关文件。
+    - 使用独立部署时，Truora-Service 需要链接到 FISCO-BCOS 节点。需要手动提供链接节点的 sdk 相关文件。
     - 使用独立部署时，如果选择 **不部署** MySQL，在部署时，需要提供 MySQL 的链接信息，包括：IP，端口，用户名和密码。
 ```
 
 部署的服务包括：
-* Trustoracle-Web
-* Trustoracle-Service 
+* Truora-Web
+* Truora-Service
 * MySQL（**可选**）
 
 
@@ -55,10 +55,10 @@
 | 带宽 | 1 Mb      | 10 Mb     |
 
 ## 脚本说明
-Trustoracle 独立部署工具特性：
+Truora 独立部署工具特性：
 
 * 提供自动安装依赖服务功能，包括：`OpenSSL`, `curl`, `wget`, `Docker`, `Docker Compose` 等
-* 部署 Trustoracle-Service, Trustoracle-Web 服务
+* 部署 Truora-Service, Truora-Web 服务
 * 部署 MySQL 服务（可选）
 * 支持国密选项
 
@@ -73,16 +73,13 @@ Trustoracle 独立部署工具特性：
 <!-- TODO add latest release-->
 ```Bash
 ## 从 GitHub 下载最新部署包
-wget "https://github.com/WeBankBlockchain/Trustoracle-Service/releases/download/v1.0.0/docker-deploy.zip"
+wget "https://github.com/WeBankBlockchain/Truora-Service/releases/download/v1.0.0/docker-deploy.zip"
 
 ## 解压部署包
 unzip docker-deploy.zip
-
-## 进入部署脚本目录
-cd docker-deploy
 ```
 
-如果需要下载指定版本，在 [版本列表中](https://github.com/WeBankBlockchain/Trustoracle-Service/releases) 选择相应版本下载。
+如果需要下载指定版本，在 [版本列表中](https://github.com/WeBankBlockchain/Truora-Service/releases) 选择相应版本下载。
 
 ```eval_rst
 .. admonition:: 提示
@@ -113,7 +110,7 @@ bash deploy_single.sh -d
 ```eval_rst
 .. important::
 
-    - 如果使用 `-g` 参数部署 Trustoracle 国密版本时，需要确保 **链类型：国密**，**连接类型：国密**。关于链类型，国密类型，请参考：`加密类型 <../Trustoracle-Service/deploy.html#encrypt_type>`_
+    - 如果使用 `-g` 参数部署 Truora 国密版本时，需要确保 **链类型：国密**，**连接类型：国密**。关于链类型，国密类型，请参考：`加密类型 <../Truora-Service/deploy.html#encrypt_type>`_
 ```
 
 ### 配置证书目录
@@ -124,7 +121,7 @@ bash deploy_single.sh -d
     - 部署脚本 **不会检查 SDK 文件和需要连接的链是否匹配**，只会检查必须的证书文件是否存在。
 ```
 
-#### 非国密 Trustoracle（ECDSA）
+#### 非国密 Truora（ECDSA）
 
 提示输入 SDK 目录（目录需要存在对应链的 `ca.crt`，`node.crt`，`node.key` 文件），输入目录后，按 **回车** 确认：
 
@@ -146,7 +143,7 @@ e.g:[ /root/webank/deploy/deploy/fiscobcos/nodes/127.0.0.1/sdk ]:
 
 
 
-#### 国密 Trustoracle（SM2）
+#### 国密 Truora（SM2）
 
 提示输入 `gm` SDK 目录（目录需要存在对应链的 `gmca.crt`，`gmensdk.crt`，`gmensdk.key`，`gmsdk.crt`，`gmsdk.key` 文件），输入目录后，按 **回车** 确认：
 
@@ -176,26 +173,26 @@ Enter MySQL IP, default: 127.0.0.1 ? 127.0.0.1
 
 Enter MySQL port, default: 3306 ?
 
-Enter MySQL user, default: trustoracle ?
+Enter MySQL user, default: truora ?
 
 Enter MySQL password, default: defaultPassword ? user
 
 .......
 ```
 
-在 MySQL 中创建一个 `trustoracle` 数据库，供 Trustoracle-Service 服务使用。
+在 MySQL 中创建一个 `truora` 数据库，供 Truora-Service 服务使用。
 
 ```SQL
 # 连接 MySQL
 mysql -u root -p 
 
-# 创建 trustoracle 数据库
-CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+# 创建 truora 数据库
+CREATE DATABASE `truora` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 ```
 
 ### 配置节点连接
 
-修改 FISCO-BCOS 节点连接信息，编辑 `trustoracle/docker-compose.yml` 文件：
+修改 FISCO-BCOS 节点连接信息，编辑 `truora/docker-compose.yml` 文件：
 
 ```yml
 .....
@@ -209,7 +206,7 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 ```
 
 ### 多链配置
-使用独立部署的 Trustoracle 服务，支持同时连接多链，以及一条链的多个群组。
+使用独立部署的 Truora 服务，支持同时连接多链，以及一条链的多个群组。
 
 #### 挂载证书
 在添加多链时，需要先将新链的证书目录挂载到 Docker 容器中。
@@ -217,19 +214,19 @@ CREATE DATABASE `trustoracle` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 在部署时生成的挂载文件，根据加密方式不同，生成的 Docker Compose 文件不同：
 
 ```Bash
-# 非国密 Trustoracle（ECDSA）
-trustoracle/deploy/docker-compose-ecdsa.yml
+# 非国密 Truora（ECDSA）
+truora/deploy/docker-compose-ecdsa.yml
 
-# 国密 Trustoracle（SM2）
-trustoracle/deploy/docker-compose-sm2.yml
+# 国密 Truora（SM2）
+truora/deploy/docker-compose-sm2.yml
 ```
    
-修改对应的 `trustoracle/deploy/docker-compose-xxxx.yml` 文件
+修改对应的 `truora/deploy/docker-compose-xxxx.yml` 文件
 
 ```yml
 version: '3.7'
 services:
-  trustoracle-server:
+  truora-server:
     volumes:
       .......
       .......
@@ -240,21 +237,21 @@ services:
 
 冒号 `:` 前表示新链的证书目录。  
 
-冒号 `:` 后表示 **容器中的证书路径**，Trustoracle-Service 服务启动时，会从容器中的此目录加载证书。
+冒号 `:` 后表示 **容器中的证书路径**，Truora-Service 服务启动时，会从容器中的此目录加载证书。
 
 #### 修改连接配置
 
 在部署时生成的连接配置文件，根据加密方式不同，生成的 **连接配置** 文件不同：
 
 ```Bash
-# 非国密 Trustoracle（ECDSA）
-trustoracle/deploy/trustoracle-ecdsa.yml
+# 非国密 Truora（ECDSA）
+truora/deploy/truora-ecdsa.yml
 
-# 国密 Trustoracle（SM2）
-trustoracle/deploy/trustoracle-sm2.yml
+# 国密 Truora（SM2）
+truora/deploy/truora-sm2.yml
 ```
    
-修改对应的 `trustoracle/deploy/trustoracle-xxxx.yml` 文件。
+修改对应的 `truora/deploy/truora-xxxx.yml` 文件。
 
 **注意：** 在添加新链的证书配置时，`classpath` 冒号 `:` 的路径是 **容器中的证书路径** 相对 `/dist/conf` 的相对路径。
 
@@ -283,31 +280,31 @@ event:
    #- {chainId: 2, group: 2}
 ```
 
-详细配置修改，请参考：[修改配置](../Trustoracle-Service/deploy.html#modify_service_config)
+详细配置修改，请参考：[修改配置](../Truora-Service/deploy.html#modify_service_config)
 
 ```eval_rst
 .. admonition:: 提示
 
-    - `trustoracle.yml` 配置文件中的 `${TRUSTORACLE_SERVICE_PORT:5021}` 表示 Trustoracle-Service 在启动时，会优先从系统环境变量中读取 `TRUSTORACLE_SERVICE_PORT` 的值。如果 `TRUSTORACLE_SERVICE_PORT` 环境变量 **没有设置** 或者 **值为空**，则使用默认值 `5021`。
+    - `truora.yml` 配置文件中的 `${TRUORA_SERVICE_PORT:5021}` 表示 Truora-Service 在启动时，会优先从系统环境变量中读取 `TRUORA_SERVICE_PORT` 的值。如果 `TRUORA_SERVICE_PORT` 环境变量 **没有设置** 或者 **值为空**，则使用默认值 `5021`。
 ```
 
 
 ## 服务启停
-如果一键部署脚本 `deploy_all.sh` 执行成功后显示 `Deploy Trustoracle service SUCCESS!!` ，表示部署成功。
+如果一键部署脚本 `deploy_all.sh` 执行成功后显示 `Deploy Truora service SUCCESS!!` ，表示部署成功。
 
-* 使用 `bash start.sh` 启动 Trustoracle 服务。
+* 使用 `bash start.sh` 启动 Truora 服务。
 
 * 使用 `bash stop.sh`  停止服务。
 
 在启动时，脚本会依次启动服务，并检测服务启动结果。
 
-如果提示 `Trustoracle service start up SUCCESS !!`，表示 Trustoracle 服务启动成功。
+如果提示 `Truora service start up SUCCESS !!`，表示 Truora 服务启动成功。
 
 如果启动失败，根据命令行的提示，检查启动失败服务的日志。关于查看服务的日志，请参考：[日志查看](./appendix.html#check_log)
 
 ## 访问服务
     
-Trustoracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 Trustoracle-Web 服务，请参考：[Trustoracle-Web 服务介绍](../Trustoracle-Web/outline.html)
+Truora 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`，比如：`http://127.0.0.1:5020`，访问 Truora-Web 服务，请参考：[Truora-Web 服务介绍](../Truora-Web/outline.html)
 
 
 ```eval_rst
@@ -316,4 +313,4 @@ Trustoracle 服务启动成功后，打开浏览器，输入 `http://[IP]:5020`�
      - 注意替换服务器的 `IP` 地址
 ```
 
-关于 Trustoracle 服务的 **开发教程**，请参考：[Trustoracle 开发教程](../develop/quick-start.html)
+关于 Truora 服务的 **开发教程**，请参考：[Truora 开发教程](../develop/quick-start.html)

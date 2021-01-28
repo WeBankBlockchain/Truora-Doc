@@ -27,10 +27,10 @@
 执行命令：
 ```Bash
 # 拉取源码
-git clone https://github.com/WeBankBlockchain/Trustoracle-Service.git
+git clone https://github.com/WeBankBlockchain/Truora-Service.git
 
 # 进入目录
-cd Trustoracle-Service
+cd Truora-Service
 ```
 
 
@@ -48,7 +48,7 @@ gradle build -x test
 chmod +x ./gradlew && ./gradlew build -x test
 ```
 
-构建完成后，会在根目录 Trustoracle-Service 下生成已编译的代码目录 dist。
+构建完成后，会在根目录 Truora-Service 下生成已编译的代码目录 dist。
 
 <span id="encrypt_type">
 
@@ -71,7 +71,7 @@ FISCO-BCOS 链有两种类型： **非国密（ECDSA）** 和 **国密（SM2）*
     - **国密** 链 **支持** 非国密连接 和 国密连接，但是需要根据节点的 `config.ini` 文件，检查节点是否已经开启国密连接
 ```
 
-在部署 Trustoracle-Service，需要同时配置 **链类型** 和 **连接类型**。
+在部署 Truora-Service，需要同时配置 **链类型** 和 **连接类型**。
 
 <span id="chain_type"/>
 
@@ -140,7 +140,7 @@ cd conf
 ```yaml
  datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/trustoracle?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/truora?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: "defaultAccount"
     password: "defaultPassword"
 ```  
@@ -198,9 +198,9 @@ cp  /${PATH_TO_SDK}/gm/gm.* .
 ### 多链（群组）支持
 
 #### 配置连接
-Trustoracle-Service 支持同时连接多条链，以及连接同一条链中的多个群组。
+Truora-Service 支持同时连接多条链，以及连接同一条链中的多个群组。
 
-同一个 Trustoracle-Service 连接多条链时，要求 **链类型** 都相同，同时采用 **相同的连接方式** 连接到链接点。
+同一个 Truora-Service 连接多条链时，要求 **链类型** 都相同，同时采用 **相同的连接方式** 连接到链接点。
 
 ```eval_rst
 .. important:: 
@@ -213,7 +213,7 @@ Trustoracle-Service 支持同时连接多条链，以及连接同一条链中的
 
 ```yaml 
 ########################################################################
-# 配置 Trustoracle 连接的链和群组信息（证书和地址）:
+# 配置 Truora 连接的链和群组信息（证书和地址）:
 #   1. 同一条链可以配置多个群组
 #   2. 可以配置多条链
 ########################################################################
@@ -250,7 +250,7 @@ group-channel-connections-configs:
 
 ```yaml 
 ########################################################################
-# 配置 Trustoracle 连接的链和群组信息（证书和地址）:
+# 配置 Truora 连接的链和群组信息（证书和地址）:
 #   1. 同一条链可以配置多个群组
 #   2. 可以配置多条链
 ########################################################################
@@ -295,14 +295,14 @@ group-channel-connections-configs:
 .. admonition:: 提示
 
      - 配置多链多群组监听时，配置的链ID和群组ID，必须在 `group-channel-connections-configs` 中配置过
-     - `group-channel-connections-configs` 表示 Trustoracle-Service 会连接到哪些链和群组
+     - `group-channel-connections-configs` 表示 Truora-Service 会连接到哪些链和群组
      - `eventRegisters` 表示启用哪些链和群组
 ```
   
 ```yaml
 ########################################################################
 # 配置事件监听：
-#   1. 配置 Trustoracle 需要监听的链（ChainId）和群组（groupId）
+#   1. 配置 Truora 需要监听的链（ChainId）和群组（groupId）
 #   2. 配置的 chainId 和 groupId 需要在 group-channel-connections-configs 存在
 ########################################################################
 event:
