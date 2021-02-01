@@ -11,6 +11,7 @@ Truora文档
    docs/develop/quick-start.md
    docs/subsystem.md
    docs/CONTRIBUTING.md
+   docs/community.md
 ..
 
  
