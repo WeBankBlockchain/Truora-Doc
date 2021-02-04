@@ -2,9 +2,10 @@
 
 
 ```eval_rst
-   .. important::
-   
-		- 使用一键部署 Truora 服务时，**仅支持 Linux 操作系统！！**
+.. important::
+    
+    - 使用一键部署 Truora 服务时，**仅支持 Linux 操作系统！！**  
+    - 使用一键部署 Truora 服务时，**数据库服务无需配置和改动! !**。
 ```
 
 ## 部署介绍
