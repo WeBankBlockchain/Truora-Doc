@@ -32,6 +32,7 @@ Truora 预言机服务中有两个角色：
    ```
     contract APISampleOracle is FiscoOracleClient
    ``` 
+
   - 构造函数需要传入指定的Truora服务的 `OracleCore`合约 地址。地址可以通过前端界面或者后端接口获取。
    ```
       constructor(address oracleAddress) public {  
@@ -53,6 +54,7 @@ Truora 预言机服务中有两个角色：
               
         }
    ```
+
   - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于Truora-Service服务回调获取的结果。
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
@@ -81,11 +83,23 @@ Truora 预言机服务中有两个角色：
       
   - 构造函数需要传入获取随机数合约 `APISampleOracle` 地址。  
        ```
-          constructor(address randomOracle) public {
-                 oracle = APISampleOracle(randomOracle);
-                 lotteryId = 0;
-                 lottery_state = LOTTERY_STATE.CLOSED;
-             }
+    
+    contract LotteryOracle {
+    
+        enum LOTTERY_STATE { OPEN, CLOSED }
+        LOTTERY_STATE public lottery_state;
+        address[] public players;
+        uint256 public lotteryId;
+        APISampleOracle private oracle;
+        bytes32  private requestId;
+        event Winner(uint256  lotteryId, address winner ,int256 ramdomness);
+    
+    
+        constructor(address randomOracle) public {
+            oracle = APISampleOracle(randomOracle);
+            lotteryId = 0;
+            lottery_state = LOTTERY_STATE.CLOSED;
+        }
        ```       
    - 开始抽奖函数需要传入参与者的地址。简单状态校验后，然后通过调用 `APISampleOracle` 的 `request` 函数获取随机数。
       
@@ -113,8 +127,36 @@ Truora 预言机服务中有两个角色：
               return winner;
           }
       ``` 
-  
-  
+     
+     
+## fiscoOracleClient 合约解析
+
+  - 抽象合约，__callback方法待实现。
+```
+function __callback(bytes32 requestId, int256 result) public {}
+```
+
+   - 发起oracle请求，`oracleQuery` 函数会传入相关参数并调用 `oracleCore` 合约的 `query`方法。
+```  
+  function oracleQuery(uint expiryTime, string memory datasource, address _oracle, string memory url, uint256 timesAmount, bool needProof) internal
+  returns (bytes32 requestId) {
+    // calculate the id;
+    oracle = OracleCoreInterface(_oracle);
+    int256 chainId;
+    int256 groupId;
+    ( chainId, groupId) = oracle.getChainIdAndGroupId();
+    requestId = keccak256(abi.encodePacked(chainId, groupId, this, requestCount));
+    pendingRequests[requestId] = _oracle;
+    emit Requested(requestId);
+
+    require(oracle.query(address(this),requestCount, url,timesAmount, expiryTime,needProof),"oracle-core invoke failed!");
+    requestCount++;
+    reqc[msg.sender]++;
+
+    return requestId;
+  }
+
+```
   
 ## 开发示例
 ### 部署预言机服务
@@ -132,7 +174,7 @@ Truora 预言机服务中有两个角色：
 ![create_user](../../images/develop/create_user.png)
 
 
-* 点击左边 **合约管理** --> **合约 IDE**，选择 `solidity` 版本，上传模板合约，包括以下 **五个** 合约：
+* 点击左边 **合约管理** --> **合约 IDE**，选择 `solidity` 版本，上传模板合约，包括以下[五个](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)合约：
 
 ```Bash
 FiscoOracleClient.sol
@@ -261,8 +303,4 @@ contract APISampleOracle is FiscoOracleClient {
 结果显示如下，此处是获取日元到人民币的汇率，放大 `10^18` 倍的结果：
 
 ![show_result](../../images/develop/show_result.png)
-
-
-
-
 
