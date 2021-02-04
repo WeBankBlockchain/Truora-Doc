@@ -174,7 +174,7 @@ function __callback(bytes32 requestId, int256 result) public {}
 ![create_user](../../images/develop/create_user.png)
 
 
-* 点击左边 **合约管理** --> **合约 IDE**，选择 `solidity` 版本，上传模板合约，包括以下 **五个** 合约：
+* 点击左边 **合约管理** --> **合约 IDE**，选择 `solidity` 版本，上传模板合约，包括以下[五个](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)合约：
 
 ```Bash
 FiscoOracleClient.sol
