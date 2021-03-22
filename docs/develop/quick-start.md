@@ -73,6 +73,37 @@ Truora 预言机服务中有两个角色：
        json(https://devapi.qweather.com/v7/weather/3d?location=101280601&key=90d8a8ee98ff495694dce72e96f53a18).daily[1].tempMax
 ``` 
 
+### 获取VRF随机数
+
+用户可以参考 [RandomNumberSampleVRF.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol) 合约实现自己的oracle业务合约。
+  默认支持`solidity0.6`版本合约。 `solidity0.4` 在 `Truora-Service` 同级目录。合约解析如下：
+  - 用户合约需继承 `VRFClient` 合约
+   ```
+    contract RandomNumberSampleVRF is VRFClient
+   ``` 
+
+  - 构造函数需要传入指定的Truora服务方的 `VRFCore`合约地址和公钥hash值。地址和哈希值都可以通过前端界面或者后端接口获取。
+   ```
+      constructor(address _vrfCore, bytes32 _keyHash) public {
+             vrfCoreAddress = _vrfCore;
+             keyHash = _keyHash;
+         }
+   ```       
+  - 设定自己提供的随机数种子值。 
+  
+   ```
+       function getRandomNumber(uint256 userProvidedSeed) public returns (bytes32 ) {
+            bytes32  requestId =  vrfQuery(vrfCoreAddress, keyHash, userProvidedSeed);
+            validIds[requestId] = true;
+            return requestId;
+        }
+   ```
+
+  - 必须实现 **__callbackRandomness(bytes32 requestId, uint256 randomness)** 方法，用于Truora-Service服务回调获取的结果。
+  - **get()** 方法获取本次随机数请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
+  
+   
+
 ## 业务合约参考
 
 下面以一个简单抽奖合约为例，介绍下一个简单抽奖业务怎么使用 Truora 预言机合约。
