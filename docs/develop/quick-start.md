@@ -110,7 +110,7 @@ Truora 预言机服务中有两个角色：
     
  抽奖合约[LotteryOracle.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/LotteryOracle.sol) 实现了一个简单的抽奖逻辑，
  通过使用上述[APISampleOracle.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 获取随机数结果。请保证 `APISampleOracle` 合约的url是获取获取随机数的url。
-      默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`自行修改合约第一行的编译器版本即可。合约解析如下：
+      默认支持`solidity0.6`版本合约。 `solidity0.4`自行修改合约第一行的编译器版本即可。合约解析如下：
       
   - 构造函数需要传入获取随机数合约 `APISampleOracle` 地址。  
        ```
@@ -159,6 +159,8 @@ Truora 预言机服务中有两个角色：
           }
       ``` 
      
+ V1.1.0版本已加入通过VRF产生链上安全可验证随机数，用户也可参考
+ [LotteryOracleUseVrf.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/LotteryOracleUseVrf.sol) 抽奖逻辑大部分相同，只是获取随机数获取方式从 `api` 方式改成 `vrf` 方式。
      
 ## fiscoOracleClient 合约解析
 
@@ -188,6 +190,42 @@ function __callback(bytes32 requestId, int256 result) public {}
   }
 
 ```
+  
+## VRFClient 合约解析
+
+  - 抽象合约，__callback方法待实现。
+```
+ function __callbackRandomness(bytes32 requestId, uint256 randomness) internal virtual;
+```
+
+   - 发起oracle随机数请求，`vrfQuery` 函数会传入相关参数并调用 `VRFCore` 合约的 `randomnessRequest`方法。
+   为了保证用户提供的种子足够随机，`randomnessRequest`函数会把用户种子 `_consumerSeed`, 预言机服务方公钥hash `_keyHash`, 
+   用户合约地址 `_sender` ,用户合约发送请求次数`nonce`一起做哈希处理得出最终`VRF`随机数种子。  
+```  
+   function randomnessRequest(
+      bytes32 _keyHash,
+      uint256 _consumerSeed,
+      address _sender) external returns(bool) {
+      // record nonce
+      uint256 nonce = nonces[_keyHash][_sender];
+      // preseed
+      uint256 preSeed = makeVRFInputSeed( _keyHash, _consumerSeed, _sender, nonce);
+  
+      bytes32 requestId = makeRequestId(chainId, groupId, _keyHash, preSeed);
+      // Cryptographically guaranteed by preSeed including an increasing nonce
+      assert(callbacks[requestId].callbackContract == address(0));
+      callbacks[requestId].callbackContract = _sender;
+      callbacks[requestId].seedAndBlockNum = keccak256(abi.encodePacked(
+          preSeed, block.number));
+      emit RandomnessRequest(address (this), _keyHash, preSeed, block.number,
+        _sender, requestId, callbacks[requestId].seedAndBlockNum, _consumerSeed);
+      nonces[_keyHash][_sender] = nonces[_keyHash][_sender].add(1);
+      return true;
+    }
+
+```
+
+  - VRF随机数验证逻辑可以参考 `VRFCore`的`getRandomnessFromProof` 方法。
   
 ## 开发示例
 ### 部署预言机服务
