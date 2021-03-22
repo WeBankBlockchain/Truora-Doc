@@ -203,7 +203,7 @@ Truora 镜像包含两个服务的镜像：Truora-Service 和 Truora-Web。
 ```Bash
 ## 下载指定版本时替换 {VERSION} 版本号
 
-## 下载 Truora-Service
+# 下载 Truora-Service
 wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/docker/truora/truora-service-{VERSION}.tar" -O truora-service.tar
 # 加载镜像
 docker load -i truora-service.tar
