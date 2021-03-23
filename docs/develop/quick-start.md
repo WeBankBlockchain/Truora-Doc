@@ -26,8 +26,10 @@ Truora 预言机服务中有两个角色：
 
 ### 获取链下 API 数据
 
- 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。
-  默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`均在 `Truora-Service` 同级目录。合约解析如下：
+用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol) 合约实现自己的oracle业务合约。
+
+默认支持`solidity0.6`版本合约。 `solidity0.4`在 `Truora-Service` 同级目录。合约解析如下：
+
   - 用户合约需继承FiscoOracleClient合约
    ```
     contract APISampleOracle is FiscoOracleClient
@@ -39,12 +41,19 @@ Truora 预言机服务中有两个角色：
             oracleCoreAddress = oracleAddress;      
       }  
    ```       
-  - 设定自己要访问的url。修改url变量赋值即可。  
-  
+  - 设定自己要访问的url。修改url变量赋值即可，并且指定需要返回值类型。   
+    目前只支持单个返回值，返回值可以是 `string`,`int256`,`bytes`三种类型。   
+    调用`request`需要指定返回值类型，默认类型是 `int256`，因为solidity不支持浮点数，返回 `int256` 类型需要指定放大倍数 `timesAmount`。    
+    如果返回值是`string`,请参考[APISampleOracleReturnString.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracleReturnString.sol)合约。
+
+
    ```
       function request() public returns (bytes32)
         {
-    
+          // default return type is INT256
+          //returnType = ReturnType.STRING;
+
+
           // Set your URL
           // url = "plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)";
              url = "json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY";
@@ -55,16 +64,20 @@ Truora 预言机服务中有两个角色：
         }
    ```
 
-  - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于Truora-Service服务回调获取的结果。
+  - 必须实现 **__callback(bytes32 _requestId, bytes memory _result)** 方法，用于Truora-Service服务回调获取的结果。
+
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
 ----------
+
 ```eval_rst
 .. admonition:: **URL格式规范**
     
-   目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问(安全因素考虑)。  
-   遵循jsonpath格式，子元素 用 "." 表示,数组用 "[]"表示，目前只支持单个返回值；     
-   text/plain默认取第一行，也可指定数组下标取特定行。 jsonpath规范可以参考 `jsonpath <https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html>`_ 
+    目前支持json和text/plain两种访问格式。并且链下API的url建议支持HTTPS访问(安全因素考虑)。  
+    遵循jsonpath格式，子元素 用 "." 表示,数组用 "[]"表示。
+     
+    text/plain默认取第一行，也可指定数组下标取特定行。 jsonpath规范可以参考 `jsonpath <https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html>`_ 
+    
      //获取链下随机数API
        plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)
      //获取人民币对日元汇率API 
