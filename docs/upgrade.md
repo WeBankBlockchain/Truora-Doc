@@ -172,7 +172,7 @@ $ vim truora/deploy/truora.yml
 
 * 关闭 `generate-ddl` 功能
 
-修改 truoral.yml 文件中的配置为 `false`
+修改 truora.yml 文件中的配置为 `false`
 
 
 ```Yaml
