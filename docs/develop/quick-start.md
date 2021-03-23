@@ -41,19 +41,11 @@ Truora 预言机服务中有两个角色：
             oracleCoreAddress = oracleAddress;      
       }  
    ```       
-<<<<<<< HEAD
-  - 设定自己要访问的url。修改url变量赋值即可，并且指定需要返回值类型， 目前只支持单个返回值，返回值可以是 `string`,`int256`,`bytes`三种类型，默认类型是 `int256`。  
-  
-     因为solidity不支持浮点数，返回 `int256` 类型需要指定放大倍数 `timesAmount`。  
-       
-     如果返回值是`string`,请参考[APISampleOracleReturnString.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracleReturnString.sol)合约。
-=======
   - 设定自己要访问的url。修改url变量赋值即可，并且指定需要返回值类型。   
     目前只支持单个返回值，返回值可以是 `string`,`int256`,`bytes`三种类型。   
     调用`request`需要指定返回值类型，默认类型是 `int256`，因为solidity不支持浮点数，返回 `int256` 类型需要指定放大倍数 `timesAmount`。    
     如果返回值是`string`,请参考[APISampleOracleReturnString.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracleReturnString.sol)合约。
 
->>>>>>> upstream/dev
 
    ```
       function request() public returns (bytes32)
@@ -72,12 +64,8 @@ Truora 预言机服务中有两个角色：
         }
    ```
 
-<<<<<<< HEAD
   - 必须实现 **__callback(bytes32 _requestId, bytes memory _result)** 方法，用于`Truora-Service`服务回调获取的结果。
-=======
-  - 必须实现 **__callback(bytes32 _requestId, bytes memory _result)** 方法，用于Truora-Service服务回调获取的结果。
 
->>>>>>> upstream/dev
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
 ----------
