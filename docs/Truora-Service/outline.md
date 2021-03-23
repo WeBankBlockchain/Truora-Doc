@@ -44,7 +44,8 @@ Truora-Service 目前主要支持获取链下API,链上可验证随机数（VRF�
 ```eval_rst 
 .. important::
    - 随机数种子要保持足够随机性，为了安全，实际参与VRF运算的随机数种子是由用户随机数种子，用户合约地址，预言机公钥哈希，用户请求次数四个变量哈希处理后的值做为随机数种子。
-   - 本方案采用的是 `SECP256K1_SHA256_TAI`加密套件，参考实现 `ECVRF <https://tools.ietf.org/html/draft-irtf-cfrg-vrf-06#section-5/>`_。
+   - 本方案采用的是SECP256K1_SHA256_TAI加密套件，参考实现 `ECVRF <https://tools.ietf.org/html/draft-irtf-cfrg-vrf-06#section-5/>`_。
+   - vrf底层库采用rust实现，proof验证采用solidity。
 
 ```    
   
