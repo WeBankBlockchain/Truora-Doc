@@ -39,7 +39,7 @@ Truora-Service 目前主要支持获取链下API,链上可验证随机数（VRF�
    - 实际参与VRF计算的随机数种子  
    - 块高    
  
-   `Truora-Service` 获取到数据后，使用服务私钥和实际随机数种子调用`vrf`函数生成随机数和`proof`，然后再调用 `OracleCore` 合约，`OracleCore`合约会验证`proof`的准确性，通过后，则根据请求编号将随机数结果回写到用户合约。
+   `Truora-Service` 获取到数据后，使用服务私钥和实际随机数种子调用`vrf`函数生成随机数和`proof`，然后再调用 `VRFCore` 合约，`VRFCore`合约会验证`proof`的准确性，通过后，则根据请求编号将随机数结果回写到用户合约。
 
 ```eval_rst 
 .. admonition:: 提示
