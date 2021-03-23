@@ -2,6 +2,45 @@
 
 ## Truora-Service
 
+<span id="server_version" />
+
+### 查询 Truora 版本
+
+#### 接口描述
+
+> 查询 Truora 服务版本
+
+#### 接口URL
+
+**http://localhost:5021/Oracle-Service/server/version**
+
+#### 调用方法
+
+HTTP GET
+
+#### 请求参数
+
+**1）参数表**    
+
+无
+
+**2）数据格式**   
+
+无
+#### 响应参数
+
+**1）数据格式** 
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  // 当前 Truora-Service 版本
+  "data": "v1.1.0",
+  "totalCount": 0
+}
+```
+
 <span id="list_oracle_address" />
 
 ### OracleCore 合约地址查询接口
@@ -40,15 +79,22 @@ HTTP GET
   "message": "success",
   "data": [
     {
+      // OracleCore 合约版本
+      "oracleCoreVersion": "v1.1.0",
+      // VRFCore 合约版本
+      "vrfCoreVersion": "v1.1.0",
+      // 链 ID
       "chainId": 1,
+      // 群组 ID
       "group": 1,
-       // OracleCore 合约地址
-      "oracleCoreContractAddress": "0x5088ccf022a31bc8aec2bc50dd7a6af53b6da213",
+      // OracleCore 合约地址
+      "oracleCoreContractAddress": "0x1769c87d9889eee2352c9cfe61dd3ac22a80f7a7",
+      // VRFCore 合约地址
+      "vrfContractAddress": "0x28b2a1b9ead2e4cf6a7cff9372ee6da70152e484",
       "fromBlock": "latest",
-      "toBlock": "latest",
-      "operator": "operator1",
-      "url": "http://localhost:5020"
+      "toBlock": "latest"
     }
+    .....
   ],
   "totalCount": 0
 }
@@ -95,7 +141,7 @@ HTTP GET
   "message": "success",
   "data": [
     // 多条记录
-    {
+    {// sourceType == 0 时，表示链下 API 获取数据
       "id": 1,
       //请求唯一编号
       //查询详情时使用的 requestId 字段
@@ -106,8 +152,11 @@ HTTP GET
       "chainId": 1,
       "groupId": 1,
       
-      // OracleCore 合约的版本号
-      "oracleVersion": 4000,
+      // Core 合约的版本号
+      "oracleVersion": "v1.1.0",
+      
+      // 请求类型
+      //  0 API 获取链下数据
       "sourceType": 0,
       
       // URL 请求求地址和数据响应格式
@@ -138,7 +187,43 @@ HTTP GET
       "createTime": "2020-12-11 18:48:28",
       "modifyTime": "2020-12-11 18:48:31"
     },
-    
+    {// sourceType == 1 时，表示 VRF，获取链上随机数
+      "id": 53,
+      //请求唯一编号
+      //查询详情时使用的 requestId 字段
+      "reqId": "0x223c4a975b25b235b0f3e9830e1099cdfefeb7dcffa839b860fccd12a6cd0a51",
+       // 链编号和群组编号
+      "chainId": 1,
+      "groupId": 1,
+      
+      // Core 合约的版本号
+      "oracleVersion": "v1.1.0",
+      
+      //请求类型
+      // 1 VRF 获取可验证随机数
+      "sourceType": 1,
+      "blockNumber": 146,
+      "reqQuery": "",
+      "needProof": false,
+      
+      // 请求状态
+      // 0 成功
+      // 非 0，失败
+      "reqStatus": 0,
+      // 请求状态非 0 时的错误信息
+      "error": "",
+
+      // 发起调用的合约地址
+      "userContract": "0xdd48ff8868b76dab43bd13402840bcb8c5a82853",
+      
+      // 处理时长
+      "processTime": 495,
+      
+      "createTime": "2021-03-22 16:28:56",
+      "modifyTime": "2021-03-22 16:28:56",
+      "inputSeed": "1",
+      "actualSeed": "BF18046A6A8801B4ABED36169F93D1C0613768EC0EDCC827A31D973D3CBE98B4"
+    },
     ......
   ],
   // 总行数
@@ -191,13 +276,18 @@ HTTP GET
     "chainId": 1,
     "groupId": 1,
     
-    // OracleCore 合约的版本号
-    "oracleVersion": 4000,
+    // Core 合约的版本号
+    "oracleVersion": "v1.1.0",
     
-    // URL 请求地址和数据响应格式
+    // 请求类型
+    // 0 链下 API 获取数据
+    // 1 VRF 获取可验证随机数
+    "sourceType": 1,
+    
+    // sourceType == 0 时，表示：URL 请求地址和数据响应格式
+    // sourceType == 1 时，不使用
     "reqQuery": "json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY",
 
-    
     // 请求状态
     // 0 成功
     // 非 0，失败
@@ -213,12 +303,20 @@ HTTP GET
     
     // hideResult 为 true，不返回该字段
     // hideResult 为 false，返回
-    // URL 返回的结果
+    // sourceType == 0 时，表示：URL 返回的结果
+    // sourceType == 1 时，表示：VRF 生成的随机数，0x 开头 16 进制
     "result": "15.962067",
     
-    // 放大倍数，Truora-Service 会将 URL 返回的结果 乘以 该倍数后上传到链上
-    // 防止小数
+    // 放大倍数，防止小数
+    // sourceType == 0 时使用，Truora-Service 会将 URL 返回的结果 乘以 该倍数后上传到链上
     "timesAmount": "1000000000000000000",
+    
+    // sourceType == 1 时使用，VRF 生成的可验证随机数的证明
+    "proof": "0211c851316725ffba00e7eae4a06327214e282803379a7521ade5bbd0dc3a4ba5c69f06f471fd2349e907ca28df48ba975fb0d6c1f18e8449dbc00b6216c73ed018bc59c45d906c9cab14ee7c9af7727c"
+    // sourceType == 1 时使用，用户提供的随机数种子
+    "inputSeed": "1",
+    // sourceType == 1 时使用，生成随机数时使用的实际种子（包含块高 hash）
+    "actualSeed": "1298E2D458FA77C078D42B4B3B54441D56E4A13ECDE436E31A4899BB0D1A3D74"
     
     // 额外字段
     "createTime": "2020-12-11 18:48:28",
