@@ -26,8 +26,8 @@ Truora 预言机服务中有两个角色：
 
 ### 获取链下 API 数据
 
- 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol) 合约实现自己的oracle业务合约。
- 默认支持`solidity0.6`版本合约。 `solidity0.4`在 `Truora-Service` 同级目录。合约解析如下：
+ 用户可以参考 [APISampleOracle.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/FiscoOracleClient.sol) 合约实现自己的oracle业务合约。
+  默认支持`solidity0.6`版本合约。 `solidity0.4` 和 `solidity0.5`均在 `Truora-Service` 同级目录。合约解析如下：
   - 用户合约需继承FiscoOracleClient合约
    ```
     contract APISampleOracle is FiscoOracleClient
@@ -39,17 +39,12 @@ Truora 预言机服务中有两个角色：
             oracleCoreAddress = oracleAddress;      
       }  
    ```       
-  - 设定自己要访问的url。修改url变量赋值即可，并且指定需要返回值类型， 目前只支持单个返回值，返回值可以是 `string`,`int256`,`bytes`三种类型，调用`request`需要指定返回值类型，默认类型是 `int256`，
-     因为solidity不支持浮点数，返回 `int256` 类型需要指定放大倍数 `timesAmount`，
-     如果返回值是`string`,请参考[APISampleOracleReturnString.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracleReturnString.sol)合约。
-
+  - 设定自己要访问的url。修改url变量赋值即可。  
+  
    ```
       function request() public returns (bytes32)
         {
     
-          // default return type is INT256
-          //returnType = ReturnType.STRING;
-
           // Set your URL
           // url = "plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)";
              url = "json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY";
@@ -60,15 +55,15 @@ Truora 预言机服务中有两个角色：
         }
    ```
 
-  - 必须实现 **__callback(bytes32 _requestId, bytes memory _result)** 方法，用于Truora-Service服务回调获取的结果。
+  - 必须实现 **__callback(bytes32 _requestId, int256 _result)** 方法，用于Truora-Service服务回调获取的结果。
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
 ----------
 ```eval_rst
 .. admonition:: **URL格式规范**
     
-   目前支持json和text/plain两种访问格式。并且链下API的url建议支持HTTPS访问(安全因素考虑)。  
-   遵循jsonpath格式，子元素 用 "." 表示,数组用 "[]"表示。
+   目前支持json和text/plain两种访问格式。并且链下API的url必须支持HTTPS访问(安全因素考虑)。  
+   遵循jsonpath格式，子元素 用 "." 表示,数组用 "[]"表示，目前只支持单个返回值；     
    text/plain默认取第一行，也可指定数组下标取特定行。 jsonpath规范可以参考 `jsonpath <https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html>`_ 
      //获取链下随机数API
        plain(https://www.random.org/integers/?num=100&min=1&max=100&col=1&base=10&format=plain&rnd=new)
@@ -240,9 +235,9 @@ function __callback(bytes32 requestId, int256 result) public {}
 部署 Truora 服务，示例使用 **一键部署**，部署整套开发，调试环境，请参考：[安装部署](../Truora-Install/docker-all.html)。
 
 
-#### 获取链下 API 数据
+### 获取链下 API 数据
 
-##### 编写预言机合约
+#### 编写预言机合约
 打开一键部署的 WeBASE-Front 页面，默认：`http://{IP}:5002/WeBASE-Front/`，使用部署主机的 IP 地址替换 `{IP}`。
 
 * 点击左边 **合约管理** --> **测试用户**，创建一个调试用户 `test`
@@ -260,7 +255,7 @@ Ownable.sol
 SafeMath.sol
 ```
 
-gitee 仓库：[Oracle 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)
+gitee 仓库：[Oracle 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)    
 GitHub 仓库：[Oracle 相关合约目录](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)
 
 ![switch_solidity](../../images/develop/switch_solidity.png)
@@ -283,11 +278,10 @@ GitHub 仓库：[Oracle 相关合约目录](https://github.com/WeBankBlockchain/
 
 APISampleOracle 合约的代码，请参考：
 
-gitee: [APISampleOracle.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)
-
+gitee: [APISampleOracle.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)    
 GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)
 
-##### 获取合约地址
+#### 获取合约地址
 
 在部署 `APISampleOracle` 时，需要获取 `OracleCore` 合约地址，可以通过 Truora-Web 查看。
 
@@ -297,7 +291,7 @@ GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-
 
 如果需要使用 `RESTful` 接口获取，请参考：[OracleCore 合约地址查询接口](../Truora-Service/interface.html#list_oracle_address)
 
-##### 部署合约
+#### 部署合约
 
 选择 `APISampleOracle` 合约文件，依次点击 **保存** --> **编译** 编译合约。
 
@@ -309,7 +303,7 @@ GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-
 
 
 
-##### 合约调用
+#### 合约调用
 调用 `APISampleOracle` 合约的 `request` 方法，触发预言机获取数据
 
 ![call_request](../../images/develop/call_request.png)
@@ -326,9 +320,9 @@ GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-
 
 
 
-#### 获取 VRF 随机数
+### 获取 VRF 随机数
 
-##### 编写预言机合约
+#### 编写预言机合约
 打开一键部署的 WeBASE-Front 页面，默认：`http://{IP}:5002/WeBASE-Front/`，使用部署主机的 IP 地址替换 `{IP}`。
 
 * 点击左边 **合约管理** --> **测试用户**，创建一个调试用户 `test`
@@ -357,9 +351,8 @@ VRFCoreInterface.sol
 VRFUtil.sol
 ```
 
-gitee 仓库：[VRF 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)
+gitee 仓库：[VRF 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)        
 GitHub 仓库：[VRF 相关合约目录](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)
-png
 
 
 * 确认后，选择上传目录，此处选择根目录 `/vrf`
@@ -383,11 +376,10 @@ png
 
 具体代码，请参考：
 
-gitee: [RandomNumberSampleVRF.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)
-
+gitee: [RandomNumberSampleVRF.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)    
 GitHub: [RandomNumberSampleVRF.sol 合约](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)
 
-##### 获取合约地址和 _keyHash
+#### 获取合约地址和 _keyHash
 
 * 获取 `VRF` 合约地址
 
@@ -395,14 +387,14 @@ GitHub: [RandomNumberSampleVRF.sol 合约](https://github.com/WeBankBlockchain/T
 
 ![vrf-core-address](../../images/develop/oracle-core-address.png)
 
-如果需要使用 `RESTful` 接口获取，请参考：[OracleCore 合约地址查询接口](../Truora-Service/interface.html#list_oracle_address)
+如果需要使用 `RESTful` 接口获取，请参考：[VRFCore 合约地址查询接口](../Truora-Service/interface.html#list_oracle_address)
 
 * 获取 `_keyHash`
 
 ![vrf-key-hash](../../images/develop/vrf_keyhash.png)
 
 
-##### 部署合约
+#### 部署合约
 
 选择 `RandomNumberSampleVRF` 合约文件，依次点击 **保存** --> **编译** 编译合约。
 
@@ -415,17 +407,14 @@ GitHub: [RandomNumberSampleVRF.sol 合约](https://github.com/WeBankBlockchain/T
 
 
 
-##### 合约调用
-调用 `RandomNumberSampleVRF` 合约的 `getRandomNumber` 方法，触发预言机生成随机数
+#### 合约调用
+调用 `RandomNumberSampleVRF` 合约的 `getRandomNumber` 方法，`userProvidedSeed` 处填写任意一个随机的整型数字即可，点击 **确认** 触发预言机生成随机数
 
 ![call_vrf_request](../../images/develop/call_vrf_request.png)
 
 
-
 调用 `RandomNumberSampleVRF` 合约的 `get` 方法，查看预言机返回的随机数结果
 ![call_vrf_get](../../images/develop/call_vrf_get.png)
-
-
 
 结果显示如下，表示生成的链上随机数结果。
 
