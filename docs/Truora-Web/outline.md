@@ -19,7 +19,7 @@
 ![history_list](../../images/Truora-Web/history_list.png)
     
 * **查询单个请求详情：**
-    * 根据 **请求 ID**，查询单个请求的详细信息：成功，失败（失败原理），处理时长等
+    * 根据 **请求 ID**，查询单个请求的详细信息：成功，失败（失败原因），处理时长等
     
 ![history_detail_api](../../images/Truora-Web/history_detail_api.png)
 

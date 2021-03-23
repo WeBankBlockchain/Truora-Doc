@@ -153,7 +153,7 @@ $ vim truora/deploy/docker-compose.yml
 
 ......
 
-    image: fiscoorg/truora-web:v1.1.0
+    image: fiscoorg/truora-service:v1.1.0
     
 ......
 ```
