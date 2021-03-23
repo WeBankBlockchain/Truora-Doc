@@ -165,11 +165,13 @@ Truora 预言机服务中有两个角色：
 ## fiscoOracleClient 合约解析
 
   - 抽象合约，__callback方法待实现。
+  
 ```
 function __callback(bytes32 requestId, int256 result) public {}
 ```
 
    - 发起oracle请求，`oracleQuery` 函数会传入相关参数并调用 `oracleCore` 合约的 `query`方法。
+   
 ```  
   function oracleQuery(uint expiryTime, string memory datasource, address _oracle, string memory url, uint256 timesAmount, bool needProof) internal
   returns (bytes32 requestId) {
@@ -188,12 +190,12 @@ function __callback(bytes32 requestId, int256 result) public {}
 
     return requestId;
   }
-
 ```
   
 ## VRFClient 合约解析
 
   - 抽象合约，__callback方法待实现。
+  
 ```
  function __callbackRandomness(bytes32 requestId, uint256 randomness) internal virtual;
 ```
@@ -201,6 +203,7 @@ function __callback(bytes32 requestId, int256 result) public {}
    - 发起oracle随机数请求，`vrfQuery` 函数会传入相关参数并调用 `VRFCore` 合约的 `randomnessRequest`方法。
    为了保证用户提供的种子足够随机，`randomnessRequest`函数会把用户种子 `_consumerSeed`, 预言机服务方公钥hash `_keyHash`, 
    用户合约地址 `_sender` ,用户合约发送请求次数`nonce`一起做哈希处理得出最终`VRF`随机数种子。  
+   
 ```  
    function randomnessRequest(
       bytes32 _keyHash,
@@ -222,7 +225,6 @@ function __callback(bytes32 requestId, int256 result) public {}
       nonces[_keyHash][_sender] = nonces[_keyHash][_sender].add(1);
       return true;
     }
-
 ```
 
   - VRF随机数验证逻辑可以参考 `VRFCore`的`getRandomnessFromProof` 方法。
@@ -243,7 +245,7 @@ function __callback(bytes32 requestId, int256 result) public {}
 ![create_user](../../images/develop/create_user.png)
 
 
-* 点击左边 **合约管理** --> **合约 IDE**，选择 `solidity` 版本，上传模板合约，包括以下[五个](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)合约：
+* 点击左边 **合约管理** --> **合约 IDE**，选择 `solidity` 版本，上传 Oracle 相关合约，包括以下几个合约：
 
 ```Bash
 FiscoOracleClient.sol
@@ -252,6 +254,9 @@ OracleCoreInterface.sol
 Ownable.sol
 SafeMath.sol
 ```
+
+gitee 仓库：[Oracle 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)
+GitHub 仓库：[Oracle 相关合约目录](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)
 
 ![switch_solidity](../../images/develop/switch_solidity.png)
 
@@ -271,77 +276,16 @@ SafeMath.sol
 
 ![create_solidity_demo](../../images/develop/create_solidity_demo.png)
 
-代码如下：
+APISampleOracle 合约的代码，请参考：
 
-```Solidity
-pragma solidity ^0.6.0;
+gitee: [APISampleOracle.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)
 
-import "./FiscoOracleClient.sol";
-
-// 继承 FiscoOracleClient 合约
-contract APISampleOracle is FiscoOracleClient {
-    //指定处理的 oracle core 合约
-    address private oracleCoreAddress;
-
-    // 放大倍数
-    uint256 private timesAmount = 10 ** 18;
-
-    // 历史请求结果
-    mapping(bytes32 => int256) private resultMap;
-    mapping(bytes32 => bool) private validIds;
-
-    // 请求结果
-    int256 public result;
-    
-    // 默认的链下 API 地址和解析协议
-    string private url = "json(https://api.exchangerate-api.com/v4/latest/CNY).rates.JPY";
-
-    constructor(address oracleAddress) public {
-        oracleCoreAddress = oracleAddress;
-    }
-
-    function request() public returns (bytes32){
-        bytes32 requestId = oracleQuery(oracleCoreAddress, url, timesAmount);
-        validIds[requestId] = true;
-        return requestId;
-    }
-
-    /**
-     * callback from OracleCore
-     */
-    function __callback(bytes32 _requestId, int256 _result) public override onlyOracleCoreInvoke(_requestId){
-        require(validIds[_requestId], "id must be not used!");
-        resultMap[_requestId] = _result;
-        delete validIds[_requestId];
-        result = _result;
-    }
-
-    // 查询请求结果
-    function get() public view returns (int256){
-        return result;
-    }
-
-    function getById(bytes32 id) public view returns (int256){
-        return resultMap[id];
-    }
-
-    function checkIdFulfilled(bytes32 id) public view returns (bool){
-        return validIds[id];
-    }
-
-    function setUrl(string memory _url) public {
-        url = _url;
-    }
-
-    function getUrl() public view returns (string memory){
-        return url;
-    }
-}
-```
+GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)
 
 ##### 获取合约地址
 
 在部署 `APISampleOracle` 时，需要获取 `OracleCore` 合约地址，可以通过 Truora-Web 查看。
+
 
 
 ![oracle-core-address](../../images/develop/oracle-core-address.png)
@@ -372,4 +316,114 @@ contract APISampleOracle is FiscoOracleClient {
 结果显示如下，此处是获取日元到人民币的汇率，放大 `10^18` 倍的结果：
 
 ![show_result](../../images/develop/show_result.png)
+
+
+
+
+
+#### 获取 VRF 随机数
+
+##### 编写预言机合约
+打开一键部署的 WeBASE-Front 页面，默认：`http://{IP}:5002/WeBASE-Front/`，使用部署主机的 IP 地址替换 `{IP}`。
+
+* 点击左边 **合约管理** --> **测试用户**，创建一个调试用户 `test`
+
+![create_user](../../images/develop/create_user.png)
+
+
+* 点击左边 **合约管理** --> **合约 IDE**，选择切换 `solidity` 版本
+
+![switch_solidity](../../images/develop/switch_solidity.png)
+
+* 先创建一个 `vrf` 目录，点击确认
+
+![mkdir-vrf](../../images/develop/mkdir_vrf.png)
+
+* 上传 VRF 相关合约，包括以下几个合约：
+
+```Bash
+EllipticCurve.sol
+Ownable.sol
+SafeMath.sol
+VRF.sol
+VRFClient.sol
+VRFCore.sol
+VRFCoreInterface.sol
+VRFUtil.sol
+```
+
+gitee 仓库：[VRF 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)
+GitHub 仓库：[VRF 相关合约目录](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)
+png
+
+
+* 确认后，选择上传目录，此处选择根目录 `/vrf`
+
+![upload_vrf_solidity_files](../../images/develop/upload_vrf_solidity_files.png.png)
+
+
+![select_vrf_png](../../images/develop/select_vrf_dir.png)
+
+```eval_rst
+.. important::
+
+    - 注意需要上传 **八个** 合约文件。
+```
+
+
+* 在 **合约 IDE** 中，创建一个 `RandomNumberSampleVRF` 合约，选中 `vrf` 目录，继承 `VRFClient` 合约，如下
+
+![create-vrf-demo](../../images/develop/create_vrf_solidity_demo.png)
+
+
+具体代码，请参考：
+
+gitee: [RandomNumberSampleVRF.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)
+
+GitHub: [RandomNumberSampleVRF.sol 合约](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)
+
+##### 获取合约地址和 _keyHash
+
+* 获取 `VRF` 合约地址
+
+在部署 `RandomNumberSampleVRF` 时，需要获取 `VRF` 合约地址，可以通过 Truora-Web 查看。
+
+![vrf-core-address](../../images/develop/oracle-core-address.png)
+
+如果需要使用 `RESTful` 接口获取，请参考：[OracleCore 合约地址查询接口](../Truora-Service/interface.html#list_oracle_address)
+
+* 获取 `_keyHash`
+
+![vrf-key-hash](../../images/develop/vrf_keyhash.png)
+
+
+##### 部署合约
+
+选择 `RandomNumberSampleVRF` 合约文件，依次点击 **保存** --> **编译** 编译合约。
+
+![save_compile_vrf_demo](../../images/develop/save_compile_vrf_demo.png)
+
+
+点击 **部署** 按钮，部署 `RandomNumberSampleVRF` 合约，选择刚刚创建的测试用户 `test`，输入 `OracleCore` 合约地址：
+
+![deploy_vrf_solidity](../../images/develop/deploy_vrf_solidity.png)
+
+
+
+##### 合约调用
+调用 `RandomNumberSampleVRF` 合约的 `getRandomNumber` 方法，触发预言机生成随机数
+
+![call_vrf_request](../../images/develop/call_vrf_request.png)
+
+
+
+调用 `RandomNumberSampleVRF` 合约的 `get` 方法，查看预言机返回的随机数结果
+![call_vrf_get](../../images/develop/call_vrf_get.png)
+
+
+
+结果显示如下，表示生成的链上随机数结果。
+
+![show_vrf_result](../../images/develop/show_vrf_result.png)
+
 
