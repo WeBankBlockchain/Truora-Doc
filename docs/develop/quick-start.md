@@ -39,8 +39,10 @@ Truora 预言机服务中有两个角色：
             oracleCoreAddress = oracleAddress;      
       }  
    ```       
-  - 设定自己要访问的url。修改url变量赋值即可，并且指定需要返回值类型， 目前只支持单个返回值，返回值可以是 `string`,`int256`,`bytes`三种类型，调用`request`需要指定返回值类型，默认类型是 `int256`，
-     因为solidity不支持浮点数，返回 `int256` 类型需要指定放大倍数 `timesAmount`，
+  - 设定自己要访问的url。修改url变量赋值即可，并且指定需要返回值类型， 目前只支持单个返回值，返回值可以是 `string`,`int256`,`bytes`三种类型，默认类型是 `int256`。  
+  
+     因为solidity不支持浮点数，返回 `int256` 类型需要指定放大倍数 `timesAmount`。  
+       
      如果返回值是`string`,请参考[APISampleOracleReturnString.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracleReturnString.sol)合约。
 
    ```
@@ -60,7 +62,7 @@ Truora 预言机服务中有两个角色：
         }
    ```
 
-  - 必须实现 **__callback(bytes32 _requestId, bytes memory _result)** 方法，用于Truora-Service服务回调获取的结果。
+  - 必须实现 **__callback(bytes32 _requestId, bytes memory _result)** 方法，用于`Truora-Service`服务回调获取的结果。
   - **get()** 方法获取本次请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
 ----------
@@ -80,14 +82,14 @@ Truora 预言机服务中有两个角色：
 
 ### 获取VRF随机数
 
-用户可以参考 [RandomNumberSampleVRF.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol) 合约实现自己的oracle业务合约。
+用户可以参考 [RandomNumberSampleVRF.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol) 合约实现自己的oracle业务合约,
   默认支持`solidity0.6`版本合约。 `solidity0.4` 在 `Truora-Service` 同级目录。合约解析如下：
   - 用户合约需继承 `VRFClient` 合约
    ```
     contract RandomNumberSampleVRF is VRFClient
    ``` 
 
-  - 构造函数需要传入指定的Truora服务方的 `VRFCore`合约地址和公钥hash值。地址和哈希值都可以通过前端界面或者后端接口获取。
+  - 构造函数需要传入指定的Truora服务方的 `VRFCore`合约地址和公钥哈希值。地址和哈希值都可以通过前端界面或者后端接口获取。
    ```
       constructor(address _vrfCore, bytes32 _keyHash) public {
              vrfCoreAddress = _vrfCore;
@@ -104,7 +106,7 @@ Truora 预言机服务中有两个角色：
         }
    ```
 
-  - 必须实现 **__callbackRandomness(bytes32 requestId, uint256 randomness)** 方法，用于Truora-Service服务回调获取的结果。
+  - 必须实现 **__callbackRandomness(bytes32 requestId, uint256 randomness)** 方法，用于 `Truora-Service`服务回调获取的结果。
   - **get()** 方法获取本次随机数请求结果, 可自行修改此函数, 获取结果后进行自己业务逻辑的计算。  
   
    
@@ -164,7 +166,7 @@ Truora 预言机服务中有两个角色：
           }
       ``` 
      
- V1.1.0版本已加入通过VRF产生链上安全可验证随机数，用户也可参考
+ `V1.1.0`版本已加入通过VRF产生链上安全可验证随机数方案，用户也可参考
  [LotteryOracleUseVrf.sol](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/LotteryOracleUseVrf.sol) 抽奖逻辑大部分相同，只是获取随机数获取方式从 `api` 方式改成 `vrf` 方式。
      
 ## fiscoOracleClient 合约解析
@@ -174,7 +176,7 @@ Truora 预言机服务中有两个角色：
 function __callback(bytes32 requestId, int256 result) public {}
 ```
 
-   - 发起oracle请求，`oracleQuery` 函数会传入相关参数并调用 `oracleCore` 合约的 `query`方法。
+   - 发起`oracle`请求，`oracleQuery` 函数会传入相关参数并调用 `oracleCore` 合约的 `query`方法。
 ```  
   function oracleQuery(uint expiryTime, string memory datasource, address _oracle, string memory url, uint256 timesAmount, bool needProof) internal
   returns (bytes32 requestId) {
@@ -203,9 +205,9 @@ function __callback(bytes32 requestId, int256 result) public {}
  function __callbackRandomness(bytes32 requestId, uint256 randomness) internal virtual;
 ```
 
-   - 发起oracle随机数请求，`vrfQuery` 函数会传入相关参数并调用 `VRFCore` 合约的 `randomnessRequest`方法。
-   为了保证用户提供的种子足够随机，`randomnessRequest`函数会把用户种子 `_consumerSeed`, 预言机服务方公钥hash `_keyHash`, 
-   用户合约地址 `_sender` ,用户合约发送请求次数`nonce`一起做哈希处理得出最终`VRF`随机数种子。  
+   - 发起`oracle`随机数请求，`vrfQuery` 函数会传入相关参数并调用 `VRFCore` 合约的 `randomnessRequest`方法。
+   为了保证用户提供的种子足够随机，`randomnessRequest`函数会把用户种子 （`_consumerSeed`）, 预言机服务方公钥哈希 （`_keyHash）`, 
+   用户合约地址 （`_sender`） ,用户合约发送请求次数（`nonce`），区块哈希（`blockhash`）一起做哈希处理得出最终`VRF`随机数种子。  
 ```  
    function randomnessRequest(
       bytes32 _keyHash,
