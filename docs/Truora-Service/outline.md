@@ -37,10 +37,16 @@ Truora-Service 目前主要支持获取链下API,链上可验证随机数（VRF�
    - 用户输入随机数种子
    - 预言机公钥哈希
    - 实际参与VRF计算的随机数种子  
-     （由用户随机数种子，用户合约地址，预言机公钥哈希，用户请求次数四个变量的hash值哈希处理后即为真实随机数种子。）
    - 块高    
  
-   `Truora-Service` 获取到数据后，使用服务私钥和实际随机数种子调用vrf函数生成随机数和proof，然后再调用 `OracleCore` 合约，`OracleCore`合约会验证proof的准确性，通过后，则根据请求编号将随机数结果回写到用户合约。
+   `Truora-Service` 获取到数据后，使用服务私钥和实际随机数种子调用`vrf`函数生成随机数和`proof`，然后再调用 `OracleCore` 合约，`OracleCore`合约会验证`proof`的准确性，通过后，则根据请求编号将随机数结果回写到用户合约。
 
+```eval_rst 
+.. important::
+   - 随机数种子要保持足够随机性，为了安全，实际参与VRF运算的随机数种子是由用户随机数种子，用户合约地址，预言机公钥哈希，用户请求次数四个变量哈希处理后的值做为随机数种子。
+   - 本方案采用的是 `SECP256K1_SHA256_TAI`加密套件，参考实现 `ECVRF <https://tools.ietf.org/html/draft-irtf-cfrg-vrf-06#section-5/>`_。
+
+```    
+  
        
 
