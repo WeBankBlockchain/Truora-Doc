@@ -8,8 +8,8 @@ Truora文档
    docs/introduction.md
    docs/Truora-Install/index.md
    docs/ChangeLOG.md
-   docs/develop/quick-start.md
    docs/upgrade.md
+   docs/develop/quick-start.md
    docs/subsystem.md
    docs/CONTRIBUTING.md
    docs/community.md
