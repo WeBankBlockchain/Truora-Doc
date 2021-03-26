@@ -20,7 +20,7 @@
 
 部署后的架构如下：
 
-![truora-docker-deploy](../../images/Truora-Docker-Deploy.png)
+![](../../images/Truora-Docker-Deploy.png)
 
 
 * **WeBASE-Front**
