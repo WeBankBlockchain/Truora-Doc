@@ -26,7 +26,7 @@
 
  Truora 服务主要由后端 `Java` 组件 `Truora-Service <https://github.com/WeBankBlockchain/Truora-Service>`_ 和前端 `Vue` 组件 `Truora-Web <https://github.com/WeBankBlockchain/Truora-Web>`_ 组成。
 ```
-![oracle结构图](../images/oracle-frame.png)
+![](../images/oracle-frame.png)
 
 ## 设计原则
 ```eval_rst 

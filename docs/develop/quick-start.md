@@ -300,7 +300,7 @@ GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-
 
 
 
-![oracle-core-address](../../images/develop/oracle-core-address.png)
+![](../../images/develop/oracle-core-address.png)
 
 如果需要使用 `RESTful` 接口获取，请参考：[OracleCore 合约地址查询接口](../Truora-Service/interface.html#list_oracle_address)
 
@@ -349,7 +349,7 @@ GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-
 
 * 先创建一个 `vrf` 目录，点击确认
 
-![mkdir-vrf](../../images/develop/mkdir_vrf.png)
+![](../../images/develop/mkdir_vrf.png)
 
 * 上传 VRF 相关合约，包括以下几个合约：
 
@@ -384,7 +384,7 @@ GitHub 仓库：[VRF 相关合约目录](https://github.com/WeBankBlockchain/Tru
 
 * 在 **合约 IDE** 中，创建一个 `RandomNumberSampleVRF` 合约，选中 `vrf` 目录，继承 `VRFClient` 合约，如下
 
-![create-vrf-demo](../../images/develop/create_vrf_solidity_demo.png)
+![](../../images/develop/create_vrf_solidity_demo.png)
 
 
 具体代码，请参考：
@@ -398,13 +398,13 @@ GitHub: [RandomNumberSampleVRF.sol 合约](https://github.com/WeBankBlockchain/T
 
 在部署 `RandomNumberSampleVRF` 时，需要获取 `VRF` 合约地址，可以通过 Truora-Web 查看。
 
-![vrf-core-address](../../images/develop/oracle-core-address.png)
+![](../../images/develop/oracle-core-address.png)
 
 如果需要使用 `RESTful` 接口获取，请参考：[VRFCore 合约地址查询接口](../Truora-Service/interface.html#list_oracle_address)
 
 * 获取 `_keyHash`
 
-![vrf-key-hash](../../images/develop/vrf_keyhash.png)
+![](../../images/develop/vrf_keyhash.png)
 
 
 #### 部署合约
