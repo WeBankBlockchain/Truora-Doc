@@ -268,7 +268,8 @@ Ownable.sol
 SafeMath.sol
 ```
 
-gitee 仓库：[Oracle 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)    
+gitee 仓库：[Oracle 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle) 
+<br/>
 GitHub 仓库：[Oracle 相关合约目录](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle)
 
 ![](../../images/develop/switch_solidity.png)
@@ -291,7 +292,8 @@ GitHub 仓库：[Oracle 相关合约目录](https://github.com/WeBankBlockchain/
 
 APISampleOracle 合约的代码，请参考：
 
-gitee: [APISampleOracle.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)    
+gitee: [APISampleOracle.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)  
+<br />  
 GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/APISampleOracle.sol)
 
 #### 获取合约地址
@@ -345,9 +347,9 @@ GitHub: [APISampleOracle.sol 合约](https://github.com/WeBankBlockchain/Truora-
 
 * 点击左边 **合约管理** --> **合约 IDE**，选择切换 `solidity` 版本
 
-![](../../images/develop/switch_solidity.png)
+![](../../images/develop/switch_solidity_vrf.png)
 
-* 先创建一个 `vrf` 目录，点击确认
+* 创建一个 `vrf` 目录，点击确认
 
 ![](../../images/develop/mkdir_vrf.png)
 
@@ -364,7 +366,8 @@ VRFCoreInterface.sol
 VRFUtil.sol
 ```
 
-gitee 仓库：[VRF 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)        
+gitee 仓库：[VRF 相关合约目录](https://gitee.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)
+<br />
 GitHub 仓库：[VRF 相关合约目录](https://github.com/WeBankBlockchain/Truora-Service/tree/main/contracts/1.0/sol-0.6/oracle/simple-vrf)
 
 
@@ -389,7 +392,8 @@ GitHub 仓库：[VRF 相关合约目录](https://github.com/WeBankBlockchain/Tru
 
 具体代码，请参考：
 
-gitee: [RandomNumberSampleVRF.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)    
+gitee: [RandomNumberSampleVRF.sol 合约](https://gitee.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)
+<br />
 GitHub: [RandomNumberSampleVRF.sol 合约](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)
 
 #### 获取合约地址和 _keyHash
