@@ -29,7 +29,7 @@ Truora-Service 目前主要支持获取链下API,链上可验证随机数（VRF�
   `Truora-Service` 获取到数据后，对 URL 发起一个 HTTP 调用，获取到数据，对数据按照解析格式进行处理，然后再调用 `OracleCore` 合约，根据请求编号将结果上传到链上，提供给其他合约来获取。
 
 ## 获取链上可验证随机数（VRF):
-![](../../images/VRF.png)  
+![](../../images/VRF-struct.png)  
  
   **可验证随机函数**( Verifiable Random Function ，简写 VRF )是一种将输入映射为可验证的伪随机输出的加密方案。广泛应用于区块链的共识算法，智能合约产生随机数场景中。  
   本方案参照 [VRF规范标准化文档](https://tools.ietf.org/html/draft-irtf-cfrg-vrf-06#section-5)实现,
