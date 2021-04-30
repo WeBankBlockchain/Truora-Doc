@@ -65,7 +65,7 @@
 - `E`:  定义在有限域F上的椭圆曲线
 - `m`: 椭圆曲线上一个点的长度
 - `G`：E在大素数阶上的子群的基点
-- `q`：群G的大素数阶
+- `q`：基点G的大素数阶
 - `Hash`：哈希函数
 - `hLen`: 哈希的长度
 
@@ -74,7 +74,7 @@
 - **公钥**：` sk*G
 - **私钥**：随机数`sk`，在`(0, q)`范围内
 
-##### VRF证明生成：ECVRF_prove(y, x, alpha)
+##### VRF证明生成：ECVRF_prove(PK, sk, alpha)
 
 - 输入：公钥`PK`；私钥`sk`；输入`alpha`;
 
@@ -88,17 +88,17 @@
 
   (3) 选取`[0, q - 1]`的随机数`k`
 
-  (4) 调用`ECVRF_hash_points`计算`c=Hash(g, h, y, gamma, g*k, h*k)`，记为`c`
+  (4) 调用`ECVRF_hash_points`计算`c=Hash(g, h, PK, gamma, g*k, h*k)`，记为`c`
 
   (5) `s = k - c * sk`
 
   (6) `pi = {gamma, c, s}`
 
-##### VRF随机数验证：ECVRF_verify(y, pi, alpha)
+##### VRF随机数验证：ECVRF_verify(PK, pi, alpha)
 
-- 输入：公钥y；VRF证明pi; VRF输入alpha
+- 输入：公钥PK；VRF证明pi; VRF输入alpha
 
-- 输出：`valid` or `invaid`
+- 输出：`valid` or `invalid`
 
 - 步骤：
 
@@ -110,6 +110,6 @@
 
   (4)  `v = gamma*c + h*s`
 
-  (5)  `c'= Hash(g, h, y, gamma, u, v)`
+  (5)  `c'= Hash(g, h, PK, gamma, u, v)`
 
   (6) `c == c', valid; 否则，invalid`
