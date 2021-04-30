@@ -88,7 +88,7 @@
 
   (3) 选取`[0, q - 1]`的随机数`k`
 
-  (4) 调用`ECVRF_hash_points`计算`c=Hash(g, h, PK, gamma, g*k, h*k)`，记为`c`
+  (4) 调用`ECVRF_hash_points`计算`c=Hash(G, h, PK, gamma, G*k, h*k)`，记为`c`
 
   (5) `s = k - c * sk`
 
@@ -104,12 +104,12 @@
 
   (1) 解码VRF proof:  `{gamma, c, s} = ECVRF_decode_proof(pi)`
 
-  (2) `u = PK*c + g*s`
+  (2) `u = PK*c + G*s`
 
   (3) `h = ECVRF_hash_to_curve(PK, alpha)`
 
   (4)  `v = gamma*c + h*s`
 
-  (5)  `c'= Hash(g, h, PK, gamma, u, v)`
+  (5)  `c'= Hash(G, h, PK, gamma, u, v)`
 
   (6) `c == c', valid; 否则，invalid`
