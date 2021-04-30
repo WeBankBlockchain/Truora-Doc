@@ -74,7 +74,7 @@
 - **公钥**：` sk*G
 - **私钥**：随机数`sk`，在`(0, q)`范围内
 
-##### VRF证明生成：ECVRF_prove(PK, SK, alpha)
+##### VRF证明生成：ECVRF_prove(PK, sk, alpha)
 
 - 输入：公钥`PK`；私钥`sk`；输入`alpha`;
 
