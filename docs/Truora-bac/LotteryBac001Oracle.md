@@ -1,7 +1,7 @@
 # 结合Truora和BAC001实现抽奖抽奖功能
 
 ## 一、前提
-* 已部署客户端合约`FiscoOracleClient`或其子合约，并记录合约地址
+* 已部署客户端的预言机业务合约（须继承Fiscooracleclient），并记录合约地址
 * BAC001合约已部署，并记录地址
 * 相关用户拥有足够的BAC001，并且允许本合约从自己的账户下转走部分BAC001（不低于抽奖合约指定的量）
 
@@ -10,7 +10,7 @@
 * 构造函数
 
   调用合约的构造函数部署抽奖合约，需要传入两个参数：
-  - `randomOracle`: `FiscoOracleClient`或其子合约的地址，用于获取随机数
+  - `randomOracle`: 已部署客户端的预言机业务合约的地址，用于获取随机数
   - `bac001Address`: BAC001合约的地址
 
 * start_new_lottery
