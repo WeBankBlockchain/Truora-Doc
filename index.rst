@@ -10,6 +10,7 @@ Truora文档
    docs/ChangeLOG.md
    docs/upgrade.md
    docs/develop/quick-start.md
+   docs/example/index.md
    docs/subsystem.md
    docs/CONTRIBUTING.md
    docs/community.md
