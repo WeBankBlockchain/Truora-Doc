@@ -5,13 +5,17 @@
 
 ## 业务流程
    1 主持人开始一轮抽奖，初始化此轮抽奖每个参与者需要的BAC001资产数量，以及初始化参与此次抽奖的用户（地址）；  
-   2 参与抽奖的用户存入BAC001资产；  
+
+   2 参与抽奖的用户存入BAC001资产；   
+
    3 主持人关闭资产存入功能，并向预言机发起随机数请求；  
-   4 主次人开奖。根据预言机获取的随机数，对参赛选手人数取余，得到中奖者的地址，将BAC001奖金发送给中奖者。
+
+   4 主次人开奖。根据预言机获取的随机数，对参赛选手人数取余，得到中奖者的地址，将BAC001奖金发送给中奖者。  
+
 
 ## 合约函数说明
-   基于Truora API 方式的抽奖合约[LotteryBacOracle](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lottery/LotteryBacOracle.sol)
-   基于Truora VRF 方式的抽奖合约[LotteryBacUseVrf](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lotteryUseVrf/LotteryBacUseVrf.sol)
+   基于Truora API 方式的抽奖合约[LotteryBacOracle](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lottery/LotteryBacOracle.sol)  
+   基于Truora VRF 方式的抽奖合约[LotteryBacUseVrf](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lotteryUseVrf/LotteryBacUseVrf.sol)  
    原理基本类似，我们以Truora API 方式的抽奖合约作为讲解。
 * 构造函数
 
