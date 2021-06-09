@@ -1,26 +1,11 @@
 # 区块链盲盒`
-  本项目结合Truora VRF以及BAC合约，实现一个区块链盲盒功能。并支持盲盒交易。
+  本项目结合 `Truora VRF`, `BAC`合约, 交易合约，实现一个区块链盲盒功能，并支持盲盒交易。用户可以参考合约逻辑并做相应修改。
   
 ## 业务流程
+  此业务是一个猫系列的区块链盲盒实现，有7中类型猫可供抽选，类型有 `"American Shorthair", "British Shorthair", "Japanese Bobtail", "Chinese Orange", "Russian Blue", "Persian", "Ragdoll"`；  
+  每一个猫盲盒是一个 `BAC002` 非同质化资产（NFT）。用户提供幸运数字（随机数种子）抽取从猫系列中抽取自己的猫盲盒，合约会给用户铸造相应的非同质化资产（NFT）。  
 
-* requestNewBlindboxCat
-  
-  触发产生一个决定猫类型的随机数，该函数会返回请求编号requestId
-  
-  - userProvidedSeed：随机数种子，作用于随机数的产生
-  - name： 给猫起的名字
-
-* generateBlindBoxCat
-
-  根据requestId对应的随机数确定猫的类型，并产生一个该类型的猫
-  
-  - requestId：上一步得的请求编号
-
-* getCatInfo
-
-  根据猫的id查询猫的详细信息
-  
-  - catId：猫的编号（从0开始）
+  用户可以选择将所拥有的猫盲盒（NFT资产）进行出售换取对应 `BAC001` 资产，支持定价出售和拍卖出售。
 
 ## 合约函数说明
   - 盲盒合约
@@ -31,12 +16,3 @@
 
 ## 开发教程
 
-
-### 1、合约部署
-* 部署用于产生随机数的合约[RandomNumberSampleVRF](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)，并记录合约地址
-* 部署盲盒合约CatBlindbox,并记录合约地址
-
-### 2、盲盒抽奖
-* 调用函数`requestNewBlindboxCat`，生成一个随机数，并记录该接口的返回结果`requestId`
-* 调用函数`generateBlindBoxCat`,这个函数将会根据上一步生成的随机数计算出猫的类型，最终返回这个新猫的信息
-* 调用函数`getCatInfo`,查询历次生成的猫信息
