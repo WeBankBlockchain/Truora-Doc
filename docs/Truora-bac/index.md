@@ -6,6 +6,6 @@
 
     bac001-description.md
     bac002-description.md
-    Lottery-Bac.md
+    lottery-bac.md
     blindbox.md
 ```
