@@ -1,9 +1,10 @@
 # 区块链盲盒`
-  本项目结合Truora VRF, BAC合约,交易合约，实现一个区块链盲盒功能，并支持盲盒交易。用户可以参考合约逻辑并做相应修改。
+  本项目结合 `Truora VRF`, `BAC`合约, 交易合约，实现一个区块链盲盒功能，并支持盲盒交易。用户可以参考合约逻辑并做相应修改。
   
 ## 业务流程
-  此业务是一个猫系列的区块链盲盒实现，有7中类型猫可供抽选，类型有"American Shorthair", "British Shorthair", "Japanese Bobtail", "Chinese Orange", "Russian Blue", "Persian", "Ragdoll"；
-  每一个猫盲盒是一个 `BAC002` 非同质化资产（NFT）。用户提供幸运数字（随机数种子）抽取从猫系列中抽取自己的猫盲盒，合约会给用户铸造相应的非同质化资产（NFT）。
+  此业务是一个猫系列的区块链盲盒实现，有7中类型猫可供抽选，类型有 `"American Shorthair", "British Shorthair", "Japanese Bobtail", "Chinese Orange", "Russian Blue", "Persian", "Ragdoll"`；  
+  每一个猫盲盒是一个 `BAC002` 非同质化资产（NFT）。用户提供幸运数字（随机数种子）抽取从猫系列中抽取自己的猫盲盒，合约会给用户铸造相应的非同质化资产（NFT）。  
+
   用户可以选择将所拥有的猫盲盒（NFT资产）进行出售换取对应 `BAC001` 资产，支持定价出售和拍卖出售。
 
 ## 合约函数说明
