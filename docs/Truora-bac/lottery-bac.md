@@ -10,7 +10,9 @@
    4 主次人开奖。根据预言机获取的随机数，对参赛选手人数取余，得到中奖者的地址，将BAC001奖金发送给中奖者。
 
 ## 合约函数说明
-  抽奖合约[LotteryBacOracle](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lottery/LotteryBacOracle.sol)  
+   基于Truora API 方式的抽奖合约[LotteryBacOracle](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lottery/LotteryBacOracle.sol)
+   基于Truora VRF 方式的抽奖合约[LotteryBacUseVrf](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/contracts/1.0/sol-0.6/BAC/lotteryUseVrf/LotteryBacUseVrf.sol)
+   原理基本类似，我们以Truora API 方式的抽奖合约作为讲解。
 * 构造函数
 
   调用合约的构造函数部署抽奖合约，需要传入两个参数：
