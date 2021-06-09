@@ -1,7 +1,8 @@
 # 积分抽奖
   本项目结合 `Turora` 和 `BAC001`，实现一个区块链积分抽奖功能。随机数抽奖的核心就是获取随机数。
   有两种实现方案，基于 `Turora` 链下 `API` 方式获取随机数，以及基于 `Turora` 的`VRF`方式获取链下随机数。
-  体验此功能前，请阅读 [Truora 开发教程](https://truora.readthedocs.io/zh_CN/latest/docs/develop/quick-start.html#id2)
+  
+  **体验此功能前，请阅读 [Truora 开发教程](https://truora.readthedocs.io/zh_CN/latest/docs/develop/quick-start.html#id2)**
 
 ## 业务流程
    1 主持人开始一轮抽奖，初始化此轮抽奖每个参与者需要的BAC001资产数量，以及初始化参与此次抽奖的用户（地址）；  
