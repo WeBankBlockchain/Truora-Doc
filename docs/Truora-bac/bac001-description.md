@@ -179,7 +179,7 @@
 
 
 ### 样例代码
-  参考测试案例在 **Truora-Service** 测试目录 [BAC001Test](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/src/test/java/com/webank/oracle/test/transaction/bac/BAC001/BAC001Test.java) 下
+  参考测试案例在 **Truora-Service** 测试目录 [BAC001](https://github.com/WeBankBlockchain/Truora-Service/blob/dev/src/test/java/com/webank/oracle/test/transaction/bac/BAC001/BAC001Test.java) 下
 ```
  @Test
     public void testBAC001() throws Exception {

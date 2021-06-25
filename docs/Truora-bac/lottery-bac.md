@@ -61,24 +61,24 @@
 * 参与抽奖成员：`alice`、`bob`
 * 提供随机数服务的`randomOracle`合约
 * 用于抽奖质押的 `BAC001` 合约
-* 提供抽奖服务的合约`LotteryBac001Oracle`
+* 提供抽奖服务的合约`LotteryBacOracle`
 
 ### 预准备
 * 搭建预言机服务或者从服务供应商获取，得到`OracleCore`合约地址，如：`0xa60a49b75ee98a19939a786d57cd2a9802e4984b`
 * 用`OracleCore`合约地址作为初始化参数，部署预言机客户端合约`APISampleOracle`，记录该客户端合约的地址，如：`0x89ad9c94646182534482c7f1277c61aed8c22883`
 * 部署BAC001合约，给参与抽奖的人员转入足够的bac001,并记录该合约的地址，如：`0x470e30fbd66fdc02e0dbf08e0cdd9f6cdb068c8a`
-* 主持人部署抽奖合约`LotteryBac001Oracle`,参数是以上得到的`APISampleOracle`和BAC001合约地址
+* 主持人部署抽奖合约`LotteryBacOracle`,参数是以上得到的`APISampleOracle`和BAC001合约地址
 
 ### 抽奖步骤
 
-* 主持人调用抽奖合约`LotteryBac001Oracle`的函数`start_new_lottery`。
+* 主持人调用抽奖合约`LotteryBacOracle`的函数`start_new_lottery`。
   - `_players`：本轮抽奖入所有参与者
   - `amount`： 本轮抽奖需要质押的bac001数量
  
-* 所有参与者分别在bac001合约中调用`approve`函数,允许抽奖合约`LotteryBac001Oracle`从自己账户下转走部分bac001。
+* 所有参与者分别在bac001合约中调用`approve`函数,允许抽奖合约`LotteryBacOracle`从自己账户下转走部分bac001。
 
-* 参与者调用抽奖合约`LotteryBac001Oracle`的`deposit`函数确定参与抽奖，这一步操作后，参与者账户下的bac001将会自动转到抽奖合约地址中，额度为本轮抽奖指定的数量。
+* 参与者调用抽奖合约`LotteryBacOracle`的`deposit`函数确定参与抽奖，这一步操作后，参与者账户下的bac001将会自动转到抽奖合约地址中，额度为本轮抽奖指定的数量。
 
-* 主持人调用抽奖合约`LotteryBac001Oracle`的`stop_deposit`函数停止本轮抽奖，参与者不能继续质押了。
+* 主持人调用抽奖合约`LotteryBacOracle`的`stop_deposit`函数停止本轮抽奖，参与者不能继续质押了。
 
-* 主持人调用抽奖合约`LotteryBac001Oracle`的`pickWinner`函数，根据随机数计算出本轮获胜者，并将所有质押的bac001转给胜出者。
+* 主持人调用抽奖合约`LotteryBacOracle`的`pickWinner`函数，根据随机数计算出本轮获胜者，并将所有质押的bac001转给胜出者。
