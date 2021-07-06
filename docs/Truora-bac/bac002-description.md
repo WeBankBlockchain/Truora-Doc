@@ -30,7 +30,7 @@
 
 - 销毁
 
-  调用 destory 以及 destoryFrom 销毁自己地址下资产和特定地址下的资产
+  调用 destroy 以及 destroyFrom 销毁自己地址下资产和特定地址下的资产
 
 - 暂停
 
