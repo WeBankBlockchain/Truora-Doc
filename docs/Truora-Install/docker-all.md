@@ -2,9 +2,10 @@
 
 
 ```eval_rst
-   .. important::
-   
-		- 使用一键部署 Truora 服务时，**仅支持 Linux 操作系统！！**
+.. important::
+    
+    - 使用一键部署 Truora 服务时，**仅支持 Linux 操作系统！！**  
+    - 使用一键部署 Truora 服务时，**数据库服务无需配置和改动! !**。
 ```
 
 ## 部署介绍
@@ -19,7 +20,7 @@
 
 部署后的架构如下：
 
-![truora-docker-deploy](../../images/Truora-Docker-Deploy.png)
+![](../../images/Truora-Docker-Deploy.png)
 
 
 * **WeBASE-Front**
@@ -89,7 +90,7 @@ Truora 一键部署工具特性：
 <!-- TODO add latest release-->
 ```Bash
 ## 从 GitHub 下载最新部署包
-wget "https://github.com/WeBankBlockchain/Truora-Service/releases/download/v1.0.0/docker-deploy.zip"
+wget "https://github.com/WeBankBlockchain/Truora-Service/releases/download/v1.1.0/docker-deploy.zip"
 
 ## 解压部署包
 unzip docker-deploy.zip

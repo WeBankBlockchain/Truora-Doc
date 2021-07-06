@@ -16,7 +16,7 @@
 
 ## Clone代码仓库
 
-![clone](../images/contribution/clone.png)
+![](../images/contribution/clone.png)
 
 接下来，将复制后的代码仓库克隆到你的电脑上。点击图示中的绿色按钮，接着点击复制到剪切板按钮（将代码仓库地址复制下来）
 

@@ -16,12 +16,15 @@
 * **分页查询请求记录：**
     * 通过 **链 ID** 和 **群组 ID**，分页查询请求历史记录
     
-    ![history_list](../../images/Truora-Web/history_list.png)
+![](../../images/Truora-Web/history_list.png)
     
 * **查询单个请求详情：**
-    * 根据 **请求 ID**，查询单个请求的详细信息：成功，失败（失败原理），处理时长等
+    * 根据 **请求 ID**，查询单个请求的详细信息：成功，失败（失败原因），处理时长等
     
-    ![history_detail](../../images/Truora-Web/history_detail.png)
+![](../../images/Truora-Web/history_detail_api.png)
+
+
+![](../../images/Truora-Web/history_detail_vrf.png)
 
 
 <span id="list_oracle_address"/>
@@ -29,7 +32,7 @@
 * **查询系统合约地址：**
     * 查询 `OracleCore` 合约的地址，编写业务合约时使用
     
-    ![oracle_address](../../images/Truora-Web/oracle_address.png)
+![](../../images/develop/oracle-core-address.png)
 	
 
 

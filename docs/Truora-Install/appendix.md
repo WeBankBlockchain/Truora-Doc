@@ -176,10 +176,10 @@ unzip docker-deploy.zip
 
 版本号，从 [https://github.com/WeBankBlockchain/Truora-Service/releases](https://github.com/WeBankBlockchain/Truora-Service/releases) 获取。
 
-比如，下载 v1.0.0 版：
+比如，下载 v1.1.0 版：
 
 ```Bash
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/deploy/docker-deploy-v1.0.0.zip" -O docker-deploy.zip
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/deploy/docker-deploy-v1.1.0.zip" -O docker-deploy.zip
 # 解压部署包
 unzip docker-deploy.zip
 ```
@@ -203,7 +203,7 @@ Truora 镜像包含两个服务的镜像：Truora-Service 和 Truora-Web。
 ```Bash
 ## 下载指定版本时替换 {VERSION} 版本号
 
-## 下载 Truora-Service
+# 下载 Truora-Service
 wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/docker/truora/truora-service-{VERSION}.tar" -O truora-service.tar
 # 加载镜像
 docker load -i truora-service.tar
@@ -216,17 +216,17 @@ docker load -i truora-web.tar
 
 版本号，从 [https://github.com/WeBankBlockchain/Truora-Service/releases](https://github.com/WeBankBlockchain/Truora-Service/releases) 获取。
 
-比如，下载 v1.0.0 版：
+比如，下载 v1.1.0 版：
 
 ```Bash
 # 下载 Truora-Service
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/docker/truora/truora-service-v1.0.0.tar" -O truora-service.tar
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/docker/truora/truora-service-v1.1.0.tar" -O truora-service.tar
 # 加载镜像
 docker load -i truora-service.tar
 
 
 # 下载 Truora-Web
-wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/docker/truora/truora-web-v1.0.0.tar" -O truora-web.tar
+wget "https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBankBlockchain/Truora/docker/truora/truora-web-v1.1.0.tar" -O truora-web.tar
 # 加载镜像
 docker load -i truora-web.tar
 ```
