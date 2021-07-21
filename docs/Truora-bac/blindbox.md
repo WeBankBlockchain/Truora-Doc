@@ -14,7 +14,7 @@
 * David：抽取从盲盒抽奖合约抽得一个猫，并在非定价拍卖合约中拍卖这个猫
 * Alice、Bob：参与拍卖的成员
 * RandomNumberSampleVRF：提供函数获取 `vrf` 随机数
-* BAC001：拍卖猫时，指定的接收的ft类型
+* BAC001：积分合约
 * CatBlindbox:提供盲盒猫抽奖的合约
 * AuctionUnfixedPrice：该合约提供拍卖功能
 
@@ -23,7 +23,7 @@
 * 搭建预言机服务或者从服务供应商获取，得到Truora服务方的 VRFCore合约地址和公钥哈希值
 * 以`VRFCore`合约地址和公钥哈希值为构造函数参数，部署用于产生随机数的合约[RandomNumberSampleVRF](https://github.com/WeBankBlockchain/Truora-Service/blob/main/contracts/1.0/sol-0.6/oracle/simple-vrf/RandomNumberSampleVRF.sol)，并记录合约地址
 * BAC001合约已部署，并记录地址;
-* 相关用户（Alice、Bob）拥有足够的BAC001，并且允许本合约从自己的账户下转走部分BAC001（不低于拍卖合约指定的量）;
+* 相关用户（Alice、Bob）拥有足够的积分，并且允许本合约从自己的账户下转走部分积分;
 * 部署非定价拍卖合约`AuctionUnfixedPrice`
 * 部署盲盒猫抽奖合约`CatBlindbox`
 
