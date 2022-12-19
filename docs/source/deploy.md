@@ -122,7 +122,12 @@ Truora-Service 支持同时连接多条链，以及连接同一条链中的多�
 
 * 如果连接FISCO BCOS 3.x版本的底层，配置`application-fiscobcos3.yml`，配置链的连接参数以及`bcos3sdk_config.toml`，如果是连接多条链，则应有多个不同的`bcos3sdk_config_[链id].toml`文件。
 
-* application.yml里的spring.profiles段，预置了几种配置组合模式，名字配置在这里的，相应的spring配置文件(如application-fiscobcos3.yml）才会生效。其中dapps对应一些预言机示例。
+* application.yml里的spring.profiles段，预置了几种配置组合模式，名字配置在这里的，相应的spring配置文件(如application-fiscobcos3.yml）才会生效。
+
+* 如:实例仅面向FISCO BCOS3.1.x+,则只需要激活fiscobcos3的profile即可。面向fiscobcos2同理
+
+* 名为dapps的profile对应一些示例。参见[接口里的示例段](https://truora.readthedocs.io/zh_CN/v3dev/Truora-Service/interface.html#dapp)
+
 ```
 spring:
   profiles:
