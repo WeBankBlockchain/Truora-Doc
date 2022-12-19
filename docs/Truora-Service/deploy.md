@@ -1,5 +1,10 @@
 
-# 兼容性说明
+
+
+# 源码编译和部署
+
+
+## 兼容性说明
 * v2stable分支版本所述的truora支持FISCO-BCOS 2.6.0 +
 	* Truora-Service 分支[v2stable](https://github.com/WeBankBlockchain/Truora-Service/tree/v2stable)
     * Truora `v1.X.0` 版本支持 [FISCO-BCOS 2.6.0 +](https://github.com/FISCO-BCOS/FISCO-BCOS/releases/tag/v2.6.0) 版本。
@@ -7,13 +12,10 @@
 
 * latest/v3dev分支所述的truora支持FISCO-BCOS 3.1.x + 
 	* 支持[FISCO-BCOS 3.1及以上](https://github.com/FISCO-BCOS/FISCO-BCOS)
-	* 文档连接[Latest/v3dev分支](适配FISCO BCOS 3.x+版本的文档为：[Latest/v3Dev分支](https://truora.readthedocs.io/zh_CN/latest/)	)
+	* 文档连接[Latest/v3dev分支](https://truora.readthedocs.io/zh_CN/latest/)	
 	*  Truora-Service 主分支[main](https://github.com/WeBankBlockchain/Truora-Service/tree/main)
-	*  Truora-Service 开发分支[v3dev]()(https://github.com/WeBankBlockchain/Truora-Service/tree/v3dev)
+	*  Truora-Service 开发分支[v3dev](https://github.com/WeBankBlockchain/Truora-Service/tree/v3dev)
 	*  v3dev分支暂不支持一键安装、docker和web模块，欢迎参与开发贡献。
-
-
-# 源码编译
 
 
 ## 安装介绍
