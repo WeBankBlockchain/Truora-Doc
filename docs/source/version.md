@@ -1,5 +1,15 @@
 # 分支版本说明
 
+**本技术文档主要适用于面向 FISCO BCOS 3.1+的Truora-Service服务**
+
+Truora-Service项目代码可以同时支持兼容FISCO BCOS2.6.x+和FISCO BCOS3.1.x+。
+
+FISCO BCOS2.x系列已经趋于稳定，目前底层最新版本是FISCO BCOS3.x系列。
+
+对应的，Truora-Service最新版本重点适配FISCO BCOS3.x，在此基础上迭代新特性。
+
+如原有的链是FISCO BCOS2.x系列，又需要使用预言机服务的，仍然可以使用对应的Truora-Service(v2stable)版本。
+
 **<font color=#00BB00>！(*首先确认区块链底层对应的版本，并切换到对应的文档和代码分支进行操作*)！</font>**
 
 **面向区块链底层 FISCO-BCOS 2.6.0 +**
