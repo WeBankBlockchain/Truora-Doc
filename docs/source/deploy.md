@@ -28,11 +28,11 @@ Truora-Service本身是个典型的SpringBoot工程，只要熟悉Java以及相�
 
 * 运行前应已经安装FISCO BCOS的底层并把链运行起来。FISCO BCOS底层的安装部署参见其[操作文档](https://fisco-bcos-doc.readthedocs.io/zh_CN/latest/)
 
-* 数据库应事先安装。可采用Mysql/MariaDB，首先要先手工建库`truora`，并保证`application.yml`里的数据库连接配置正确，以连接到数据库。建表脚本为项目文件路径里的
+* 数据库应事先安装。可采用Mysql/MariaDB，进入数据库后，首先要先手工建库`truora`，并保证`application.yml`里的数据库连接配置正确。
 
-```dbscripts/V2022.10__v1.0.0_init_table.sql```
+* 数据库建表脚本为项目文件路径里的[dbscripts/V2022.10__v1.0.0_init_table.sql](https://github.com/WeBankBlockchain/Truora-Service/blob/main/dbscripts/V2022.10__v1.0.0_init_table.sql)
 
-*WeBASE等中间件平台，按需自行安装。参见[操作文档](https://webasedoc.readthedocs.io/zh_CN/latest/)
+* WeBASE等中间件平台，按需自行安装。参见[操作文档](https://webasedoc.readthedocs.io/zh_CN/latest/)
 
 
 ## 拉取代码
