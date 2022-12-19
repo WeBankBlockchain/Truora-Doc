@@ -8,6 +8,7 @@ Contents
 .. toctree::
    
    introduction.md
+   version.md
    deploy.md
    dev-quick-start.md
    dev-stepbystep.md

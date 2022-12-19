@@ -1,5 +1,12 @@
 # Truora介绍
 
+
+**本技术文档主要适用于 FISCO BCOS 3.1+**
+
+如面向FISCO BCOS2.6.x+，切换到文档连接[v2stable](https://truora.readthedocs.io/zh_CN/v2stable/)	 
+
+**分支版本说明参见 [连接](version.md)**
+
 ## 预言机简介
 ```eval_rst 
 .. admonition:: **预言机简介**
@@ -67,10 +74,7 @@
 
 
 
-```eval_rst 
-.. important::
 
-   - 本技术文档适用 FISCO BCOS 3.0+
-   
-   - FISCO BCOS 3.0+ 版本及兼容性说明 `这里 <https://fisco-bcos-doc.readthedocs.io/zh_CN/latest/docs/change_log/index.html>`_
-``` 
+
+  
+
