@@ -499,7 +499,7 @@ http://localhost:5022/truora/dapps/get?url=4&input=sampletext
     "oracleCoreAddress = 0x32e3bdfadee312f8f5e073e170915a5b00b20cb6",
     "dappContractAddress = ",
     "url = http://localhost:5022/truora/source/rand",
-    "retValue = GeneralResult(returnType=INT256, intValue=6896, bytesValue=null, strValue=null, isValid=true)"
+    "retValue = [ Type : INT256 ; Valid : true ; Result : 3508 ]"
   ],
   "totalCount": 5
 }
