@@ -1,5 +1,12 @@
 # 版本升级
+
+**此文档仅适用于v2stable分支，不包括适配FISCO BCOS3.1.x+的分支**
+
+参见[版本分支说明](https://truora.readthedocs.io/zh_CN/v2stable/docs/introduction.html#id1)
+
 Truora 在进行升级操作时，不同的部署方式，有不同的操作流程。
+
+
 
 Truora 的升级的主要流程如下：
 1. 数据库修改
