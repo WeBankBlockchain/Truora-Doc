@@ -17,7 +17,7 @@ Truora 预言机服务中有两个角色：
 
 1. 获取 预言机 相关合约地址
     * 选择一个 Truora 服务运营方，并从运营方获取到 预言机 相关合约地址
-    * 如果没有运营方，可以参考：[安装部署](../Truora-Install/index.html) 自行搭建 Truora 服务。
+    * 如果没有运营方，可以参考：[安装部署](deploy.md) 自行搭建 Truora 服务。
 	* 搭建完成后，从数据库里获取自动部署的预言机相关合约地址
     
 2. 开发合约
@@ -36,6 +36,7 @@ Truora 预言机服务中有两个角色：
 * `APISampleOracle.sol`: 用于从外部数据源获取uint256类型的结果。
 * `APISampleOracleReturnString.sol`： 用于从外部数据源获取String类型的结果。
 * `GeneralOracle.sol` : 合并了以上两个合约的功能，根据调用者指定的ReturnType，获取外部数据源，接口同时支持UINT256，String，Byte数组三种类型。
+
 
 以上合约在项目里都有对应的java调用实现，包括`com.webank.truora.test`包和`com.webank.truora.dapps`包里的代码，可以参考。
 
@@ -56,6 +57,8 @@ Truora 预言机服务中有两个角色：
 ```
 http://localhost:5022/truora/index
 ```
+
+Resful接口的说明[参见连接](https://truora.readthedocs.io/zh_CN/v3dev/Truora-Service/interface.html#dapp)
 
 **localhost地址根据实际部署的IP或域名替换**
 
