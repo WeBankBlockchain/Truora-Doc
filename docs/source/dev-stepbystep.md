@@ -22,6 +22,7 @@ WeBASE相关服务需要参照WeBASE项目文档自行部署。
 
 ```Bash
 FiscoOracleClient.sol
+GeneralOracle.sol
 OracleCore.sol
 OracleCoreInterface.sol
 Ownable.sol
@@ -46,7 +47,7 @@ GitHub 仓库：[Oracle 相关合约目录](https://github.com/WeBankBlockchain/
 ```
 
 
-* 在 **合约 IDE** 中，创建一个 `APISampleOracle` 合约，继承 `FiscoOracleClient` 合约，如下
+* 在 **合约 IDE** 中，创建一个 `APISampleOracle` 合约，继承 `FiscoOracleClient` 或 `FiscoOracleClient`合约，如下
 
 ![](../images/develop/create_solidity_demo.png)
 
