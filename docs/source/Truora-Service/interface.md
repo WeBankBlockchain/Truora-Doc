@@ -513,7 +513,7 @@ http://localhost:5022/truora/dapps/get?url=4&input=sampletext
 #### 返回一个json，rates数组里包含模拟汇率
 
 ```
-http://localhost:5022/truora/source/exchange"
+http://localhost:5022/truora/source/exchange
 ```
 
  对应真实的URL 
